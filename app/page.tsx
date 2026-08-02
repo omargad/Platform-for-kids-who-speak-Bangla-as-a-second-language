@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { lessons, levelBands, type CurriculumLevel } from "./curriculum";
 import LessonExperience from "./components/LessonExperience";
@@ -1833,7 +1834,7 @@ export default function Home() {
                   <li>{language === "en" ? "Bundled audio is replayable without scores or timers. Optional self-recording stays in the tab; third-party YouTube is click-to-load." : "অডিও স্কোর বা সময়ের চাপ ছাড়া বারবার শোনা যায়। নিজের ঐচ্ছিক রেকর্ডিং ট্যাবেই থাকে; YouTube কেবল ক্লিক করলে লোড হয়।"}</li>
                   <li>{language === "en" ? "Independent Bangla, cultural, child-development, accessibility, video and legal approval remains visible in the Content Studio." : "স্বাধীন বাংলা, সংস্কৃতি, শিশু-শিক্ষা, অ্যাক্সেসিবিলিটি, ভিডিও ও আইনি অনুমোদনের অবস্থা Content Studio-তে দেখা যায়।"}</li>
                 </ul>
-                <div className="grownup-tool-links"><a href="/family">Open learner dashboard →</a><a href="/studio">Open Content Studio →</a><a href="/safety">Read safety & accessibility →</a></div>
+                <div className="grownup-tool-links"><a href="/family">Open learner dashboard →</a><a href="/studio">Open Content Studio →</a><Link href="/worksheets">Print lesson worksheets →</Link><a href="/safety">Read safety & accessibility →</a></div>
                 <button className="text-button danger" type="button" onClick={resetProgress}>{t.resetProgress}</button>
               </div>
             )}

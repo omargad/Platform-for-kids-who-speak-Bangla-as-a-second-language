@@ -10,7 +10,7 @@ export default async function FamilyPage() {
     <main className="adult-app">
       <header className="adult-header">
         <Link className="adult-brand" href="/"><span>বা</span><span><strong>Bangla Adventures</strong><small>Grown-up dashboard</small></span></Link>
-        <nav aria-label="Adult tools"><a className="active" href="/family">Learners</a><a href="/studio">Content Studio</a><a href="/safety">Safety & access</a><a href="/account">Account</a></nav>
+        <nav aria-label="Adult tools"><a className="active" href="/family">Learners</a><a href="/studio">Content Studio</a><Link href="/worksheets">Worksheets</Link><a href="/safety">Safety & access</a><a href="/account">Account</a></nav>
         <div className="adult-account"><span>{user.displayName}</span><a href={signOutPath("/")}>Sign out</a></div>
       </header>
       <FamilyDashboard adultName={user.displayName} />

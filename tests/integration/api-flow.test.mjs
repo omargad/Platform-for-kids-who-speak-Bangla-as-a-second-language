@@ -159,6 +159,22 @@ test("profile deletion removes its progress", async () => {
   assert.equal(payload.learnerProfiles.length, 0);
 });
 
+test("worksheets render for every lesson entry point", async () => {
+  const index = await fetch(`${BASE}/worksheets`);
+  assert.equal(index.status, 200);
+  const indexHtml = await index.text();
+  assert.ok(indexHtml.includes("worksheet"), "index mentions worksheets");
+
+  const sheet = await fetch(`${BASE}/worksheets/hello-me`);
+  assert.equal(sheet.status, 200);
+  const sheetHtml = await sheet.text();
+  assert.ok(sheetHtml.includes("Words to learn"), "vocabulary section present");
+  assert.ok(sheetHtml.includes("Family mission"), "family mission present");
+
+  const missing = await fetch(`${BASE}/worksheets/not-a-lesson`);
+  assert.equal(missing.status, 404);
+});
+
 test("account deletion removes access entirely", async () => {
   const deleted = await fetch(`${BASE}/api/account/delete`, {
     method: "POST",

@@ -47,8 +47,8 @@ export async function GET() {
     curriculumDrafts: drafts,
     contentReviews: reviews,
     videoReviews: videos,
-    // Metadata only; the audio files themselves can be requested separately.
-    mediaAssets: media.map(({ objectKey, ...rest }) => rest),
+    // Metadata only (JSON.stringify drops the undefined storage key).
+    mediaAssets: media.map((asset) => ({ ...asset, objectKey: undefined })),
   };
 
   return new Response(JSON.stringify(payload, null, 2), {
