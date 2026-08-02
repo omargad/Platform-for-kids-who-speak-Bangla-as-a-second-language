@@ -160,3 +160,18 @@ export const adultSessions = sqliteTable(
   },
   (table) => [index("adult_sessions_adult_idx").on(table.adultId)],
 );
+
+export const recoveryCodes = sqliteTable(
+  "recovery_codes",
+  {
+    id: text("id").primaryKey(),
+    adultId: text("adult_id").notNull().references(() => adults.id, { onDelete: "cascade" }),
+    codeHash: text("code_hash").notNull(),
+    usedAt: text("used_at"),
+    createdAt: text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+  },
+  (table) => [
+    index("recovery_codes_adult_idx").on(table.adultId),
+    uniqueIndex("recovery_codes_hash_unique").on(table.codeHash),
+  ],
+);

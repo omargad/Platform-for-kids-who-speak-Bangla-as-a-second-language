@@ -23,7 +23,8 @@ The experience combines three visual ideas: a warm river storybook, a postcard-s
 - **/grown-ups** — sign in or create a grown-up account (parents, carers, educators)
 - **/family** — learner profiles (display name only — no child emails or birthdays), lesson assignments and six-skill progress tracking synced to the server
 - **/studio** — content studio: curriculum drafts, educator/community review tracking, human pronunciation audio uploads with speaker consent records, and YouTube video suitability checks
-- **/account** — change password (ends other sessions), sign out everywhere, download a full JSON export of the family's data, or permanently delete the account and everything it owns
+- **/account** — change password (ends other sessions), sign out everywhere, regenerate recovery codes, download a full JSON export of the family's data, or permanently delete the account and everything it owns
+- **Recovery codes** — eight one-time codes issued at sign-up (there is no email reset); "Forgot your password?" on the sign-in page resets the password with a code and signs out all devices
 - **/safety** — plain-language safety, privacy and accessibility record
 - Learner profiles can be individually removed from the family dashboard, deleting their progress and assignments
 - Sign-in, sign-up and account endpoints are rate-limited in-app
@@ -79,9 +80,10 @@ The app runs on any VM or container service (AWS Lightsail/EC2/ECS, Azure App Se
 ## Quality checks
 
 ```bash
-npm run lint   # ESLint (next/core-web-vitals + TypeScript)
-npm test       # curriculum integrity, audio asset coverage, password/session crypto
-npm run build  # type-checks and produces the production bundle
+npm run lint             # ESLint (next/core-web-vitals + TypeScript)
+npm test                 # curriculum integrity, audio coverage, crypto, rate limiter
+npm run build            # type-checks and produces the production bundle
+npm run test:integration # full HTTP flow against the built server (run after build)
 ```
 
 ## Main source files

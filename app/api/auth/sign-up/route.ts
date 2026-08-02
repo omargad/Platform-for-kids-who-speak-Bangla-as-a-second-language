@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import {
   SESSION_COOKIE,
   createAdultSession,
+  issueRecoveryCodes,
   registerAdult,
   sessionCookieOptions,
 } from "../../../../lib/auth";
@@ -36,8 +37,9 @@ export async function POST(request: Request) {
   const result = await registerAdult(email, displayName, password);
   if ("error" in result) return NextResponse.json({ error: result.error }, { status: 409 });
 
+  const recoveryCodes = await issueRecoveryCodes(result.id);
   const { token, expiresAt } = await createAdultSession(result.id);
-  const response = NextResponse.json({ adult: result }, { status: 201 });
+  const response = NextResponse.json({ adult: result, recoveryCodes }, { status: 201 });
   response.cookies.set(SESSION_COOKIE, token, sessionCookieOptions(expiresAt));
   return response;
 }

@@ -29,6 +29,24 @@ export function createSessionToken(): string {
   return randomBytes(32).toString("base64url");
 }
 
+// No I, L, O, 0 or 1 — codes get read out loud and typed by hand.
+const RECOVERY_ALPHABET = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
+
+export function generateRecoveryCode(): string {
+  const bytes = randomBytes(10);
+  let code = "";
+  for (let i = 0; i < 10; i += 1) {
+    if (i === 5) code += "-";
+    code += RECOVERY_ALPHABET[bytes[i] % RECOVERY_ALPHABET.length];
+  }
+  return code;
+}
+
+/** Uppercase and strip separators so hand-typed codes match regardless of format. */
+export function normalizeRecoveryCode(code: string): string {
+  return code.toUpperCase().replace(/[^A-Z2-9]/g, "");
+}
+
 export function hashSessionToken(token: string): string {
   return createHash("sha256").update(token).digest("hex");
 }

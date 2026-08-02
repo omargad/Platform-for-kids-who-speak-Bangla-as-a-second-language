@@ -2,8 +2,15 @@ import { and, eq, gt, lt, ne } from "drizzle-orm";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { getDb } from "../db";
-import { adults, adultSessions } from "../db/schema";
-import { createSessionToken, hashPassword, hashSessionToken, verifyPassword } from "./password";
+import { adults, adultSessions, recoveryCodes } from "../db/schema";
+import {
+  createSessionToken,
+  generateRecoveryCode,
+  hashPassword,
+  hashSessionToken,
+  normalizeRecoveryCode,
+  verifyPassword,
+} from "./password";
 
 export type Adult = {
   id: string;
@@ -118,6 +125,45 @@ export async function destroyOtherSessions(adultId: string, keepToken: string): 
 export async function updateAdultPassword(adultId: string, newPassword: string): Promise<void> {
   const db = await getDb();
   await db.update(adults).set({ passwordHash: hashPassword(newPassword) }).where(eq(adults.id, adultId));
+}
+
+const RECOVERY_CODE_COUNT = 8;
+
+/** Replace any existing recovery codes with a fresh set; the plaintext is returned exactly once. */
+export async function issueRecoveryCodes(adultId: string): Promise<string[]> {
+  const db = await getDb();
+  const codes = Array.from({ length: RECOVERY_CODE_COUNT }, () => generateRecoveryCode());
+  await db.delete(recoveryCodes).where(eq(recoveryCodes.adultId, adultId));
+  await db.insert(recoveryCodes).values(
+    codes.map((code) => ({
+      id: crypto.randomUUID(),
+      adultId,
+      codeHash: hashSessionToken(normalizeRecoveryCode(code)),
+    })),
+  );
+  return codes;
+}
+
+/** Verify an unused recovery code for this email and consume it. Returns the adult on success. */
+export async function consumeRecoveryCode(email: string, code: string): Promise<Adult | null> {
+  const db = await getDb();
+  const normalizedEmail = email.trim().toLowerCase();
+  const [adult] = await db.select().from(adults).where(eq(adults.email, normalizedEmail)).limit(1);
+  if (!adult) return null;
+
+  const codeHash = hashSessionToken(normalizeRecoveryCode(code));
+  const [row] = await db
+    .select({ id: recoveryCodes.id, usedAt: recoveryCodes.usedAt })
+    .from(recoveryCodes)
+    .where(and(eq(recoveryCodes.adultId, adult.id), eq(recoveryCodes.codeHash, codeHash)))
+    .limit(1);
+  if (!row || row.usedAt) return null;
+
+  await db
+    .update(recoveryCodes)
+    .set({ usedAt: new Date().toISOString() })
+    .where(eq(recoveryCodes.id, row.id));
+  return { id: adult.id, email: adult.email, displayName: adult.displayName };
 }
 
 export async function getSessionToken(): Promise<string | null> {

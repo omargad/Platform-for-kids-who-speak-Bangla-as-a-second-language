@@ -7605,3 +7605,58 @@ body.modal-open .pwa-status {
   opacity: 0.6;
   cursor: wait;
 }
+
+/* Recovery codes */
+.auth-codes {
+  list-style: none;
+  margin: 12px 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  width: 100%;
+}
+
+.auth-codes code {
+  display: block;
+  background: var(--cream);
+  border: 1.5px dashed var(--ink);
+  border-radius: 10px;
+  padding: 8px 10px;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.9rem;
+  letter-spacing: 0.06em;
+  text-align: center;
+}
+
+.auth-codes-title {
+  font-family: var(--display);
+  color: var(--emerald);
+  margin: 0 0 8px;
+}
+
+.auth-codes-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.auth-link {
+  background: none;
+  border: none;
+  color: var(--indigo);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  padding: 0;
+  margin-top: 14px;
+}
+
+@media (max-width: 480px) {
+  .auth-codes {
+    grid-template-columns: 1fr;
+  }
+}

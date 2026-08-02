@@ -11,6 +11,9 @@ export default function AccountPanel({ email, displayName }: { email: string; di
   const [deletePassword, setDeletePassword] = useState("");
   const [deleteConfirm, setDeleteConfirm] = useState("");
   const [deleteError, setDeleteError] = useState<string | null>(null);
+  const [codesPassword, setCodesPassword] = useState("");
+  const [newCodes, setNewCodes] = useState<string[] | null>(null);
+  const [codesError, setCodesError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
 
   async function changePassword(event: React.FormEvent) {
@@ -47,6 +50,33 @@ export default function AccountPanel({ email, displayName }: { email: string; di
       await fetch("/api/account/sessions", { method: "DELETE" });
       router.push("/");
       router.refresh();
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function regenerateCodes(event: React.FormEvent) {
+    event.preventDefault();
+    setBusy(true);
+    setCodesError(null);
+    try {
+      const response = await fetch("/api/account/recovery-codes", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ password: codesPassword }),
+      });
+      const data = (await response.json().catch(() => ({}))) as {
+        error?: string;
+        recoveryCodes?: string[];
+      };
+      if (!response.ok || !data.recoveryCodes) {
+        setCodesError(data.error ?? "Could not generate new codes.");
+        return;
+      }
+      setCodesPassword("");
+      setNewCodes(data.recoveryCodes);
+    } catch {
+      setCodesError("Could not reach the server. Try again.");
     } finally {
       setBusy(false);
     }
@@ -145,6 +175,49 @@ export default function AccountPanel({ email, displayName }: { email: string; di
           <button type="button" className="outline-button" onClick={() => void signOutEverywhere()} disabled={busy}>
             Sign out everywhere
           </button>
+        </section>
+
+        <section className="account-card" aria-labelledby="account-codes">
+          <h2 id="account-codes">Recovery codes</h2>
+          <p>
+            Recovery codes are the only way back in if you forget your password — there is no email
+            reset. Generating a new set invalidates every previous code.
+          </p>
+          {newCodes ? (
+            <>
+              <ul className="auth-codes" aria-label="One-time recovery codes">
+                {newCodes.map((code) => (
+                  <li key={code}>
+                    <code>{code}</code>
+                  </li>
+                ))}
+              </ul>
+              <p className="auth-success" role="status">
+                Save these now — they are shown only once.
+              </p>
+            </>
+          ) : (
+            <form onSubmit={regenerateCodes}>
+              <label>
+                Current password
+                <input
+                  type="password"
+                  value={codesPassword}
+                  onChange={(event) => setCodesPassword(event.target.value)}
+                  required
+                  autoComplete="current-password"
+                />
+              </label>
+              {codesError && (
+                <p className="auth-error" role="alert">
+                  {codesError}
+                </p>
+              )}
+              <button type="submit" className="outline-button" disabled={busy}>
+                {busy ? "One moment…" : "Generate new recovery codes"}
+              </button>
+            </form>
+          )}
         </section>
 
         <section className="account-card account-danger" aria-labelledby="account-delete">
