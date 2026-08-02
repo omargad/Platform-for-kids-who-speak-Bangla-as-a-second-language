@@ -5,12 +5,16 @@ import {
   registerAdult,
   sessionCookieOptions,
 } from "../../../../lib/auth";
+import { checkRateLimit, clientKey, tooManyRequests } from "../../../../lib/rate-limit";
 
 export const dynamic = "force-dynamic";
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export async function POST(request: Request) {
+  const limit = checkRateLimit(`sign-up:${clientKey(request)}`, 5, 60 * 60 * 1000);
+  if (!limit.allowed) return tooManyRequests(limit.retryAfterSeconds);
+
   const body = (await request.json().catch(() => ({}))) as Record<string, unknown>;
   const email = typeof body.email === "string" ? body.email.trim().slice(0, 120) : "";
   const displayName = typeof body.displayName === "string" ? body.displayName.trim().slice(0, 60) : "";

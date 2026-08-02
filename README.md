@@ -23,7 +23,10 @@ The experience combines three visual ideas: a warm river storybook, a postcard-s
 - **/grown-ups** — sign in or create a grown-up account (parents, carers, educators)
 - **/family** — learner profiles (display name only — no child emails or birthdays), lesson assignments and six-skill progress tracking synced to the server
 - **/studio** — content studio: curriculum drafts, educator/community review tracking, human pronunciation audio uploads with speaker consent records, and YouTube video suitability checks
+- **/account** — change password (ends other sessions), sign out everywhere, download a full JSON export of the family's data, or permanently delete the account and everything it owns
 - **/safety** — plain-language safety, privacy and accessibility record
+- Learner profiles can be individually removed from the family dashboard, deleting their progress and assignments
+- Sign-in, sign-up and account endpoints are rate-limited in-app
 
 ## Architecture
 

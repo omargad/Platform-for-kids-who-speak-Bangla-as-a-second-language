@@ -1,4 +1,4 @@
-import { and, eq, gt, lt } from "drizzle-orm";
+import { and, eq, gt, lt, ne } from "drizzle-orm";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { getDb } from "../db";
@@ -98,6 +98,31 @@ export async function createAdultSession(adultId: string): Promise<{ token: stri
 export async function destroySession(token: string): Promise<void> {
   const db = await getDb();
   await db.delete(adultSessions).where(eq(adultSessions.tokenHash, hashSessionToken(token)));
+}
+
+export async function destroyAllSessions(adultId: string): Promise<void> {
+  const db = await getDb();
+  await db.delete(adultSessions).where(eq(adultSessions.adultId, adultId));
+}
+
+/** Delete every session except the one identified by keepToken (used after a password change). */
+export async function destroyOtherSessions(adultId: string, keepToken: string): Promise<void> {
+  const db = await getDb();
+  await db
+    .delete(adultSessions)
+    .where(
+      and(eq(adultSessions.adultId, adultId), ne(adultSessions.tokenHash, hashSessionToken(keepToken))),
+    );
+}
+
+export async function updateAdultPassword(adultId: string, newPassword: string): Promise<void> {
+  const db = await getDb();
+  await db.update(adults).set({ passwordHash: hashPassword(newPassword) }).where(eq(adults.id, adultId));
+}
+
+export async function getSessionToken(): Promise<string | null> {
+  const cookieStore = await cookies();
+  return cookieStore.get(SESSION_COOKIE)?.value ?? null;
 }
 
 export function sessionCookieOptions(expiresAt: Date) {

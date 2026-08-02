@@ -92,5 +92,8 @@ simple and cheap. When the platform needs more than one server instance:
 - [ ] HTTPS enforced end to end (proxy redirects HTTP → HTTPS)
 - [ ] `.data/` on encrypted disk, scheduled backups tested
 - [ ] OS auto-updates on; SSH by key only
-- [ ] Rate limiting at the proxy for `/api/auth/*` (e.g. Caddy `rate_limit` or nginx `limit_req`)
+- [ ] Rate limiting: the app enforces per-IP limits on `/api/auth/*` and account
+      endpoints in-process (fine for one instance). Add proxy-level limits
+      (Caddy `rate_limit` / nginx `limit_req`) as defence in depth, and rely on
+      the proxy alone if you ever run multiple instances.
 - [ ] Review `docs/PROJECT_PACK.md` safety items and `/safety` page statements still hold

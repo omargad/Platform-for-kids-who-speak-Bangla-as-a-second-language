@@ -87,6 +87,25 @@ export default function FamilyDashboard({ adultName }: { adultName: string }) {
     if (response.ok) await loadProfiles();
   }
 
+  async function removeProfile(profile: Profile) {
+    const confirmed = window.confirm(
+      `Remove ${profile.displayName}'s profile? Their ${profile.progress.length} recorded sessions and all assignments are permanently deleted. Device-local stars on their own device are not affected.`,
+    );
+    if (!confirmed) return;
+    setSaving(true);
+    setError("");
+    try {
+      const response = await fetch(`/api/profiles/${encodeURIComponent(profile.id)}`, { method: "DELETE" });
+      const data = await response.json() as { error?: string };
+      if (!response.ok) throw new Error(data.error || "Could not remove the profile.");
+      await loadProfiles();
+    } catch (caught) {
+      setError(caught instanceof Error ? caught.message : "Could not remove the profile.");
+    } finally {
+      setSaving(false);
+    }
+  }
+
   function exportCsv(profile: Profile) {
     const rows = [["Learner", "Module", "Skill", "Status", "Score", "Updated"], ...profile.progress.map((item) => [profile.displayName, lessons.find((lesson) => lesson.id === item.lessonId)?.title || item.lessonId, item.skill, "complete", item.score ?? "", item.updatedAt])];
     const csv = rows.map((row) => row.map((cell) => `"${String(cell).replaceAll('"', '""')}"`).join(",")).join("\n");
@@ -134,6 +153,7 @@ export default function FamilyDashboard({ adultName }: { adultName: string }) {
                 <div className="skill-summary-row">{skills.map((skill) => { const count = profile.progress.filter((item) => item.skill === skill).length; return <div key={skill}><span>{skill.slice(0, 1).toUpperCase()}</span><strong>{count}<small>/18</small></strong><em>{skill}</em></div>; })}</div>
                 <section className="assignment-builder"><div><p className="adult-eyebrow">Assign next</p><h3>Choose a module or one skill session</h3></div><select value={draft.lessonId} onChange={(event) => updateAssignmentDraft(profile.id, "lessonId", event.target.value)}>{lessons.map((lesson) => <option key={lesson.id} value={lesson.id}>{lesson.number}. {lesson.title}</option>)}</select><select value={draft.skill} onChange={(event) => updateAssignmentDraft(profile.id, "skill", event.target.value)}><option value="all">Whole module</option>{skills.map((skill) => <option value={skill} key={skill}>{skill}</option>)}</select><input aria-label="Due date" type="date" value={draft.dueAt} onChange={(event) => updateAssignmentDraft(profile.id, "dueAt", event.target.value)} /><button type="button" className="outline-button" disabled={saving} onClick={() => void createAssignment(profile.id)}>Assign</button></section>
                 {profile.assignments.length > 0 && <div className="assignment-list"><p className="adult-eyebrow">Assignments</p>{profile.assignments.filter((item) => item.status !== "archived").map((assignment) => <div key={assignment.id}><span className={`assignment-status ${assignment.status}`}>{assignment.status}</span><strong>{assignment.title}</strong><small>{assignment.dueAt ? `Due ${assignment.dueAt}` : "No due date"}</small><button type="button" onClick={() => void updateAssignment(assignment.id, assignment.status === "complete" ? "archived" : "complete")}>{assignment.status === "complete" ? "Archive" : "Mark complete"}</button></div>)}</div>}
+                <footer className="profile-card-footer"><button type="button" className="danger-link" disabled={saving} onClick={() => void removeProfile(profile)}>Remove profile and delete its data</button></footer>
               </article>
             );
           })}

@@ -35,3 +35,11 @@ export async function getMediaObject(key: string): Promise<Buffer | null> {
     throw error;
   }
 }
+
+export async function deleteMediaObject(key: string): Promise<void> {
+  try {
+    await fs.unlink(resolveKey(key));
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error;
+  }
+}

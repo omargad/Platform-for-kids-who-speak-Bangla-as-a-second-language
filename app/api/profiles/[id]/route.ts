@@ -36,6 +36,19 @@ export async function PATCH(request: Request, context: RouteContext) {
   return Response.json({ profile: { ...profile, homeLanguages: safeJsonArray(profile.homeLanguages) } });
 }
 
+export async function DELETE(_request: Request, context: RouteContext) {
+  const user = await getSessionAdult();
+  if (!user) return Response.json({ error: "Sign in required." }, { status: 401 });
+  const { id } = await context.params;
+  const db = await getDb();
+  const [owned] = await db.select({ id: learnerProfiles.id }).from(learnerProfiles).where(and(eq(learnerProfiles.id, id), eq(learnerProfiles.ownerEmail, user.email))).limit(1);
+  if (!owned) return Response.json({ error: "Learner profile not found." }, { status: 404 });
+  // Progress cascades via the profile foreign key; assignments are removed explicitly.
+  await db.delete(assignments).where(and(eq(assignments.profileId, id), eq(assignments.ownerEmail, user.email)));
+  await db.delete(learnerProfiles).where(eq(learnerProfiles.id, id));
+  return Response.json({ ok: true });
+}
+
 function safeJsonArray(value: string): string[] {
   try {
     const parsed = JSON.parse(value);

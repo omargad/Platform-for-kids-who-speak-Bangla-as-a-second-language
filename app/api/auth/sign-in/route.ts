@@ -5,10 +5,14 @@ import {
   sessionCookieOptions,
   verifyAdultCredentials,
 } from "../../../../lib/auth";
+import { checkRateLimit, clientKey, tooManyRequests } from "../../../../lib/rate-limit";
 
 export const dynamic = "force-dynamic";
 
 export async function POST(request: Request) {
+  const limit = checkRateLimit(`sign-in:${clientKey(request)}`, 10, 15 * 60 * 1000);
+  if (!limit.allowed) return tooManyRequests(limit.retryAfterSeconds);
+
   const body = (await request.json().catch(() => ({}))) as Record<string, unknown>;
   const email = typeof body.email === "string" ? body.email.trim().slice(0, 120) : "";
   const password = typeof body.password === "string" ? body.password : "";
