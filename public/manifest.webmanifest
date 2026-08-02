@@ -1,0 +1,28 @@
+{
+  "name": "Bangla Adventures",
+  "short_name": "Bangla",
+  "description": "A bilingual Bangla heritage-language pathway with 108 guided sessions for young learners.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#fff8e9",
+  "theme_color": "#075b4c",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["education", "kids"],
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    { "name": "Learning modules", "url": "/#curriculum" },
+    { "name": "Grown-up dashboard", "url": "/family" },
+    { "name": "Safety and access", "url": "/safety" }
+  ]
+}
+
