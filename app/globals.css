@@ -8540,3 +8540,104 @@ body.modal-open .pwa-status {
 .phrasebook-app .explore-section > h2 span {
   margin-right: 6px;
 }
+
+/* Counting game */
+.counting-game {
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  border-radius: 18px;
+  box-shadow: 6px 7px 0 var(--ink);
+  padding: 22px;
+  display: grid;
+  gap: 18px;
+}
+
+.counting-objects {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 2rem;
+  justify-content: center;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+.counting-question {
+  text-align: center;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--emerald);
+  margin: 12px 0 0;
+}
+
+.counting-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
+  max-width: 520px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.counting-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  background: var(--cream);
+  border: 2px solid var(--ink);
+  border-radius: 14px;
+  padding: 12px;
+  font: inherit;
+  cursor: pointer;
+  box-shadow: 3px 4px 0 var(--ink);
+}
+
+.counting-option span {
+  font-size: 1.8rem;
+  color: var(--indigo);
+}
+
+.counting-option em {
+  font-style: normal;
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.counting-option.correct {
+  background: var(--mint);
+  border-color: var(--emerald);
+  box-shadow: 3px 4px 0 var(--emerald);
+}
+
+.counting-option.wrong {
+  background: rgba(239, 101, 84, 0.15);
+  border-color: var(--coral);
+  box-shadow: 3px 4px 0 var(--coral);
+}
+
+.counting-option.dim {
+  opacity: 0.55;
+}
+
+.counting-option[disabled] {
+  cursor: default;
+}
+
+.counting-footer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.counting-stars {
+  font-weight: 700;
+}
+
+.counting-result {
+  margin: 0;
+  font-weight: 700;
+  color: var(--ink);
+}
