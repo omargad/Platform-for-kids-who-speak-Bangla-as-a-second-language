@@ -48,6 +48,18 @@ test("every lesson has a complete four-skill extension", () => {
   assert.equal(lessonSessionSkills.length, 6);
 });
 
+test("every lesson has a well-formed video and playlist reference", () => {
+  const videoId = /^[A-Za-z0-9_-]{11}$/;
+  const playlistId = /^PL[A-Za-z0-9_-]+$/;
+  for (const lesson of lessons) {
+    assert.ok(lesson.video?.id, `${lesson.id}: missing video`);
+    assert.match(lesson.video.id, videoId, `${lesson.id}: video id not a valid YouTube id`);
+    assert.ok(lesson.video.title && lesson.video.channel, `${lesson.id}: video needs title/channel`);
+    assert.ok(lesson.playlist?.id, `${lesson.id}: missing playlist`);
+    assert.match(lesson.playlist.id, playlistId, `${lesson.id}: playlist id not a valid YouTube list id`);
+  }
+});
+
 test("bundled pronunciation audio exists for every lesson slot", () => {
   const slots = ["dialogue", "reading", "pattern-1", "pattern-2", "word-1", "word-2", "word-3", "word-4", "word-5", "word-6"];
   for (const lesson of lessons) {
