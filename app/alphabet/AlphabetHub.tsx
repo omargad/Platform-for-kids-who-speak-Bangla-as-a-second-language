@@ -77,6 +77,7 @@ export default function AlphabetHub() {
           <Link href="/">{s("Learner site", "শেখার সাইট")}</Link>
           <Link href="/explore">{s("Explore", "ঘুরে দেখো")}</Link>
           <Link className="active" href="/alphabet">{s("Alphabet", "বর্ণমালা")}</Link>
+          <Link href="/phrasebook">{s("Phrasebook", "বাক্যের ঝুলি")}</Link>
         </nav>
         <button type="button" className="explore-lang" onClick={toggleLanguage}>
           {s("বাংলায় দেখুন", "View in English")}
