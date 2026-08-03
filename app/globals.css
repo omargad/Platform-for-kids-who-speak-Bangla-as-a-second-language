@@ -8223,3 +8223,13 @@ body.modal-open .pwa-status {
     gap: 6px;
   }
 }
+
+.studio-review-note {
+  background: rgba(246, 185, 59, 0.16);
+  border: 1.5px solid var(--saffron);
+  border-radius: 10px;
+  padding: 8px 12px;
+  margin: 0 0 12px;
+  font-size: 0.85rem;
+  color: var(--ink);
+}

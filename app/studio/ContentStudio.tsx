@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import Link from "next/link";
 import { lessons } from "../curriculum";
 import { lessonExtensions } from "../learning-content";
+import { useLanguage } from "../../lib/use-language";
 
 type Tab = "governance" | "author" | "audio" | "videos";
 type Review = { id: string; lessonId: string; reviewType: string; reviewerName: string; reviewerEmail: string; status: string; notes: string; updatedAt: string };
@@ -19,7 +21,9 @@ const gates = [
   { id: "legal-privacy", label: "Legal & privacy", description: "Data flow, notices, consent, retention and current jurisdictional rules", required: "Qualified legal/privacy review" },
 ];
 
-export default function ContentStudio() {
+export default function ContentStudio({ adultName = "" }: { adultName?: string }) {
+  const [language, toggleLanguage] = useLanguage();
+  const s = (en: string, bn: string) => (language === "bn" ? bn : en);
   const [tab, setTab] = useState<Tab>("governance");
   const [selectedLessonId, setSelectedLessonId] = useState(lessons[0].id);
   const [reviews, setReviews] = useState<Review[]>([]);
@@ -62,17 +66,36 @@ export default function ContentStudio() {
   }
 
   return (
-    <div className="adult-content studio-content">
-      <section className="adult-hero studio-hero"><div><p className="adult-eyebrow">Editorial operations</p><h1>Publish only what named reviewers can stand behind.</h1><p>The learning experience is complete in structure; this workspace makes language, culture, accessibility, media, child-development and legal approval explicit instead of implied.</p></div><div className="adult-stat-strip"><span><strong>{approvedGates}<small>/108</small></strong>review gates approved</span><span><strong>{approvedAudio}</strong>human tracks active</span><span><strong>{checkedVideos}<small>/18</small></strong>videos checked</span></div></section>
-      {error && <div className="adult-alert" role="alert"><strong>Studio data notice</strong><span>{error}</span><button type="button" onClick={() => void loadStudio()}>Try again</button></div>}
+    <main className="adult-app studio-app" lang={language}>
+      <header className="adult-header">
+        <Link className="adult-brand" href="/"><span>বা</span><span><strong>Bangla Adventures</strong><small>{s("Content Studio", "কনটেন্ট স্টুডিও")}</small></span></Link>
+        <nav aria-label="Adult tools">
+          <Link href="/family">{s("Learners", "শিক্ষার্থী")}</Link>
+          <Link className="active" href="/studio">{s("Content Studio", "কনটেন্ট স্টুডিও")}</Link>
+          <Link href="/worksheets">{s("Worksheets", "ওয়ার্কশিট")}</Link>
+          <Link href="/safety">{s("Safety & access", "নিরাপত্তা ও প্রবেশ")}</Link>
+          <Link href="/account">{s("Account", "অ্যাকাউন্ট")}</Link>
+        </nav>
+        <div className="adult-account">
+          <button type="button" className="explore-lang" onClick={toggleLanguage}>{s("বাংলায় দেখুন", "View in English")}</button>
+          {adultName && <span>{adultName}</span>}
+          <a href="/api/auth/sign-out?returnTo=%2F">{s("Sign out", "সাইন আউট")}</a>
+        </div>
+      </header>
+
+      <div className="adult-content studio-content">
+      <section className="adult-hero studio-hero"><div><p className="adult-eyebrow">{s("Editorial operations", "সম্পাদকীয় কার্যক্রম")}</p><h1>{s("Publish only what named reviewers can stand behind.", "নামসহ পর্যালোচকরা যা সমর্থন করতে পারেন কেবল তাই প্রকাশ করুন।")}</h1><p>{s("The learning experience is complete in structure; this workspace makes language, culture, accessibility, media, child-development and legal approval explicit instead of implied.", "শেখার কাঠামো সম্পূর্ণ; এই কর্মক্ষেত্র ভাষা, সংস্কৃতি, প্রবেশগম্যতা, মিডিয়া, শিশু-বিকাশ ও আইনি অনুমোদনকে স্পষ্ট করে তোলে।")}</p></div><div className="adult-stat-strip"><span><strong>{approvedGates}<small>/108</small></strong>{s("review gates approved", "পর্যালোচনা ধাপ অনুমোদিত")}</span><span><strong>{approvedAudio}</strong>{s("human tracks active", "মানব ট্র্যাক সক্রিয়")}</span><span><strong>{checkedVideos}<small>/18</small></strong>{s("videos checked", "ভিডিও যাচাই")}</span></div></section>
+      {error && <div className="adult-alert" role="alert"><strong>{s("Studio data notice", "স্টুডিও তথ্য বিজ্ঞপ্তি")}</strong><span>{error}</span><button type="button" onClick={() => void loadStudio()}>{s("Try again", "আবার চেষ্টা করুন")}</button></div>}
       {notice && <div className="studio-toast" role="status">✓ {notice}</div>}
       <nav className="studio-tabs" aria-label="Content Studio sections">
-        {([{ id: "governance", label: "Review gates", icon: "✓" }, { id: "author", label: "Curriculum drafts", icon: "✎" }, { id: "audio", label: "Human audio", icon: "♪" }, { id: "videos", label: "Video checks", icon: "▶" }] as const).map((item) => <button type="button" key={item.id} className={tab === item.id ? "active" : ""} onClick={() => setTab(item.id)}><span>{item.icon}</span>{item.label}</button>)}
+        {([{ id: "governance", label: s("Review gates", "পর্যালোচনা ধাপ"), icon: "✓" }, { id: "author", label: s("Curriculum drafts", "পাঠ্যক্রম খসড়া"), icon: "✎" }, { id: "audio", label: s("Human audio", "মানব অডিও"), icon: "♪" }, { id: "videos", label: s("Video checks", "ভিডিও যাচাই"), icon: "▶" }] as const).map((item) => <button type="button" key={item.id} className={tab === item.id ? "active" : ""} onClick={() => setTab(item.id as Tab)}><span>{item.icon}</span>{item.label}</button>)}
       </nav>
 
-      <div className="studio-toolbar"><label>Working module<select value={selectedLessonId} onChange={(event) => setSelectedLessonId(event.target.value)}>{lessons.map((lesson) => <option key={lesson.id} value={lesson.id}>{lesson.number}. {lesson.title} · {lesson.level.toUpperCase()}</option>)}</select></label><div><span className={`review-pill ${moduleReviews.filter((review) => review.status === "approved").length === 6 ? "approved" : ""}`}>{moduleReviews.filter((review) => review.status === "approved").length}/6 gates approved</span><a href={`/?module=${selectedLessonId}`} target="_blank">Preview module ↗</a></div></div>
+      <div className="studio-toolbar"><label>{s("Working module", "কর্মরত মডিউল")}<select value={selectedLessonId} onChange={(event) => setSelectedLessonId(event.target.value)}>{lessons.map((lesson) => <option key={lesson.id} value={lesson.id}>{lesson.number}. {language === "bn" ? lesson.titleBn : lesson.title} · {lesson.level.toUpperCase()}</option>)}</select></label><div><span className={`review-pill ${moduleReviews.filter((review) => review.status === "approved").length === 6 ? "approved" : ""}`}>{moduleReviews.filter((review) => review.status === "approved").length}/6 {s("gates approved", "ধাপ অনুমোদিত")}</span><a href={`/?module=${selectedLessonId}`} target="_blank">{s("Preview module ↗", "মডিউল প্রিভিউ ↗")}</a></div></div>
 
-      {loading && <div className="adult-empty">Loading editorial records…</div>}
+      {language === "bn" && <p className="studio-review-note" role="note">সম্পাদকীয় সরঞ্জামের বিস্তারিত অংশ এখনও ইংরেজিতে; পেশাদার বাংলা পর্যালোচনার পর অনুবাদ হবে।</p>}
+
+      {loading && <div className="adult-empty">{s("Loading editorial records…", "সম্পাদকীয় রেকর্ড লোড হচ্ছে…")}</div>}
 
       {!loading && tab === "governance" && <section className="review-gates"><header><div><p className="adult-eyebrow">Release gates</p><h2>{selectedLesson.title}</h2></div><p>Approval requires a named reviewer. “Built” is not the same as independently verified.</p></header><div className="review-gate-grid">{gates.map((gate) => <ReviewGate key={`${selectedLessonId}-${gate.id}`} lessonId={selectedLessonId} gate={gate} existing={moduleReviews.find((review) => review.reviewType === gate.id)} onSaved={async () => { await loadStudio(); flash(`${gate.label} review saved.`); }} />)}</div></section>}
 
@@ -81,7 +104,8 @@ export default function ContentStudio() {
       {!loading && tab === "audio" && <AudioStudio key={selectedLessonId} lessonId={selectedLessonId} media={media.filter((asset) => asset.lessonId === selectedLessonId)} onSaved={async (message) => { await loadStudio(); flash(message); }} />}
 
       {!loading && tab === "videos" && <VideoStudio key={selectedLessonId} lessonId={selectedLessonId} existing={videos.find((video) => video.lessonId === selectedLessonId)} onSaved={async () => { await loadStudio(); flash("Video review saved."); }} />}
-    </div>
+      </div>
+    </main>
   );
 }
 
