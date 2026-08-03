@@ -12,7 +12,7 @@ export default function WorksheetsIndexPage() {
     <main className="adult-app worksheets-app">
       <header className="adult-header">
         <Link className="adult-brand" href="/"><span>বা</span><span><strong>Bangla Adventures</strong><small>Printable worksheets</small></span></Link>
-        <nav aria-label="Platform information"><Link href="/">Learner site</Link><Link className="active" href="/worksheets">Worksheets</Link><a href="/family">Grown-up dashboard</a><a href="/safety">Safety &amp; access</a></nav>
+        <nav aria-label="Platform information"><Link href="/">Learner site</Link><Link className="active" href="/worksheets">Worksheets</Link><Link href="/resources">Resources</Link><a href="/family">Grown-up dashboard</a><a href="/safety">Safety &amp; access</a></nav>
         <div className="adult-account"><span>Free to print and share</span></div>
       </header>
 

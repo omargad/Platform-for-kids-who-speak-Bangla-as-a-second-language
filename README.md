@@ -18,6 +18,7 @@ The experience combines three visual ideas: a warm river storybook, a postcard-s
 - Stars, lesson completion and device-local progress saving
 - Installable PWA with offline support (service worker + manifest)
 - **/worksheets** — a printable practice sheet for every lesson (vocabulary writing table, sentence patterns, bilingual reading with comprehension check, guided writing, self-check quiz and the family mission), statically generated and free to copy for home and classroom use
+- **/resources** — a bilingual, curated list of external Bangla course providers and free collections (universities, heritage schools, self-study) with clear external-site disclaimers; links checkable with `npm run verify:links`
 - Responsive layouts, keyboard focus states, Escape-to-close dialogs and reduced-motion support
 
 ### Grown-up workspace (email + password account)

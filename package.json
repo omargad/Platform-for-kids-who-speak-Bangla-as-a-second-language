@@ -14,7 +14,8 @@
     "test:integration": "node --test tests/integration/*.test.mjs",
     "db:generate": "drizzle-kit generate",
     "audio:generate": "node scripts/generate-voice-assets.cjs",
-    "verify:media": "node scripts/verify-media.mjs"
+    "verify:media": "node scripts/verify-media.mjs",
+    "verify:links": "node scripts/verify-links.mjs"
   },
   "dependencies": {
     "better-sqlite3": "^13.0.2",
