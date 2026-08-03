@@ -97,6 +97,7 @@ export default function ExploreHub() {
             {t.explore}
           </Link>
           <Link href="/alphabet">{language === "bn" ? "বর্ণমালা" : "Alphabet"}</Link>
+          <Link href="/phrasebook">{language === "bn" ? "বাক্যের ঝুলি" : "Phrasebook"}</Link>
           <Link href="/safety">{t.safety}</Link>
         </nav>
         <button type="button" className="explore-lang" onClick={toggleLanguage}>

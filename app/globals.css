@@ -8487,3 +8487,56 @@ body.modal-open .pwa-status {
 .digit-card small {
   color: var(--muted);
 }
+
+/* Phrasebook */
+.phrase-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.phrase-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  border-radius: 14px;
+  padding: 14px 16px;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+  box-shadow: 4px 5px 0 var(--ink);
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+.phrase-card:hover,
+.phrase-card:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 5px 7px 0 var(--ink);
+}
+
+.phrase-card.is-speaking {
+  border-color: var(--emerald);
+  box-shadow: 4px 5px 0 var(--emerald);
+}
+
+.phrase-card strong {
+  font-size: 1.25rem;
+  color: var(--emerald);
+}
+
+.phrase-card em {
+  font-style: normal;
+  color: var(--indigo);
+  font-size: 0.85rem;
+}
+
+.phrase-card small {
+  color: var(--muted);
+}
+
+.phrasebook-app .explore-section > h2 span {
+  margin-right: 6px;
+}
