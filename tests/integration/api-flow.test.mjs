@@ -175,6 +175,22 @@ test("worksheets render for every lesson entry point", async () => {
   assert.equal(missing.status, 404);
 });
 
+test("sign-out rejects off-origin returnTo, including the backslash bypass", async () => {
+  for (const evil of ["//evil.com", "/\\evil.com", "https://evil.com"]) {
+    const response = await fetch(
+      `${BASE}/api/auth/sign-out?returnTo=${encodeURIComponent(evil)}`,
+      { redirect: "manual" },
+    );
+    assert.equal(response.status, 303);
+    const location = response.headers.get("location");
+    const target = new URL(location, BASE);
+    assert.ok(
+      target.hostname === "127.0.0.1" || target.hostname === "localhost",
+      `must not redirect off-origin for ${evil}, got ${location}`,
+    );
+  }
+});
+
 test("account deletion removes access entirely", async () => {
   const deleted = await fetch(`${BASE}/api/account/delete`, {
     method: "POST",

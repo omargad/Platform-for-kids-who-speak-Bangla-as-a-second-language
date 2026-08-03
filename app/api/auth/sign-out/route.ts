@@ -1,13 +1,12 @@
 import { NextResponse } from "next/server";
 import { SESSION_COOKIE, destroySession } from "../../../../lib/auth";
+import { safeReturnPath } from "../../../../lib/safe-redirect";
 
 export const dynamic = "force-dynamic";
 
 export async function GET(request: Request) {
   const url = new URL(request.url);
-  const returnTo = url.searchParams.get("returnTo") ?? "/";
-  // Only same-origin paths, so the route can't be used as an open redirect.
-  const safeReturnTo = returnTo.startsWith("/") && !returnTo.startsWith("//") ? returnTo : "/";
+  const safeReturnTo = safeReturnPath(url.searchParams.get("returnTo"));
 
   const token = request.headers
     .get("cookie")
