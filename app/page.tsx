@@ -1150,6 +1150,9 @@ export default function Home() {
                 <span className="sound-icon" aria-hidden="true">♪</span>
                 <span><small>{t.hearHello}</small><strong>{t.helloBn}</strong></span>
               </button>
+              <Link className="outline-button" href="/explore">
+                {language === "en" ? "Explore Bangladesh" : "বাংলাদেশ ঘুরে দেখো"} <span aria-hidden="true">🗺️</span>
+              </Link>
             </div>
             <div className="hero-mini-stats" aria-label="What is inside">
               <span><strong>108</strong> {language === "en" ? "guided sessions" : "শেখার সেশন"}</span>
@@ -1424,7 +1427,7 @@ export default function Home() {
       <footer>
         <a className="brand footer-brand" href="#top"><span className="brand-mark" aria-hidden="true">বা</span><span><strong>Bangla</strong><small>Adventures</small></span></a>
         <div><strong>{t.sourceTitle}</strong><p>{t.sourceText}</p></div>
-        <div className="footer-links"><a href="https://whc.unesco.org/en/statesparties/bd" target="_blank" rel="noreferrer">UNESCO places</a><a href="https://www.unesco.org/en/days/mother-language" target="_blank" rel="noreferrer">Mother Language Day</a><button type="button" onClick={() => setModal({ type: "grownups" })}>{t.privacy}</button></div>
+        <div className="footer-links"><Link href="/explore">{language === "en" ? "Explore Bangladesh" : "বাংলাদেশ ঘুরে দেখো"}</Link><a href="https://whc.unesco.org/en/statesparties/bd" target="_blank" rel="noreferrer">UNESCO places</a><a href="https://www.unesco.org/en/days/mother-language" target="_blank" rel="noreferrer">Mother Language Day</a><button type="button" onClick={() => setModal({ type: "grownups" })}>{t.privacy}</button></div>
       </footer>
 
       {modal && (

@@ -7967,3 +7967,259 @@ body.modal-open .pwa-status {
   white-space: nowrap;
   align-self: center;
 }
+
+/* Explore Bangladesh hub */
+.explore-app {
+  min-height: 100vh;
+  background:
+    radial-gradient(1200px 400px at 10% -10%, var(--sky), transparent),
+    var(--cream);
+  padding-bottom: 64px;
+}
+
+.explore-app.lang-bn {
+  font-family: var(--sans);
+}
+
+.explore-header {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  padding: 16px 24px;
+  background: rgba(255, 253, 246, 0.9);
+  border-bottom: 2px solid var(--ink);
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  backdrop-filter: blur(6px);
+}
+
+.explore-header nav {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-left: auto;
+}
+
+.explore-header nav a {
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.explore-header nav a.active {
+  color: var(--emerald);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.explore-lang {
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--banana);
+  padding: 8px 14px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.explore-hero {
+  max-width: 900px;
+  margin: 40px auto 8px;
+  padding: 0 24px;
+  text-align: center;
+}
+
+.explore-hero h1 {
+  font-family: var(--display);
+  font-size: clamp(1.8rem, 4vw, 2.7rem);
+  color: var(--emerald);
+  margin: 8px 0 14px;
+}
+
+.explore-hero p {
+  color: var(--ink);
+  max-width: 60ch;
+  margin: 0 auto;
+}
+
+.explore-section {
+  max-width: 1080px;
+  margin: 40px auto 0;
+  padding: 0 24px;
+}
+
+.explore-section > h2 {
+  font-family: var(--display);
+  font-size: 1.5rem;
+  color: var(--indigo);
+  margin: 0 0 4px;
+}
+
+.explore-section-note {
+  color: var(--muted);
+  margin: 0 0 16px;
+}
+
+.explore-facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.explore-fact {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  border-radius: 14px;
+  padding: 12px 14px;
+  box-shadow: 3px 4px 0 var(--ink);
+}
+
+.explore-fact span {
+  font-size: 1.6rem;
+}
+
+.explore-fact small {
+  display: block;
+  color: var(--muted);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.explore-fact strong {
+  font-size: 1.05rem;
+}
+
+.explore-timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 14px;
+}
+
+.explore-event {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 16px;
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  border-left-width: 10px;
+  border-radius: 14px;
+  padding: 14px 18px;
+  box-shadow: 4px 5px 0 var(--ink);
+}
+
+.explore-event.tone-ancient {
+  border-left-color: var(--saffron);
+}
+.explore-event.tone-language {
+  border-left-color: var(--coral);
+}
+.explore-event.tone-freedom {
+  border-left-color: var(--leaf);
+}
+.explore-event.tone-today {
+  border-left-color: var(--river);
+}
+
+.explore-year {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--emerald);
+}
+
+.explore-event h3 {
+  margin: 0 0 4px;
+}
+
+.explore-event p {
+  margin: 0;
+  color: var(--ink);
+}
+
+.explore-region-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 12px;
+}
+
+.explore-region {
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  border-radius: 14px;
+  padding: 14px 16px;
+  box-shadow: 3px 4px 0 var(--ink);
+}
+
+.explore-region h3 {
+  margin: 0 0 6px;
+  color: var(--indigo);
+}
+
+.explore-region p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.explore-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 16px;
+}
+
+.explore-card {
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 5px 6px 0 var(--ink);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.explore-card-icon {
+  font-size: 2rem;
+}
+
+.explore-card h3 {
+  margin: 0;
+  color: var(--emerald);
+}
+
+.explore-card p {
+  margin: 0;
+  color: var(--ink);
+}
+
+.explore-heritage {
+  margin-top: auto;
+  align-self: flex-start;
+  background: var(--mint);
+  border: 1.5px solid var(--emerald);
+  color: #0b3d33;
+  border-radius: 999px;
+  padding: 3px 10px;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.explore-cta {
+  max-width: 1080px;
+  margin: 44px auto 0;
+  padding: 0 24px;
+  text-align: center;
+}
+
+@media (max-width: 560px) {
+  .explore-event {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+}
