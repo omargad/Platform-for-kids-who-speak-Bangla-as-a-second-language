@@ -60,8 +60,8 @@ export const externalResources: ExternalResource[] = [
     category: "university",
     location: { en: "BRAC University, Dhaka · online", bn: "ব্র্যাক বিশ্ববিদ্যালয়, ঢাকা · অনলাইন" },
     description: {
-      en: "An online Bangla short course from a leading Bangladeshi university, designed for non-native speakers.",
-      bn: "বাংলাদেশের শীর্ষস্থানীয় বিশ্ববিদ্যালয়ের অনলাইন সংক্ষিপ্ত বাংলা কোর্স, অ-বাংলাভাষীদের জন্য তৈরি।",
+      en: "A seven-week, ten-lesson beginner course for foreign learners from BRAC Institute of Languages: everyday conversation skills, self-paced with up to three months' access and a certificate on completion.",
+      bn: "ব্র্যাক ইনস্টিটিউট অব ল্যাঙ্গুয়েজেসের সাত সপ্তাহের দশ-পাঠের প্রাথমিক কোর্স: দৈনন্দিন কথোপকথনের দক্ষতা, নিজের গতিতে (তিন মাস পর্যন্ত প্রবেশাধিকার) এবং শেষে সনদ।",
     },
   },
   {
@@ -70,8 +70,8 @@ export const externalResources: ExternalResource[] = [
     category: "university",
     location: { en: "London, UK", bn: "লন্ডন, যুক্তরাজ্য" },
     description: {
-      en: "Bengali language courses from SOAS, a university known for South Asian language teaching.",
-      bn: "দক্ষিণ এশীয় ভাষা শিক্ষার জন্য পরিচিত SOAS বিশ্ববিদ্যালয়ের বাংলা কোর্স।",
+      en: "Language Centre short courses (Beginners and Elementary 1–3, adults 18+): about 20 hours of blended learning per term — 15 hours of live online lessons plus guided independent study — covering all four skills.",
+      bn: "ল্যাঙ্গুয়েজ সেন্টারের সংক্ষিপ্ত কোর্স (বিগিনার্স ও এলিমেন্টারি ১–৩, ১৮+): প্রতি টার্মে প্রায় ২০ ঘণ্টা — ১৫ ঘণ্টা শিক্ষকসহ অনলাইন ক্লাস ও নির্দেশিত স্ব-অধ্যয়ন — চার দক্ষতা জুড়ে।",
     },
   },
   {
@@ -80,8 +80,8 @@ export const externalResources: ExternalResource[] = [
     category: "university",
     location: { en: "Kolkata, India · online", bn: "কলকাতা, ভারত · অনলাইন" },
     description: {
-      en: "The online course portal of a historic Kolkata college; check current offerings for Bangla-related courses.",
-      bn: "কলকাতার ঐতিহাসিক কলেজের অনলাইন কোর্স পোর্টাল; বাংলা-সংক্রান্ত কোর্সের বর্তমান তালিকা দেখুন।",
+      en: "Free online courses (videos, assignments, certificates) from the historic Scottish Church College, founded 1830. Browse the current catalogue for Bangla-related offerings.",
+      bn: "১৮৩০ সালে প্রতিষ্ঠিত ঐতিহাসিক স্কটিশ চার্চ কলেজের বিনামূল্যের অনলাইন কোর্স (ভিডিও, অ্যাসাইনমেন্ট, সনদ)। বাংলা-সংক্রান্ত কোর্সের জন্য বর্তমান তালিকা দেখুন।",
     },
   },
   {
@@ -90,18 +90,18 @@ export const externalResources: ExternalResource[] = [
     category: "community",
     location: { en: "Online", bn: "অনলাইন" },
     description: {
-      en: "Online Bangla courses with live teachers, including options aimed at heritage learners.",
-      bn: "সরাসরি শিক্ষকসহ অনলাইন বাংলা কোর্স, ঐতিহ্য-শিক্ষার্থীদের জন্য বিকল্পসহ।",
+      en: "One-on-one online classes designed for the diaspora: children's reading & writing, adult speaking & listening, a Sylheti course, and a Bangladesh Studies programme for reconnecting with heritage.",
+      bn: "প্রবাসীদের জন্য একের-সঙ্গে-এক অনলাইন ক্লাস: শিশুদের পড়া-লেখা, বড়দের বলা-শোনা, সিলেটি কোর্স এবং শিকড়ের সঙ্গে যুক্ত হতে ‘বাংলাদেশ স্টাডিজ’।",
     },
   },
   {
-    name: "Grace Bangla",
+    name: "Grace Bangla Language Center",
     url: "https://www.gracebangla.com/courses/",
-    category: "community",
-    location: { en: "Online", bn: "অনলাইন" },
+    category: "university",
+    location: { en: "Bangladesh · in person", bn: "বাংলাদেশ · সশরীরে" },
     description: {
-      en: "Bangla courses built for diaspora families; review their current offerings for children's options.",
-      bn: "প্রবাসী পরিবারের জন্য তৈরি বাংলা কোর্স; শিশুদের বিকল্পের জন্য বর্তমান তালিকা দেখুন।",
+      en: "A classroom language centre in Bangladesh teaching Bangla to foreigners and expatriates — small groups, intensive daily classes from alphabet to conversation. Relevant for families visiting or relocating.",
+      bn: "বাংলাদেশে বিদেশি ও প্রবাসীদের বাংলা শেখানোর শ্রেণিকক্ষভিত্তিক কেন্দ্র — ছোট দল, বর্ণ থেকে কথোপকথন পর্যন্ত নিবিড় দৈনিক ক্লাস। বেড়াতে বা ফিরে যাওয়া পরিবারের জন্য প্রাসঙ্গিক।",
     },
   },
   {
@@ -110,8 +110,8 @@ export const externalResources: ExternalResource[] = [
     category: "community",
     location: { en: "UK · online", bn: "যুক্তরাজ্য · অনলাইন" },
     description: {
-      en: "A structured beginner Bangla course from a UK-based online institute.",
-      bn: "যুক্তরাজ্যভিত্তিক অনলাইন ইনস্টিটিউটের কাঠামোবদ্ধ প্রাথমিক বাংলা কোর্স।",
+      en: "A first-steps Bangla course from a London-based online institute, concentrating on the Bengali alphabet — a gentle structured entry point.",
+      bn: "লন্ডনভিত্তিক অনলাইন ইনস্টিটিউটের প্রথম-ধাপের বাংলা কোর্স, বর্ণমালার ওপর কেন্দ্রীভূত — কাঠামোবদ্ধ সহজ সূচনা।",
     },
   },
   {
@@ -120,18 +120,18 @@ export const externalResources: ExternalResource[] = [
     category: "self-study",
     location: { en: "Online, self-paced", bn: "অনলাইন, নিজের গতিতে" },
     description: {
-      en: "A self-paced Bengali learning site for independent study.",
-      bn: "স্বাধীনভাবে শেখার জন্য নিজের গতির বাংলা শেখার সাইট।",
+      en: "A self-paced platform with short, gamified units for pronunciation, grammar and vocabulary — games, achievements and a leaderboard keep practice light.",
+      bn: "উচ্চারণ, ব্যাকরণ ও শব্দভান্ডারের জন্য ছোট, খেলাধর্মী ইউনিটের স্ব-গতির প্ল্যাটফর্ম — খেলা, অর্জন ও লিডারবোর্ডে অনুশীলন হালকা থাকে।",
     },
   },
   {
-    name: "Language Corner — Learn Bengali",
+    name: "Language Corner (EU) — Learn Bengali",
     url: "https://languagecorner.eu/en/learn-bengali-fast-and-fun/",
     category: "self-study",
-    location: { en: "Amsterdam, NL · online options", bn: "আমস্টারডাম, নেদারল্যান্ডস · অনলাইন বিকল্প" },
+    location: { en: "Online, self-paced", bn: "অনলাইন, নিজের গতিতে" },
     description: {
-      en: "A European language school offering Bengali classes with a light, practical approach.",
-      bn: "সহজ, ব্যবহারিক পদ্ধতিতে বাংলা ক্লাস দেওয়া একটি ইউরোপীয় ভাষা স্কুল।",
+      en: "A storefront for the '17 minutes a day' self-study method: a basic course of ~1,300 words (toward A2) and a larger package toward advanced levels. Same method family as 17 Minute Languages below.",
+      bn: "‘দিনে ১৭ মিনিট’ স্ব-শিক্ষা পদ্ধতির বিক্রয়কেন্দ্র: প্রায় ১,৩০০ শব্দের বেসিক কোর্স (A2 অভিমুখে) ও উচ্চতর স্তরের বড় প্যাকেজ। নিচের 17 Minute Languages-এর একই পদ্ধতি-পরিবার।",
     },
   },
   {
@@ -140,8 +140,8 @@ export const externalResources: ExternalResource[] = [
     category: "self-study",
     location: { en: "Online, self-paced", bn: "অনলাইন, নিজের গতিতে" },
     description: {
-      en: "A commercial self-study Bengali course based on short daily practice sessions.",
-      bn: "প্রতিদিন অল্প সময়ের অনুশীলনভিত্তিক বাণিজ্যিক স্ব-শিক্ষা বাংলা কোর্স।",
+      en: "No-subscription self-study software using spaced repetition ('long-term memory method'): a beginner course of ~1,300 words toward A2, and a complete package of ~5,000 words toward advanced levels, driven by a daily trainer.",
+      bn: "সাবস্ক্রিপশনবিহীন স্ব-শিক্ষা সফটওয়্যার, ব্যবধানে পুনরাবৃত্তি পদ্ধতিতে: A2 অভিমুখে প্রায় ১,৩০০ শব্দের প্রাথমিক কোর্স এবং উচ্চতর স্তরের জন্য প্রায় ৫,০০০ শব্দের পূর্ণ প্যাকেজ, দৈনিক ট্রেনারসহ।",
     },
   },
   {
