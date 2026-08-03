@@ -67,6 +67,10 @@ Environment variables (all optional, see `.env.example`):
 - `MEDIA_ROOT` — uploaded pronunciation audio directory (default `.data/media`)
 - `PORT` — server port (default 3000)
 
+Health check: `GET /api/health` returns `200` when the database is reachable
+(`503` otherwise) — point a load balancer or uptime monitor at it. The Docker
+image also declares a container `HEALTHCHECK` against it.
+
 ### Docker
 
 ```bash

@@ -68,6 +68,39 @@ On Azure App Service / Google Cloud Run / AWS ECS, attach a persistent volume
 (Azure Files, Cloud Run volume mount, EFS) at `/app/.data`. Do not scale beyond
 one instance while on SQLite — see "Scaling" below.
 
+The image declares a container `HEALTHCHECK` against `/api/health`; orchestrators
+that read it (ECS, Docker Swarm, Compose) get liveness for free.
+
+## Per-cloud quick starts
+
+The client offered AWS, Azure, Google Cloud or Oracle credits. Any of these
+works; pick the one whose credits are largest. All need one small always-on
+instance and one persistent disk for `/app/.data`.
+
+**AWS — Lightsail container or Lightsail VM.** Simplest is a Lightsail VM
+(Option A) with an attached block-storage disk mounted where `.data` lives.
+For containers, push the image to a registry and run it on Lightsail Containers
+or ECS Fargate with an EFS volume at `/app/.data` (Fargate is single-writer safe
+here because we run one task).
+
+**Azure — App Service for Containers** (Linux). Deploy the image, set
+`WEBSITES_PORT=3000`, and mount an Azure Files share at `/app/.data`. Or use a
+B1s VM per Option A.
+
+**Google Cloud — Compute Engine VM** (Option A) is the direct fit because Cloud
+Run's filesystem is ephemeral. If using Cloud Run, mount a Cloud Storage volume
+or a Filestore share at `/app/.data`, set min instances to 1 and max to 1 while
+on SQLite.
+
+**Oracle Cloud — Always Free Ampere VM** (Option A) is generous and costs
+nothing; attach a block volume for `.data`.
+
+## Health check
+
+`GET /api/health` returns `200 {"status":"ok"}` when the database is reachable
+and `503` otherwise. Point the load balancer / uptime monitor at it. It is
+uncacheable and does no auth, so it is safe to poll.
+
 ## DNS
 
 Point an `A` record for the client's domain at the VM/load-balancer IP. The
@@ -97,3 +130,16 @@ simple and cheap. When the platform needs more than one server instance:
       (Caddy `rate_limit` / nginx `limit_req`) as defence in depth, and rely on
       the proxy alone if you ever run multiple instances.
 - [ ] Review `docs/PROJECT_PACK.md` safety items and `/safety` page statements still hold
+- [ ] `GET /api/health` returns 200 from the load balancer's health check
+
+## What still needs the client
+
+The application is deploy-ready; going live needs two things only the client can
+provide (both are listed in the project brief's client support):
+
+1. **Cloud account access or credits** on one of AWS / Azure / Google Cloud /
+   Oracle, to create the instance and persistent disk above.
+2. **A domain (and DNS access)**, to point at the instance and issue TLS.
+
+With those, first deployment is Option A (single VM) or the matching per-cloud
+quick start — roughly 30–60 minutes.

@@ -58,6 +58,13 @@ let cookie;
 let recoveryCodes;
 let profileId;
 
+test("health endpoint reports ok when the database is reachable", async () => {
+  const response = await fetch(`${BASE}/api/health`);
+  assert.equal(response.status, 200);
+  const data = await response.json();
+  assert.equal(data.status, "ok");
+});
+
 test("sign-up issues a session and recovery codes", async () => {
   const response = await fetch(`${BASE}/api/auth/sign-up`, {
     method: "POST",
