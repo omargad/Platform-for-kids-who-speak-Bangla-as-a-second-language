@@ -150,8 +150,48 @@ export const externalResources: ExternalResource[] = [
     category: "free",
     location: { en: "Free directory", bn: "বিনামূল্যের তালিকা" },
     description: {
-      en: "A university-curated collection of free Bengali language and culture links to explore.",
-      bn: "বিশ্ববিদ্যালয়ের বাছাই করা বিনামূল্যের বাংলা ভাষা ও সংস্কৃতি লিংকের সংগ্রহ।",
+      en: "A university-curated directory of free Bengali materials: dictionaries, grammar guides, vocabulary trainers, reading and writing tools, and listening resources.",
+      bn: "বিশ্ববিদ্যালয়ের বাছাই করা বিনামূল্যের বাংলা উপকরণের তালিকা: অভিধান, ব্যাকরণ, শব্দভান্ডার, পড়া-লেখার সরঞ্জাম ও শোনার সম্পদ।",
+    },
+  },
+  {
+    name: "Omniglot — Bengali alphabet & pronunciation",
+    url: "https://www.omniglot.com/writing/bengali.htm",
+    category: "free",
+    location: { en: "Free reference", bn: "বিনামূল্যের রেফারেন্স" },
+    description: {
+      en: "A clear reference page on the Bengali script: every letter, how vowels attach to consonants, and the script's history. Pairs well with our Bornomala page.",
+      bn: "বাংলা লিপির স্পষ্ট রেফারেন্স: প্রতিটি বর্ণ, কার-চিহ্নের নিয়ম ও লিপির ইতিহাস। আমাদের বর্ণমালা পাতার সঙ্গে ভালো মানায়।",
+    },
+  },
+  {
+    name: "Forvo — Bengali pronunciation dictionary",
+    url: "https://forvo.com/languages/bn/",
+    category: "free",
+    location: { en: "Free, community-recorded", bn: "বিনামূল্যে, কমিউনিটির রেকর্ড" },
+    description: {
+      en: "Hear thousands of Bengali words pronounced by native speakers — useful when a family wants a human model for a specific word.",
+      bn: "হাজারো বাংলা শব্দ স্থানীয় ভাষাভাষীদের কণ্ঠে শুনুন — নির্দিষ্ট শব্দের মানব উচ্চারণ দরকার হলে কাজে লাগে।",
+    },
+  },
+  {
+    name: "Lexilogos — Bengali dictionaries",
+    url: "https://www.lexilogos.com/english/bengali_dictionary.htm",
+    category: "free",
+    location: { en: "Free dictionary hub", bn: "বিনামূল্যের অভিধান কেন্দ্র" },
+    description: {
+      en: "A gateway to Bengali–English dictionaries, a pronunciation dictionary and an online Bangla keyboard.",
+      bn: "বাংলা–ইংরেজি অভিধান, উচ্চারণ অভিধান ও অনলাইন বাংলা কিবোর্ডের প্রবেশদ্বার।",
+    },
+  },
+  {
+    name: "Ekushey — free Bangla fonts",
+    url: "https://ekushey.org/",
+    category: "free",
+    location: { en: "Free Unicode fonts", bn: "বিনামূল্যের ইউনিকোড ফন্ট" },
+    description: {
+      en: "Free, open Bangla Unicode fonts from the Ekushey localisation project — handy for printing worksheets with beautiful Bangla type.",
+      bn: "একুশে প্রকল্পের বিনামূল্যের উন্মুক্ত বাংলা ইউনিকোড ফন্ট — সুন্দর বাংলা হরফে ওয়ার্কশিট প্রিন্টে কাজে লাগে।",
     },
   },
 ];
