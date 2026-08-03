@@ -185,6 +185,46 @@ export const externalResources: ExternalResource[] = [
     },
   },
   {
+    name: "TalkingBees — live Bengali classes",
+    url: "https://www.talkingbees.com/learn-bengali",
+    category: "community",
+    location: { en: "Online · live classes", bn: "অনলাইন · সরাসরি ক্লাস" },
+    description: {
+      en: "Live online Bengali lessons aimed at diaspora learners in the US, UK, Canada, Australia and Europe, introducing script gradually after speaking confidence — plus a free YouTube channel.",
+      bn: "যুক্তরাষ্ট্র, যুক্তরাজ্য, কানাডা, অস্ট্রেলিয়া ও ইউরোপের প্রবাসী শিক্ষার্থীদের জন্য সরাসরি অনলাইন বাংলা ক্লাস; আগে বলা, পরে ধাপে ধাপে লিপি — সঙ্গে বিনামূল্যের ইউটিউব চ্যানেল।",
+    },
+  },
+  {
+    name: "Live Lingua — Peace Corps Bengali",
+    url: "https://www.livelingua.com/project/peace-corps/bengali",
+    category: "free",
+    location: { en: "Free course + audio", bn: "বিনামূল্যের কোর্স + অডিও" },
+    description: {
+      en: "The US Peace Corps' Bengali training course, free online: 15 lessons with workbook pages and audio you can stream or download — no account, no ads.",
+      bn: "মার্কিন পিস কোরের বাংলা প্রশিক্ষণ কোর্স, বিনামূল্যে অনলাইনে: ১৫টি পাঠ, ওয়ার্কবুক ও অডিওসহ — অ্যাকাউন্ট বা বিজ্ঞাপন ছাড়া।",
+    },
+  },
+  {
+    name: "Bangla Bolo — free script & grammar guides",
+    url: "https://banglabolo.wordpress.com/",
+    category: "free",
+    location: { en: "Free guide site", bn: "বিনামূল্যের গাইড সাইট" },
+    description: {
+      en: "A learner-built site with clear pages on the Bangla script, grammar and — rarely covered elsewhere — conjunct letters, plus culture notes.",
+      bn: "শিক্ষার্থীর তৈরি সাইট: বাংলা লিপি, ব্যাকরণ এবং অন্যত্র কম পাওয়া যুক্তবর্ণের স্পষ্ট পাতা, সঙ্গে সংস্কৃতির নোট।",
+    },
+  },
+  {
+    name: "Bangla Basics — grammar guide",
+    url: "https://banglabasics.github.io/",
+    category: "free",
+    location: { en: "Free reference", bn: "বিনামূল্যের রেফারেন্স" },
+    description: {
+      en: "A free, structured guide to Bangla grammar covering both the standard written language and everyday Dhaka speech.",
+      bn: "বাংলা ব্যাকরণের বিনামূল্যের গোছানো গাইড — প্রমিত লেখ্য ভাষা ও ঢাকার দৈনন্দিন কথ্য ভাষা দুটোই।",
+    },
+  },
+  {
     name: "Ekushey — free Bangla fonts",
     url: "https://ekushey.org/",
     category: "free",
