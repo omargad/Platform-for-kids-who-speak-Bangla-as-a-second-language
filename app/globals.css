@@ -8323,3 +8323,167 @@ body.modal-open .pwa-status {
   color: var(--ink);
   font-size: 0.92rem;
 }
+
+/* Bornomala (alphabet) hub */
+.letter-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 12px;
+}
+
+.letter-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  border-radius: 16px;
+  padding: 14px 10px;
+  cursor: pointer;
+  font: inherit;
+  text-align: center;
+  box-shadow: 4px 5px 0 var(--ink);
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+.letter-card:hover,
+.letter-card:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 5px 7px 0 var(--ink);
+}
+
+.letter-card.is-speaking {
+  border-color: var(--emerald);
+  box-shadow: 4px 5px 0 var(--emerald);
+}
+
+.letter-glyph {
+  font-size: 2.6rem;
+  line-height: 1.1;
+  color: var(--emerald);
+}
+
+.letter-name {
+  font-weight: 800;
+  font-size: 0.85rem;
+}
+
+.letter-sound {
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+.letter-example {
+  display: grid;
+  gap: 1px;
+  margin-top: 6px;
+  border-top: 1.5px dashed var(--line);
+  padding-top: 6px;
+  width: 100%;
+}
+
+.letter-example strong {
+  font-size: 1.05rem;
+}
+
+.letter-example em {
+  font-style: normal;
+  color: var(--indigo);
+  font-size: 0.8rem;
+}
+
+.letter-example small {
+  color: var(--muted);
+}
+
+.letter-note {
+  margin-top: 6px;
+  font-size: 0.7rem;
+  color: var(--muted);
+  background: var(--cream);
+  border-radius: 8px;
+  padding: 3px 8px;
+}
+
+.alphabet-count {
+  display: inline-block;
+  background: var(--ink);
+  color: #fff;
+  border-radius: 999px;
+  font-size: 0.7em;
+  padding: 2px 10px;
+  vertical-align: middle;
+  margin-left: 8px;
+}
+
+.alphabet-nosound {
+  display: inline-block;
+  margin-top: 12px;
+  background: rgba(246, 185, 59, 0.16);
+  border: 1.5px solid var(--saffron);
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-size: 0.85rem;
+}
+
+.kar-grid,
+.digit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 10px;
+}
+
+.kar-card,
+.digit-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  border-radius: 14px;
+  padding: 12px 8px;
+  cursor: pointer;
+  font: inherit;
+  text-align: center;
+  box-shadow: 3px 4px 0 var(--ink);
+}
+
+.kar-card:hover,
+.digit-card:hover,
+.kar-card:focus-visible,
+.digit-card:focus-visible {
+  transform: translateY(-2px);
+}
+
+.kar-card.is-speaking,
+.digit-card.is-speaking {
+  border-color: var(--emerald);
+  box-shadow: 3px 4px 0 var(--emerald);
+}
+
+.kar-formula {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.kar-result {
+  font-size: 2rem;
+  color: var(--indigo);
+}
+
+.digit-glyph {
+  font-size: 2.2rem;
+  color: var(--emerald);
+}
+
+.digit-card em {
+  font-style: normal;
+  color: var(--indigo);
+  font-size: 0.8rem;
+}
+
+.digit-card small {
+  color: var(--muted);
+}

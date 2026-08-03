@@ -96,6 +96,7 @@ export default function ExploreHub() {
           <Link className="active" href="/explore">
             {t.explore}
           </Link>
+          <Link href="/alphabet">{language === "bn" ? "বর্ণমালা" : "Alphabet"}</Link>
           <Link href="/safety">{t.safety}</Link>
         </nav>
         <button type="button" className="explore-lang" onClick={toggleLanguage}>
