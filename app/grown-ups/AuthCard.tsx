@@ -2,11 +2,13 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import type { Language } from "../../lib/use-language";
 
 type Mode = "sign-in" | "sign-up" | "recover";
 
-export default function AuthCard({ returnTo }: { returnTo: string }) {
+export default function AuthCard({ returnTo, language = "en" }: { returnTo: string; language?: Language }) {
   const router = useRouter();
+  const s = (en: string, bn: string) => (language === "bn" ? bn : en);
   const [mode, setMode] = useState<Mode>("sign-in");
   const [email, setEmail] = useState("");
   const [displayName, setDisplayName] = useState("");
@@ -49,7 +51,7 @@ export default function AuthCard({ returnTo }: { returnTo: string }) {
         recoveryCodes?: string[];
       };
       if (!response.ok) {
-        setError(data.error ?? "Something went wrong. Please try again.");
+        setError(data.error ?? s("Something went wrong. Please try again.", "কিছু একটা সমস্যা হয়েছে। আবার চেষ্টা করুন।"));
         return;
       }
       if (mode === "sign-up" && data.recoveryCodes?.length) {
@@ -60,7 +62,7 @@ export default function AuthCard({ returnTo }: { returnTo: string }) {
       router.push(returnTo);
       router.refresh();
     } catch {
-      setError("Could not reach the server. Check your connection and try again.");
+      setError(s("Could not reach the server. Check your connection and try again.", "সার্ভারে পৌঁছানো যায়নি। সংযোগ পরীক্ষা করে আবার চেষ্টা করুন।"));
     } finally {
       setBusy(false);
     }
@@ -79,11 +81,12 @@ export default function AuthCard({ returnTo }: { returnTo: string }) {
   if (issuedCodes) {
     return (
       <section className="auth-card" aria-label="Recovery codes">
-        <h2 className="auth-codes-title">Save your recovery codes</h2>
+        <h2 className="auth-codes-title">{s("Save your recovery codes", "আপনার পুনরুদ্ধার কোড সংরক্ষণ করুন")}</h2>
         <p className="auth-note">
-          There is no email reset on this platform. If you forget your password, one of these
-          one-time codes is the only way back into your account. Store them somewhere safe — they
-          are shown only once.
+          {s(
+            "There is no email reset on this platform. If you forget your password, one of these one-time codes is the only way back into your account. Store them somewhere safe — they are shown only once.",
+            "এই প্ল্যাটফর্মে ইমেইলে রিসেট নেই। পাসওয়ার্ড ভুলে গেলে এই এককালীন কোডগুলোর একটিই অ্যাকাউন্টে ফেরার একমাত্র উপায়। নিরাপদ জায়গায় রাখুন — এগুলো কেবল একবারই দেখানো হয়।",
+          )}
         </p>
         <ul className="auth-codes" aria-label="One-time recovery codes">
           {issuedCodes.map((code) => (
@@ -94,7 +97,7 @@ export default function AuthCard({ returnTo }: { returnTo: string }) {
         </ul>
         <div className="auth-codes-actions">
           <button type="button" className="outline-button" onClick={() => void copyCodes()}>
-            {codesCopied ? "Copied ✓" : "Copy all codes"}
+            {codesCopied ? s("Copied ✓", "কপি হয়েছে ✓") : s("Copy all codes", "সব কোড কপি করুন")}
           </button>
           <button
             type="button"
@@ -104,7 +107,7 @@ export default function AuthCard({ returnTo }: { returnTo: string }) {
               router.refresh();
             }}
           >
-            I&rsquo;ve saved them — continue
+            {s("I’ve saved them — continue", "সংরক্ষণ করেছি — এগিয়ে যান")}
           </button>
         </div>
       </section>
@@ -121,7 +124,7 @@ export default function AuthCard({ returnTo }: { returnTo: string }) {
           className={mode === "sign-in" ? "active" : ""}
           onClick={() => switchMode("sign-in")}
         >
-          Sign in
+          {s("Sign in", "সাইন ইন")}
         </button>
         <button
           type="button"
@@ -130,21 +133,23 @@ export default function AuthCard({ returnTo }: { returnTo: string }) {
           className={mode === "sign-up" ? "active" : ""}
           onClick={() => switchMode("sign-up")}
         >
-          Create account
+          {s("Create account", "অ্যাকাউন্ট তৈরি")}
         </button>
       </div>
 
       {mode === "recover" && (
         <p className="auth-note" role="note">
-          Enter one unused recovery code from the list you saved at sign-up. The code is consumed
-          and every signed-in device is signed out.
+          {s(
+            "Enter one unused recovery code from the list you saved at sign-up. The code is consumed and every signed-in device is signed out.",
+            "সাইন-আপের সময় সংরক্ষণ করা তালিকা থেকে একটি অব্যবহৃত পুনরুদ্ধার কোড দিন। কোডটি ব্যবহৃত হয়ে যায় এবং সাইন-ইন থাকা সব ডিভাইস সাইন-আউট হয়।",
+          )}
         </p>
       )}
 
       <form onSubmit={submit}>
         {mode === "sign-up" && (
           <label>
-            Your name (shown to learners)
+            {s("Your name (shown to learners)", "আপনার নাম (শিক্ষার্থীরা দেখবে)")}
             <input
               type="text"
               value={displayName}
@@ -156,7 +161,7 @@ export default function AuthCard({ returnTo }: { returnTo: string }) {
           </label>
         )}
         <label>
-          Email
+          {s("Email", "ইমেইল")}
           <input
             type="email"
             value={email}
@@ -168,7 +173,7 @@ export default function AuthCard({ returnTo }: { returnTo: string }) {
         </label>
         {mode === "recover" && (
           <label>
-            Recovery code
+            {s("Recovery code", "পুনরুদ্ধার কোড")}
             <input
               type="text"
               value={recoveryCode}
@@ -181,8 +186,8 @@ export default function AuthCard({ returnTo }: { returnTo: string }) {
           </label>
         )}
         <label>
-          {mode === "sign-in" ? "Password" : mode === "sign-up" ? "Password" : "New password"}{" "}
-          {mode !== "sign-in" && <small>(at least 10 characters)</small>}
+          {mode === "sign-in" ? s("Password", "পাসওয়ার্ড") : mode === "sign-up" ? s("Password", "পাসওয়ার্ড") : s("New password", "নতুন পাসওয়ার্ড")}{" "}
+          {mode !== "sign-in" && <small>{s("(at least 10 characters)", "(কমপক্ষে ১০ অক্ষর)")}</small>}
           <input
             type="password"
             value={password}
@@ -199,29 +204,31 @@ export default function AuthCard({ returnTo }: { returnTo: string }) {
         )}
         <button type="submit" className="auth-submit" disabled={busy}>
           {busy
-            ? "One moment…"
+            ? s("One moment…", "একটু অপেক্ষা…")
             : mode === "sign-in"
-              ? "Sign in"
+              ? s("Sign in", "সাইন ইন")
               : mode === "sign-up"
-                ? "Create account"
-                : "Reset password"}
+                ? s("Create account", "অ্যাকাউন্ট তৈরি")
+                : s("Reset password", "পাসওয়ার্ড রিসেট")}
         </button>
       </form>
 
       {mode === "sign-in" && (
         <button type="button" className="auth-link" onClick={() => switchMode("recover")}>
-          Forgot your password? Use a recovery code
+          {s("Forgot your password? Use a recovery code", "পাসওয়ার্ড ভুলে গেছেন? পুনরুদ্ধার কোড ব্যবহার করুন")}
         </button>
       )}
       {mode === "recover" && (
         <button type="button" className="auth-link" onClick={() => switchMode("sign-in")}>
-          Back to sign in
+          {s("Back to sign in", "সাইন ইনে ফিরে যান")}
         </button>
       )}
 
       <p className="auth-note">
-        Grown-up accounts store only your email, display name and a securely hashed password.
-        Learner profiles you create hold no child contact details.
+        {s(
+          "Grown-up accounts store only your email, display name and a securely hashed password. Learner profiles you create hold no child contact details.",
+          "বড়দের অ্যাকাউন্টে কেবল আপনার ইমেইল, নাম ও নিরাপদে হ্যাশ করা পাসওয়ার্ড থাকে। আপনার তৈরি শিক্ষার্থী প্রোফাইলে শিশুর কোনো যোগাযোগ তথ্য থাকে না।",
+        )}
       </p>
     </section>
   );

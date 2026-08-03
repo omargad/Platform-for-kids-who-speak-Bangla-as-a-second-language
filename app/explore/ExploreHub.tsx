@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useLanguage } from "../../lib/use-language";
 import {
   cultureCards,
   festivals,
@@ -12,8 +12,6 @@ import {
   type Bilingual,
   type CultureCard,
 } from "../explore-content";
-
-type Language = "en" | "bn";
 
 const ui = {
   en: {
@@ -59,26 +57,7 @@ const ui = {
 } as const;
 
 export default function ExploreHub() {
-  const [language, setLanguage] = useState<Language>("en");
-
-  useEffect(() => {
-    // Apply the saved preference after mount. Reading localStorage during
-    // render would cause an SSR hydration mismatch, so this state update in an
-    // effect is intentional.
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setLanguage((current) => {
-      const saved = window.localStorage.getItem("bangla-adventures-language");
-      return saved === "bn" || saved === "en" ? saved : current;
-    });
-  }, []);
-
-  function toggleLanguage() {
-    setLanguage((current) => {
-      const next = current === "en" ? "bn" : "en";
-      window.localStorage.setItem("bangla-adventures-language", next);
-      return next;
-    });
-  }
+  const [language, toggleLanguage] = useLanguage();
 
   const t = ui[language];
   const say = (value: Bilingual) => value[language];
