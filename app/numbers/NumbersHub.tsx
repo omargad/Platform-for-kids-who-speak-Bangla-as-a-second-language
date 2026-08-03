@@ -115,6 +115,7 @@ export default function NumbersHub() {
           <Link href="/alphabet">{s("Alphabet", "বর্ণমালা")}</Link>
           <Link href="/phrasebook">{s("Phrasebook", "বাক্যের ঝুলি")}</Link>
           <Link className="active" href="/numbers">{s("Numbers", "সংখ্যা")}</Link>
+          <Link href="/calendar">{s("Calendar", "দিন-ঋতু")}</Link>
         </nav>
         <button type="button" className="explore-lang" onClick={toggleLanguage}>
           {s("বাংলায় দেখুন", "View in English")}
