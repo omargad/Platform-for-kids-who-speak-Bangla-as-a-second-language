@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1785648065833,
+      "tag": "0000_flashy_bushwacker",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1785667806294,
+      "tag": "0001_rare_red_skull",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1785707199913,
+      "tag": "0002_wet_radioactive_man",
+      "breakpoints": true
+    }
+  ]
+}

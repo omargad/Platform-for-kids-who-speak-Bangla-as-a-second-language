@@ -1,0 +1,892 @@
+export type CurriculumLevel = "pre-a1" | "a1" | "a2" | "b1" | "b2" | "c1-c2";
+
+export type VocabularyItem = {
+  bn: string;
+  transliteration: string;
+  en: string;
+};
+
+export type Lesson = {
+  id: string;
+  level: CurriculumLevel;
+  number: number;
+  title: string;
+  titleBn: string;
+  duration: string;
+  summary: string;
+  canDo: string;
+  objectives: string[];
+  vocabulary: VocabularyItem[];
+  patterns: Array<{ bn: string; transliteration: string; en: string }>;
+  teaching: Array<{ title: string; body: string }>;
+  culture: { title: string; body: string; source?: string; sourceLabel?: string };
+  practice: Array<{ title: string; instruction: string }>;
+  familyMission: string;
+  quiz: Array<{ question: string; options: string[]; answer: number; explanation: string }>;
+  video: { id: string; title: string; channel: string; duration: string; reason: string };
+  playlist: { id: string; title: string; channel: string };
+};
+
+export const levelBands: Array<{
+  id: CurriculumLevel;
+  code: string;
+  title: string;
+  titleBn: string;
+  descriptor: string;
+  pathway: string;
+  tone: string;
+}> = [
+  {
+    id: "pre-a1",
+    code: "Pre-A1",
+    title: "Seedling",
+    titleBn: "শুরুর কুঁড়ি",
+    descriptor: "I can recognise and repeat a few familiar Bangla words with pictures and help.",
+    pathway: "Core starting point",
+    tone: "mint",
+  },
+  {
+    id: "a1",
+    code: "A1",
+    title: "River Scout",
+    titleBn: "নদীর সাথী",
+    descriptor: "I can use short, rehearsed phrases about myself, food, family and my day.",
+    pathway: "Core foundation",
+    tone: "sky",
+  },
+  {
+    id: "a2",
+    code: "A2",
+    title: "Boat Explorer",
+    titleBn: "নৌকা অভিযাত্রী",
+    descriptor: "I can manage simple everyday exchanges and connect a few sentences.",
+    pathway: "Core everyday Bangla",
+    tone: "banana",
+  },
+  {
+    id: "b1",
+    code: "B1",
+    title: "Story Keeper",
+    titleBn: "গল্পরক্ষক",
+    descriptor: "I can tell a clear story, give reasons and understand the main point of familiar media.",
+    pathway: "Core independent use",
+    tone: "coral",
+  },
+  {
+    id: "b2",
+    code: "B2",
+    title: "Culture Guide",
+    titleBn: "সংস্কৃতি গাইড",
+    descriptor: "I can compare ideas, explain cultural topics and follow detailed authentic content.",
+    pathway: "Stretch pathway",
+    tone: "indigo",
+  },
+  {
+    id: "c1-c2",
+    code: "C1–C2",
+    title: "Young Scholar",
+    titleBn: "তরুণ গবেষক",
+    descriptor: "I can interpret, research, debate and create nuanced Bangla for different audiences.",
+    pathway: "Advanced heritage extension",
+    tone: "emerald",
+  },
+];
+
+const beginnerPlaylist = {
+  id: "PLHQGeMgsZrGjmhRNcIleqkhRBF1CdMlnm",
+  title: "Learn Bengali for Beginners and Kids",
+  channel: "Pebbles Bengali",
+};
+
+const conversationPlaylist = {
+  id: "PLe_24GBEOEsN68jjtQMVllbqn92Me3pOU",
+  title: "Learn Basic Bengali Conversation",
+  channel: "RASELraju Institute",
+};
+
+const storyPlaylist = {
+  id: "PLMkbcNyMykb5jiX6n2Eny2MrTxg2BvniP",
+  title: "Bengali Stories for Kids",
+  channel: "Infobells Bangla",
+};
+
+const coursePlaylist = {
+  id: "PLe_24GBEOEsPu-DKSzuPtTWHt5w5bT1Uu",
+  title: "Learn Bengali Language",
+  channel: "RASELraju Institute",
+};
+
+export const lessons: Lesson[] = [
+  {
+    id: "hello-me",
+    level: "pre-a1",
+    number: 1,
+    title: "Hello, this is me",
+    titleBn: "হ্যালো, এই আমি",
+    duration: "20 min",
+    summary: "Meet someone, say your name and finish a tiny two-line conversation.",
+    canDo: "I can greet someone and say my name in Bangla.",
+    objectives: ["Recognise two greetings", "Say your name with আমি", "Respond politely when someone asks how you are"],
+    vocabulary: [
+      { bn: "হ্যালো", transliteration: "hyā-lo", en: "hello" },
+      { bn: "সালাম", transliteration: "sa-lam", en: "peaceful greeting" },
+      { bn: "আমি", transliteration: "a-mi", en: "I / me" },
+      { bn: "নাম", transliteration: "nam", en: "name" },
+      { bn: "ভালো", transliteration: "bha-lo", en: "good / well" },
+      { bn: "ধন্যবাদ", transliteration: "dhon-no-bad", en: "thank you" },
+    ],
+    patterns: [
+      { bn: "আমার নাম মায়া।", transliteration: "a-mar nam Ma-ya", en: "My name is Maya." },
+      { bn: "আমি ভালো আছি।", transliteration: "a-mi bha-lo a-chhi", en: "I am well." },
+    ],
+    teaching: [
+      { title: "1 · Notice", body: "Bangla often leaves out the English verb ‘is’. আমার নাম মায়া literally feels like ‘my name Maya’. Listen for the rhythm before trying to copy every sound." },
+      { title: "2 · Build", body: "Keep আমার নাম and swap only the name. Point to yourself as you say আমি. Meaningful gestures help a new sound stay in memory." },
+      { title: "3 · Use", body: "Partner A says হ্যালো and asks তোমার নাম কী? Partner B answers আমার নাম ___. Swap roles, then finish with ধন্যবাদ." },
+    ],
+    culture: {
+      title: "More than one warm greeting",
+      body: "Bangladesh is religiously and culturally diverse. Families may use হ্যালো, সালাম, নমস্কার or another familiar greeting. Learners should practise the words their own family actually uses and understand the others respectfully.",
+    },
+    practice: [
+      { title: "Echo three times", instruction: "Say আমার নাম slowly, at normal speed, then with your name." },
+      { title: "Make a name badge", instruction: "Write or decorate: আমার নাম ___. A grown-up may write the Bangla first for you to trace." },
+      { title: "Two-turn talk", instruction: "Greet Bagh, answer তোমার নাম কী?, and say how you feel." },
+    ],
+    familyMission: "Ask two relatives which greeting they use most and record their answers with drawings or tally marks.",
+    quiz: [
+      { question: "Which phrase means ‘My name is Rafi’ ?", options: ["আমি ভালো আছি।", "আমার নাম রাফি।", "ধন্যবাদ রাফি।"], answer: 1, explanation: "আমার নাম means ‘my name’; add the person’s name after it." },
+      { question: "What is a polite way to finish?", options: ["ধন্যবাদ", "নাম", "আমি"], answer: 0, explanation: "ধন্যবাদ means ‘thank you’." },
+    ],
+    video: { id: "RJ34xfoHJC8", title: "How to speak Bengali — Greetings", channel: "dialect101com", duration: "1:31", reason: "A short model to hear greeting rhythm before the role-play." },
+    playlist: beginnerPlaylist,
+  },
+  {
+    id: "my-family",
+    level: "pre-a1",
+    number: 2,
+    title: "People in my family",
+    titleBn: "আমার পরিবারের মানুষ",
+    duration: "20 min",
+    summary: "Name close family members and introduce one person with a photo or drawing.",
+    canDo: "I can name familiar people and say who someone is.",
+    objectives: ["Learn six family words", "Use আমার for ‘my’", "Introduce one person in a complete phrase"],
+    vocabulary: [
+      { bn: "মা", transliteration: "ma", en: "mother / mum" },
+      { bn: "বাবা", transliteration: "ba-ba", en: "father / dad" },
+      { bn: "ভাই", transliteration: "bhai", en: "brother" },
+      { bn: "বোন", transliteration: "bon", en: "sister" },
+      { bn: "দাদি", transliteration: "da-di", en: "paternal grandmother" },
+      { bn: "নানি", transliteration: "na-ni", en: "maternal grandmother" },
+    ],
+    patterns: [
+      { bn: "ইনি আমার মা।", transliteration: "i-ni a-mar ma", en: "This is my mother." },
+      { bn: "এ আমার ভাই।", transliteration: "e a-mar bhai", en: "This is my brother." },
+    ],
+    teaching: [
+      { title: "1 · Family words carry detail", body: "Bangla may use different words for relatives on your mother’s and father’s sides. This lesson starts with common close-family words; your own family can add the names it uses." },
+      { title: "2 · Point respectfully", body: "Use ইনি when introducing an adult respectfully. Use এ for a child or someone very familiar. Pair the phrase with a photo, drawing or toy figure." },
+      { title: "3 · Create", body: "Draw three people or chosen-family members. Under each one, complete ইনি/এ আমার ___. Families can replace any example that does not fit their household." },
+    ],
+    culture: { title: "Every family map is different", body: "Bangla kinship vocabulary can be very precise, but children should never be asked to disclose private family information. Fictional, chosen and community families all work for this activity." },
+    practice: [
+      { title: "Point and say", instruction: "Lay out three drawings. A partner names a person; point to the matching drawing." },
+      { title: "Memory turn", instruction: "Turn the drawings over. Say the Bangla word before checking." },
+      { title: "One-person introduction", instruction: "Say ইনি আমার ___. Add the person’s name in English or Bangla." },
+    ],
+    familyMission: "Ask a trusted adult for two more kinship words your family uses, such as খালা, ফুফু, মামা or চাচা.",
+    quiz: [
+      { question: "Which word means ‘my’ ?", options: ["ইনি", "আমার", "বোন"], answer: 1, explanation: "আমার means ‘my’." },
+      { question: "Choose ‘This is my sister.’", options: ["এ আমার বোন।", "এ আমার ভাই।", "আমার নাম বোন।"], answer: 0, explanation: "বোন means sister." },
+    ],
+    video: { id: "uHTorwKsVFg", title: "5 First Bengali Words: My Family", channel: "BanglaSprouts — Learn Bangla with Love", duration: "2:17", reason: "Simple family vocabulary with clear visual repetition." },
+    playlist: beginnerPlaylist,
+  },
+  {
+    id: "numbers-colours",
+    level: "pre-a1",
+    number: 3,
+    title: "Numbers and colours",
+    titleBn: "সংখ্যা আর রং",
+    duration: "25 min",
+    summary: "Count to ten, identify four colours and play a listening treasure hunt.",
+    canDo: "I can recognise numbers 1–10 and describe a familiar object by colour.",
+    objectives: ["Count aloud from one to ten", "Recognise four high-frequency colour words", "Combine a colour with an object"],
+    vocabulary: [
+      { bn: "এক", transliteration: "ek", en: "one" },
+      { bn: "দুই", transliteration: "dui", en: "two" },
+      { bn: "তিন", transliteration: "tin", en: "three" },
+      { bn: "লাল", transliteration: "lal", en: "red" },
+      { bn: "নীল", transliteration: "nil", en: "blue" },
+      { bn: "সবুজ", transliteration: "sho-buj", en: "green" },
+    ],
+    patterns: [
+      { bn: "তিনটি লাল ফুল", transliteration: "tin-ti lal phul", en: "three red flowers" },
+      { bn: "এটা নীল।", transliteration: "e-ta nil", en: "This is blue." },
+    ],
+    teaching: [
+      { title: "1 · Count with movement", body: "Clap once for এক, twice for দুই and continue to দশ. Movement keeps the sequence playful and gives each word a physical cue." },
+      { title: "2 · Add টি", body: "For a simple beginner phrase, add টি after a number: তিনটি. Then add colour and object: তিনটি লাল ফুল. Natural Bangla has more classifiers, but টি is a useful starting tool." },
+      { title: "3 · Hunt", body: "A leader calls একটি নীল জিনিস—one blue thing. Find or point to something blue without racing. Swap the number or colour." },
+    ],
+    culture: { title: "Red and green", body: "Bangladesh’s flag uses deep green and a red circle. Green evokes the country’s landscape; red is commonly associated with the rising sun and the sacrifices connected with independence." },
+    practice: [
+      { title: "Number line", instruction: "Put ten objects in a line and touch each one while counting in Bangla." },
+      { title: "Colour sort", instruction: "Sort safe household objects into লাল, নীল, সবুজ and হলুদ groups." },
+      { title: "Draw the phrase", instruction: "Hear একটি লাল নৌকা or তিনটি নীল ফুল and draw exactly what was said." },
+    ],
+    familyMission: "Count ten steps, spoons or toy pieces with someone at home, then teach them your favourite colour word.",
+    quiz: [
+      { question: "What does তিন mean?", options: ["one", "two", "three"], answer: 2, explanation: "এক, দুই, তিন means one, two, three." },
+      { question: "Which phrase means ‘three red flowers’ ?", options: ["তিনটি লাল ফুল", "একটি নীল নৌকা", "সবুজ তিন"], answer: 0, explanation: "Number + টি + colour + object makes the target phrase." },
+    ],
+    video: { id: "J4PMaaG6TJ0", title: "বাংলা সংখ্যা ১–১০ শেখো", channel: "Ms Mun — Early Learning for Children", duration: "3:42", reason: "A child-focused count-along for numbers one to ten." },
+    playlist: beginnerPlaylist,
+  },
+  {
+    id: "letters-sounds",
+    level: "a1",
+    number: 4,
+    title: "Letters with a roofline",
+    titleBn: "মাথার রেখার অক্ষর",
+    duration: "30 min",
+    summary: "Notice how Bangla script works, trace six useful letters and blend them into short words.",
+    canDo: "I can recognise and copy several common Bangla letters and sounds.",
+    objectives: ["Understand that Bangla is an abugida", "Recognise অ, আ, ক, ম, ন and ব", "Trace letters in a safe stroke order"],
+    vocabulary: [
+      { bn: "অ", transliteration: "ô", en: "vowel sound ô" },
+      { bn: "আ", transliteration: "a", en: "long a" },
+      { bn: "ক", transliteration: "kô", en: "k sound" },
+      { bn: "ম", transliteration: "mô", en: "m sound" },
+      { bn: "ন", transliteration: "nô", en: "n sound" },
+      { bn: "ব", transliteration: "bô", en: "b sound" },
+    ],
+    patterns: [
+      { bn: "মা", transliteration: "ma", en: "mother" },
+      { bn: "নাম", transliteration: "nam", en: "name" },
+    ],
+    teaching: [
+      { title: "1 · Sound blocks", body: "Bangla script is an abugida: a consonant letter normally carries a vowel unless another sign changes it. Learn sound and shape together rather than reciting a huge alphabet list." },
+      { title: "2 · See the মাত্রা", body: "Many letters join a horizontal roofline called the মাত্রা. First trace the main shape, then add the line in the demonstrated order. Use a finger in the air before using a pencil." },
+      { title: "3 · Blend", body: "Look at মা and নাম. Circle the letters you know. Read slowly, then once as a whole word. Accuracy matters more than speed." },
+    ],
+    culture: { title: "One script, many readers", body: "The Bangla script is used by communities in Bangladesh and India and has a long literary history. Modern handwriting and typefaces can look different while representing the same letters." },
+    practice: [
+      { title: "Sky writing", instruction: "Use your whole arm to trace each letter while saying its sound." },
+      { title: "Shape detective", instruction: "Find the target letters inside মা, নাম, বাংলা and নদী." },
+      { title: "Trace–copy–cover", instruction: "Trace once, copy twice, cover the model, then try once from memory." },
+    ],
+    familyMission: "Find Bangla writing on a book, food package or family message. Photograph or copy three letters you recognise without sharing private messages.",
+    quiz: [
+      { question: "Which letter begins মা?", options: ["ম", "ন", "ক"], answer: 0, explanation: "ম carries the m sound at the start of মা." },
+      { question: "What does the horizontal line across many letters help you notice?", options: ["Bangla’s roofline", "a full stop", "an English capital"], answer: 0, explanation: "The মাত্রা is a recognisable feature of many Bangla letter forms." },
+    ],
+    video: { id: "2FtVGjJC68I", title: "How to write Bangla Alphabet", channel: "Namaste Nepal", duration: "Guided lesson", reason: "A visual stroke-order demonstration to pause and copy." },
+    playlist: beginnerPlaylist,
+  },
+  {
+    id: "food-please",
+    level: "a1",
+    number: 5,
+    title: "Food, please!",
+    titleBn: "খাবার, দয়া করে!",
+    duration: "30 min",
+    summary: "Name everyday foods, express a preference and ask politely for something at the table.",
+    canDo: "I can say what I like and make a simple polite request.",
+    objectives: ["Name six foods or drinks", "Use আমার ভালো লাগে", "Ask for an item with দিন"],
+    vocabulary: [
+      { bn: "ভাত", transliteration: "bhat", en: "cooked rice" },
+      { bn: "ডাল", transliteration: "dal", en: "lentils" },
+      { bn: "মাছ", transliteration: "machh", en: "fish" },
+      { bn: "পানি", transliteration: "pa-ni", en: "water" },
+      { bn: "আম", transliteration: "am", en: "mango" },
+      { bn: "মিষ্টি", transliteration: "mish-ti", en: "sweet / sweets" },
+    ],
+    patterns: [
+      { bn: "আমার আম ভালো লাগে।", transliteration: "a-mar am bha-lo la-ge", en: "I like mango." },
+      { bn: "পানি দিন, দয়া করে।", transliteration: "pa-ni din, dô-ya ko-re", en: "Please give me water." },
+    ],
+    teaching: [
+      { title: "1 · Likes", body: "Use আমার + food + ভালো লাগে to express a preference. It is closer to ‘mango feels good to me’ than the English word order, so learn the whole frame." },
+      { title: "2 · Requests", body: "দিন is a respectful way to say ‘please give’. Add দয়া করে for an explicit ‘please’. Tone and context matter as much as the words." },
+      { title: "3 · Café play", body: "Make six picture cards. One learner is the host and one is the guest. The guest requests two items and says one preference." },
+    ],
+    culture: { title: "A plate changes by family and region", body: "Rice and fish are widely associated with Bangladeshi food, but meals vary by region, season, religion, allergy, budget and household. The goal is language—not deciding which foods are ‘most Bangladeshi’." },
+    practice: [
+      { title: "Menu maker", instruction: "Draw a six-item menu and label each picture in Bangla." },
+      { title: "Preference line", instruction: "Choose two foods you like and one you do not know. Say only true preferences." },
+      { title: "Polite table", instruction: "Role-play asking for পানি, ভাত and ডাল, then swap roles." },
+    ],
+    familyMission: "Help name three ingredients during a meal. Ask which Bangla food word a family member wants you to learn next.",
+    quiz: [
+      { question: "How do you politely ask for water?", options: ["পানি দিন, দয়া করে।", "পানি ভালো লাগে?", "আমি পানি।"], answer: 0, explanation: "Item + দিন makes the request; দয়া করে adds ‘please’." },
+      { question: "Which sentence says ‘I like mango’ ?", options: ["আমার আম ভালো লাগে।", "আম দিন।", "আমার নাম আম।"], answer: 0, explanation: "আমার ___ ভালো লাগে is the preference frame." },
+    ],
+    video: { id: "WIrugnt71MM", title: "রঙিন খাবারের মেলা — Colourful Food Festival", channel: "Sisimpur", duration: "20:18", reason: "Authentic child-directed Bangla about colourful foods; use the first selected segment or watch in parts." },
+    playlist: storyPlaylist,
+  },
+  {
+    id: "my-day",
+    level: "a1",
+    number: 6,
+    title: "My day in six actions",
+    titleBn: "আমার দিনের ছয় কাজ",
+    duration: "30 min",
+    summary: "Describe a simple routine with time words and common action verbs.",
+    canDo: "I can say several things I do in a normal day.",
+    objectives: ["Use six routine verbs", "Sequence events with first and then", "Ask a partner one routine question"],
+    vocabulary: [
+      { bn: "উঠি", transliteration: "u-thi", en: "I get up" },
+      { bn: "খাই", transliteration: "khai", en: "I eat" },
+      { bn: "পড়ি", transliteration: "pô-ri", en: "I study / read" },
+      { bn: "খেলি", transliteration: "khe-li", en: "I play" },
+      { bn: "যাই", transliteration: "jai", en: "I go" },
+      { bn: "ঘুমাই", transliteration: "ghu-mai", en: "I sleep" },
+    ],
+    patterns: [
+      { bn: "সকালে আমি উঠি।", transliteration: "sho-ka-le a-mi u-thi", en: "In the morning I get up." },
+      { bn: "তারপর আমি খেলি।", transliteration: "tar-por a-mi khe-li", en: "Then I play." },
+    ],
+    teaching: [
+      { title: "1 · Time anchors", body: "Use সকালে, দুপুরে, বিকেলে and রাতে to anchor an action. Start with one true sentence for each part of the day." },
+      { title: "2 · Verb endings", body: "The lesson forms—উঠি, খাই, যাই—already include ‘I’. Adding আমি makes the learner’s meaning extra clear. Other people use different endings; that comes later." },
+      { title: "3 · Sequence", body: "Connect picture cards with প্রথমে (first) and তারপর (then). Tell your routine from left to right without memorising a long paragraph." },
+    ],
+    culture: { title: "No single ‘normal’ day", body: "School times, weekends, prayer, sport, work patterns and family routines differ. Learners build a truthful routine rather than copying a stereotype." },
+    practice: [
+      { title: "Action charades", instruction: "Act out one verb. A partner calls the Bangla action." },
+      { title: "Six-picture timeline", instruction: "Order six drawings and narrate them with সকালে and তারপর." },
+      { title: "Ask and answer", instruction: "Ask সকালে তুমি কী করো? Answer with one action." },
+    ],
+    familyMission: "Compare one weekday routine with a relative’s routine. Find one thing that is the same and say it in Bangla.",
+    quiz: [
+      { question: "Which word helps say ‘then’ ?", options: ["তারপর", "সকালে", "আমি"], answer: 0, explanation: "তারপর connects the next event." },
+      { question: "What does খেলি mean here?", options: ["I sleep", "I play", "I eat"], answer: 1, explanation: "খেলি means ‘I play’." },
+    ],
+    video: { id: "SO3YRD4vadE", title: "এলমো গোছায় নিজের বিছানা", channel: "Sisimpur", duration: "4:55", reason: "A familiar routine shown through child-friendly authentic Bangla." },
+    playlist: storyPlaylist,
+  },
+  {
+    id: "school-home",
+    level: "a2",
+    number: 7,
+    title: "Between school and home",
+    titleBn: "স্কুল আর বাড়ির মাঝে",
+    duration: "30 min",
+    summary: "Ask and answer everyday questions about places, belongings and what someone is doing.",
+    canDo: "I can exchange simple information about school and home.",
+    objectives: ["Ask কোথায় and কী questions", "Use আছে / নেই for possession or presence", "Describe an action in progress"],
+    vocabulary: [
+      { bn: "স্কুল", transliteration: "skul", en: "school" },
+      { bn: "বাড়ি", transliteration: "ba-ri", en: "home" },
+      { bn: "বই", transliteration: "boi", en: "book" },
+      { bn: "খাতা", transliteration: "kha-ta", en: "notebook" },
+      { bn: "শিক্ষক", transliteration: "shik-khôk", en: "teacher" },
+      { bn: "বন্ধু", transliteration: "bon-dhu", en: "friend" },
+    ],
+    patterns: [
+      { bn: "তোমার বই কোথায়?", transliteration: "to-mar boi ko-thay", en: "Where is your book?" },
+      { bn: "আমার খাতা আছে।", transliteration: "a-mar kha-ta a-chhe", en: "I have a notebook." },
+    ],
+    teaching: [
+      { title: "1 · Question words", body: "কোথায় asks where; কী asks what. Bangla question words often stay where the missing information belongs instead of moving to the beginning." },
+      { title: "2 · আছে and নেই", body: "Use আছে for ‘there is / have’ and নেই for ‘there is not / do not have’: আমার বই আছে; আমার কলম নেই." },
+      { title: "3 · Information gap", body: "Partners receive slightly different schoolbag pictures. Ask questions in Bangla to discover three differences without showing the pictures." },
+    ],
+    culture: { title: "Words travel with children", body: "Bangla-speaking families worldwide mix school vocabulary from local languages. The platform teaches shared Bangla while treating natural multilingual mixing as a resource, not a failure." },
+    practice: [
+      { title: "Pack the bag", instruction: "Listen to three Bangla items and place the matching cards in a drawn schoolbag." },
+      { title: "Missing object", instruction: "Hide one card and answer কী নেই? with a full sentence." },
+      { title: "Partner interview", instruction: "Ask one কোথায় question and two আছে? questions." },
+    ],
+    familyMission: "Label three study items at home in Bangla for one day, then remove the labels and recall them.",
+    quiz: [
+      { question: "How do you ask ‘Where is your book?’", options: ["তোমার বই কোথায়?", "তোমার বই আছে?", "বই কী করে?"], answer: 0, explanation: "কোথায় asks for a place." },
+      { question: "আমার কলম নেই means…", options: ["I have a pen", "I do not have a pen", "Where is my pen?"], answer: 1, explanation: "নেই makes the presence or possession negative." },
+    ],
+    video: { id: "aLOIFFmT2Dk", title: "Learn Bengali Conversation: Daily Routines for Students", channel: "RASELraju Institute", duration: "14:45", reason: "A longer guided model; pause after each useful school or routine exchange." },
+    playlist: conversationPlaylist,
+  },
+  {
+    id: "directions",
+    level: "a2",
+    number: 8,
+    title: "Find the river market",
+    titleBn: "নদীর বাজার খুঁজে নাও",
+    duration: "30 min",
+    summary: "Ask for and follow short directions using a playful town map.",
+    canDo: "I can ask where a place is and follow simple directions.",
+    objectives: ["Name six local places", "Use left, right and straight", "Ask for help politely"],
+    vocabulary: [
+      { bn: "বাজার", transliteration: "ba-jar", en: "market" },
+      { bn: "রাস্তা", transliteration: "ras-ta", en: "road" },
+      { bn: "বাঁয়ে", transliteration: "ba-ye", en: "to the left" },
+      { bn: "ডানে", transliteration: "da-ne", en: "to the right" },
+      { bn: "সোজা", transliteration: "sho-ja", en: "straight" },
+      { bn: "কাছে", transliteration: "ka-chhe", en: "near" },
+    ],
+    patterns: [
+      { bn: "বাজার কোথায়?", transliteration: "ba-jar ko-thay", en: "Where is the market?" },
+      { bn: "সোজা যান, তারপর বাঁয়ে যান।", transliteration: "sho-ja jan, tar-por ba-ye jan", en: "Go straight, then go left." },
+    ],
+    teaching: [
+      { title: "1 · Ask", body: "Name the place, then add কোথায়? For extra politeness begin with মাফ করবেন—excuse me." },
+      { title: "2 · Follow", body: "Point in the direction as you say সোজা, বাঁয়ে or ডানে. Keep the first routes to two steps so listening stays successful." },
+      { title: "3 · Map mission", body: "Use the quest map or draw a four-place town. One learner hides a star; the other follows Bangla directions to find it." },
+    ],
+    culture: { title: "Many ways to move", body: "Bangladeshi journeys may involve walking, rickshaws, buses, boats or trains depending on place and circumstance. A map activity should represent both cities and rural river regions without treating either as the whole country." },
+    practice: [
+      { title: "Human compass", instruction: "Stand safely and turn বাঁয়ে or ডানে when called." },
+      { title: "Route builder", instruction: "Arrange arrow cards to match a spoken two-step route." },
+      { title: "Helpful stranger", instruction: "Role-play asking for the market, school and river jetty politely." },
+    ],
+    familyMission: "Describe a safe, familiar route in two Bangla steps to a family member. Do not share a home address online.",
+    quiz: [
+      { question: "What should you do after সোজা যান, তারপর বাঁয়ে যান?", options: ["Go right", "Go straight, then left", "Stop at home"], answer: 1, explanation: "সোজা is straight and বাঁয়ে is left." },
+      { question: "Which question asks for the market?", options: ["বাজার কোথায়?", "বাজার আছে।", "বাজার ভালো।"], answer: 0, explanation: "Place + কোথায় asks where it is." },
+    ],
+    video: { id: "vB3O4CgOv5Y", title: "Basic Bengali: Asking for Directions", channel: "LH", duration: "5:31", reason: "Clear real-life phrases to compare with the map dialogue." },
+    playlist: conversationPlaylist,
+  },
+  {
+    id: "six-seasons",
+    level: "a2",
+    number: 9,
+    title: "Bangladesh through six seasons",
+    titleBn: "ছয় ঋতুর বাংলাদেশ",
+    duration: "35 min",
+    summary: "Talk about weather, compare seasons and build a six-part calendar wheel.",
+    canDo: "I can describe familiar weather and compare two seasons in short connected sentences.",
+    objectives: ["Name Bangladesh’s six traditional seasons", "Use weather adjectives", "Connect a reason with কারণ"],
+    vocabulary: [
+      { bn: "গ্রীষ্ম", transliteration: "grish-sho", en: "summer" },
+      { bn: "বর্ষা", transliteration: "bôr-sha", en: "monsoon" },
+      { bn: "শরৎ", transliteration: "shô-rot", en: "autumn" },
+      { bn: "হেমন্ত", transliteration: "he-mon-to", en: "late autumn" },
+      { bn: "শীত", transliteration: "shit", en: "winter" },
+      { bn: "বসন্ত", transliteration: "bô-shon-to", en: "spring" },
+    ],
+    patterns: [
+      { bn: "বর্ষায় অনেক বৃষ্টি হয়।", transliteration: "bôr-shay ô-nek brish-ti hoy", en: "It rains a lot in monsoon." },
+      { bn: "আমার শীত ভালো লাগে, কারণ…", transliteration: "a-mar shit bha-lo la-ge, ka-ron", en: "I like winter because…" },
+    ],
+    teaching: [
+      { title: "1 · A cultural calendar", body: "The Bengali calendar traditionally describes six ঋতু. Real weather varies by year, region and climate change, so the names are a cultural pattern rather than a promise about every day." },
+      { title: "2 · Describe", body: "Use season + এ/য়, then a weather statement: শীতে ঠান্ডা হয়; বর্ষায় বৃষ্টি হয়. Notice the ending attached to the season word." },
+      { title: "3 · Compare", body: "Choose two seasons. Say one feature of each and one preference with কারণ. Learners living overseas can compare Bangladesh’s pattern with their local seasons." },
+    ],
+    culture: { title: "Poetry, crops and changing climate", body: "Bangla songs and poems often use seasonal images such as rain, কাশ flowers and spring colour. Contemporary learners can also ask how climate change affects familiar seasonal patterns." },
+    practice: [
+      { title: "Season wheel", instruction: "Divide a circle into six, label each season and add one weather or nature image." },
+      { title: "Weather presenter", instruction: "Give a two-sentence forecast for one season using a prop microphone." },
+      { title: "Because chain", instruction: "Complete আমার ___ ভালো লাগে, কারণ ___ with a true reason." },
+    ],
+    familyMission: "Ask an older relative which season they remember most from Bangladesh and why. Retell one detail without recording them unless they agree.",
+    quiz: [
+      { question: "Which season is associated with monsoon rain?", options: ["বর্ষা", "শীত", "বসন্ত"], answer: 0, explanation: "বর্ষা is the monsoon season." },
+      { question: "What job does কারণ do?", options: ["It asks where", "It introduces a reason", "It means tomorrow"], answer: 1, explanation: "কারণ means ‘because’." },
+    ],
+    video: { id: "7M07Wsq1zGU", title: "বাংলাদেশের ৬ ঋতুর নাম", channel: "Kids Fun Quiz", duration: "4:11", reason: "A bilingual child-focused overview of the six traditional seasons." },
+    playlist: beginnerPlaylist,
+  },
+  {
+    id: "river-journey",
+    level: "b1",
+    number: 10,
+    title: "Tell a river journey",
+    titleBn: "নদীপথের গল্প বলি",
+    duration: "35 min",
+    summary: "Turn a map into a connected past-tense story with setting, sequence and reflection.",
+    canDo: "I can narrate a journey in connected sentences and keep events in order.",
+    objectives: ["Use time connectors", "Recognise common past-tense verbs", "Tell a six-sentence journey"],
+    vocabulary: [
+      { bn: "রওনা হলাম", transliteration: "rô-o-na ho-lam", en: "we/I set off" },
+      { bn: "দেখলাম", transliteration: "dekh-lam", en: "I saw" },
+      { bn: "শুনলাম", transliteration: "shun-lam", en: "I heard" },
+      { bn: "পৌঁছালাম", transliteration: "poun-chha-lam", en: "I arrived" },
+      { bn: "হঠাৎ", transliteration: "hô-that", en: "suddenly" },
+      { bn: "শেষে", transliteration: "she-she", en: "in the end" },
+    ],
+    patterns: [
+      { bn: "সকালে আমরা রওনা হলাম।", transliteration: "sho-ka-le am-ra rô-o-na ho-lam", en: "In the morning we set off." },
+      { bn: "শেষে আমরা ঘাটে পৌঁছালাম।", transliteration: "she-she am-ra gha-te poun-chha-lam", en: "In the end we reached the jetty." },
+    ],
+    teaching: [
+      { title: "1 · Story spine", body: "Plan six boxes: who, where, first event, surprise, response and ending. This keeps language connected without requiring a memorised script." },
+      { title: "2 · Past clues", body: "The -লাম ending in দেখলাম, শুনলাম and পৌঁছালাম marks a first-person past form. Use the forms as meaningful chunks before analysing every conjugation." },
+      { title: "3 · Add sensory detail", body: "A strong B1 story includes what the traveller saw or heard. Add one নদীর শব্দ, boat, bird, market or weather detail, then explain one feeling." },
+    ],
+    culture: { title: "Rivers connect and challenge", body: "Bangladesh’s rivers shape transport, livelihoods, agriculture, ecosystems and stories. Avoid presenting river life only as picturesque: floods, erosion and access also affect communities." },
+    practice: [
+      { title: "Sequence scramble", instruction: "Put six story sentences in a logical order and justify your first and last choices." },
+      { title: "Map narration", instruction: "Trace a route on the hero map and tell one event at three stops." },
+      { title: "Retell with a change", instruction: "Retell the story but change the weather, companion or surprise." },
+    ],
+    familyMission: "Invite a relative to share a journey memory. Write a six-sentence retelling and let them correct any cultural or place detail.",
+    quiz: [
+      { question: "Which word signals the ending of a story?", options: ["হঠাৎ", "শেষে", "সকালে"], answer: 1, explanation: "শেষে means ‘in the end’." },
+      { question: "What do দেখলাম and শুনলাম have in common?", options: ["They are colours", "They are first-person past forms", "They are questions"], answer: 1, explanation: "Both tell what the speaker experienced in the past." },
+    ],
+    video: { id: "YngO5QzeQJk", title: "Bangladesh Geography and Divisions", channel: "KLT", duration: "3:29", reason: "A compact geographic frame before learners invent a route across Bangladesh." },
+    playlist: conversationPlaylist,
+  },
+  {
+    id: "sundarbans-voices",
+    level: "b1",
+    number: 11,
+    title: "Voices of the Sundarbans",
+    titleBn: "সুন্দরবনের কণ্ঠ",
+    duration: "40 min",
+    summary: "Read for the main idea, explain an ecosystem and speak from more than one viewpoint.",
+    canDo: "I can explain why a place matters and give connected reasons.",
+    objectives: ["Use cause-and-effect language", "Summarise a short factual text", "Distinguish fact, opinion and question"],
+    vocabulary: [
+      { bn: "ম্যানগ্রোভ", transliteration: "man-grove", en: "mangrove" },
+      { bn: "জোয়ার", transliteration: "jo-ar", en: "high tide" },
+      { bn: "ভাটা", transliteration: "bha-ta", en: "low tide" },
+      { bn: "বন্যপ্রাণী", transliteration: "bon-no-pra-ni", en: "wildlife" },
+      { bn: "জীবিকা", transliteration: "ji-bi-ka", en: "livelihood" },
+      { bn: "সংরক্ষণ", transliteration: "shong-rôk-khon", en: "conservation" },
+    ],
+    patterns: [
+      { bn: "সুন্দরবন গুরুত্বপূর্ণ, কারণ…", transliteration: "Shun-dôr-bôn gu-rut-to-pur-no, ka-ron", en: "The Sundarbans is important because…" },
+      { bn: "একদিকে…, অন্যদিকে…", transliteration: "ek-di-ke, on-no-di-ke", en: "On one hand…, on the other…" },
+    ],
+    teaching: [
+      { title: "1 · Main idea first", body: "After each paragraph, write a five-word headline. Do not copy a whole sentence. A headline proves you have selected the central meaning." },
+      { title: "2 · Cause and effect", body: "Link a feature and consequence: ম্যানগ্রোভ বন উপকূল রক্ষা করে, তাই… Use কারণ for a reason and তাই for a result." },
+      { title: "3 · Multiple voices", body: "A conservation question may include residents, honey collectors, fishers, scientists, forest officials and wildlife. Create respectful evidence-based statements rather than pretending one voice represents everyone." },
+    ],
+    culture: {
+      title: "Bangladesh’s World Heritage mangrove",
+      body: "UNESCO describes the Bangladesh Sundarbans as a vast tidal mangrove ecosystem with exceptional biodiversity, including threatened species. It also supports livelihoods and protects coastal communities from storms.",
+      source: "https://whc.unesco.org/en/list/798",
+      sourceLabel: "UNESCO World Heritage source",
+    },
+    practice: [
+      { title: "Fact or viewpoint", instruction: "Sort six statements into verified fact, supported viewpoint or question needing research." },
+      { title: "One-minute explainer", instruction: "Use কারণ and তাই to explain two ways the mangrove matters." },
+      { title: "Decision circle", instruction: "Propose one visitor rule and explain who or what it protects." },
+    ],
+    familyMission: "Find one family question about the Sundarbans, research it using a reliable source and report what is known and still uncertain.",
+    quiz: [
+      { question: "Which connector introduces a result?", options: ["কারণ", "তাই", "কোথায়"], answer: 1, explanation: "কারণ gives a reason; তাই introduces a result." },
+      { question: "Why use more than one viewpoint?", options: ["To make facts optional", "Because places affect people and ecosystems differently", "To avoid evidence"], answer: 1, explanation: "Complex cultural and environmental topics need multiple evidence-based perspectives." },
+    ],
+    video: { id: "KBd0bvExrtM", title: "Sundarbans Bangladesh — A UNESCO World Heritage", channel: "Exploration", duration: "4:12", reason: "Visual context for the ecosystem vocabulary and source comparison." },
+    playlist: coursePlaylist,
+  },
+  {
+    id: "friendship-help",
+    level: "b1",
+    number: 12,
+    title: "Friendship and helping",
+    titleBn: "বন্ধুত্ব আর সাহায্য",
+    duration: "35 min",
+    summary: "Understand an authentic children’s story, infer feelings and give friendly advice.",
+    canDo: "I can understand the main events of a familiar story and explain a character’s choice.",
+    objectives: ["Infer a feeling from context", "Use should / can advice forms", "Retell a problem and solution"],
+    vocabulary: [
+      { bn: "সাহায্য", transliteration: "sha-haj-jo", en: "help" },
+      { bn: "মন খারাপ", transliteration: "mon kha-rap", en: "feeling sad" },
+      { bn: "খুশি", transliteration: "khu-shi", en: "happy" },
+      { bn: "ভাগ করে", transliteration: "bhag ko-re", en: "by sharing" },
+      { bn: "উচিত", transliteration: "u-chit", en: "should" },
+      { bn: "পারে", transliteration: "pa-re", en: "can" },
+    ],
+    patterns: [
+      { bn: "তার মন খারাপ ছিল, কারণ…", transliteration: "tar mon kha-rap chhi-lo, ka-ron", en: "They felt sad because…" },
+      { bn: "বন্ধুটি সাহায্য করতে পারে।", transliteration: "bon-dhu-ti sha-haj-jo kôr-te pa-re", en: "The friend can help." },
+    ],
+    teaching: [
+      { title: "1 · Watch for evidence", body: "Pause after a character reacts. Name the feeling, then point to a facial expression, action or line that supports your inference." },
+      { title: "2 · Advice softly", body: "Use …করা উচিত for ‘should do’ and …করতে পারে for ‘can do’. Compare how strong each suggestion feels." },
+      { title: "3 · Retell", body: "Use a three-part frame: সমস্যা ছিল…, বন্ধু…, শেষে…. Keep the original events accurate before inventing a new ending." },
+    ],
+    culture: { title: "Authentic children’s Bangla", body: "Programs made for Bangla-speaking children provide natural pace, humour and social language. Second-language learners may need pauses, replay and English scaffolding without simplifying the original voice." },
+    practice: [
+      { title: "Emotion evidence", instruction: "Choose an emotion card and cite one story clue." },
+      { title: "Advice ladder", instruction: "Offer one gentle option with পারে and one stronger suggestion with উচিত." },
+      { title: "New ending", instruction: "Create a respectful alternative solution and explain why it may work." },
+    ],
+    familyMission: "Ask a family member for a Bangla phrase they use to comfort or encourage someone. Discuss when it is appropriate.",
+    quiz: [
+      { question: "Which form gives a possible option rather than a strong duty?", options: ["পারে", "উচিত", "ছিল"], answer: 0, explanation: "পারে expresses what someone can do." },
+      { question: "A good inference needs…", options: ["a guess only", "evidence from words or actions", "an English translation only"], answer: 1, explanation: "Evidence connects the feeling to what the story actually shows." },
+    ],
+    video: { id: "Q59mZ8WE7nQ", title: "আমার প্রিয় বন্ধু — My Dear Friend", channel: "Sisimpur", duration: "3:44", reason: "Authentic child-directed Bangla for listening, feelings and friendship language." },
+    playlist: storyPlaylist,
+  },
+  {
+    id: "language-movement",
+    level: "b2",
+    number: 13,
+    title: "Why 21 February matters",
+    titleBn: "একুশে ফেব্রুয়ারি কেন গুরুত্বপূর্ণ",
+    duration: "45 min",
+    summary: "Build a careful timeline of the Language Movement and explain its global legacy.",
+    canDo: "I can explain a significant historical event, distinguish cause from consequence and cite a source.",
+    objectives: ["Sequence key events", "Use formal cause-and-consequence language", "Separate remembrance, evidence and interpretation"],
+    vocabulary: [
+      { bn: "ভাষা আন্দোলন", transliteration: "bha-sha an-do-lon", en: "Language Movement" },
+      { bn: "রাষ্ট্রভাষা", transliteration: "rash-tro-bha-sha", en: "state language" },
+      { bn: "প্রতিবাদ", transliteration: "pro-ti-bad", en: "protest" },
+      { bn: "শহীদ", transliteration: "sho-hid", en: "martyr" },
+      { bn: "অধিকার", transliteration: "ô-dhi-kar", en: "right" },
+      { bn: "স্বীকৃতি", transliteration: "shi-kri-ti", en: "recognition" },
+    ],
+    patterns: [
+      { bn: "এর প্রধান কারণ ছিল…", transliteration: "er pro-dhan ka-ron chhi-lo", en: "The main cause was…" },
+      { bn: "এর ফলে…", transliteration: "er phô-le", en: "As a result…" },
+    ],
+    teaching: [
+      { title: "1 · Establish context", body: "After 1947, political conflict grew over whether Urdu alone would be Pakistan’s state language despite Bangla being spoken by the majority of East Pakistan’s population. Students and others organised for Bangla’s recognition." },
+      { title: "2 · Focus on 1952 carefully", body: "On 21 February 1952 in Dhaka, police fired on demonstrators defying restrictions; people were killed. Use age-appropriate language, avoid graphic detail and distinguish named evidence from collective memory." },
+      { title: "3 · Trace the legacy", body: "Bangla gained state-language recognition in Pakistan’s 1956 constitution. UNESCO proclaimed International Mother Language Day in 1999, observed globally on 21 February from 2000." },
+    ],
+    culture: {
+      title: "From a national movement to a global day",
+      body: "The day connects Bangladesh’s history with a global commitment to linguistic diversity and multilingual education. Learners should compare at least two reliable sources and note when a claim needs checking.",
+      source: "https://www.unesco.org/en/days/mother-language",
+      sourceLabel: "UNESCO International Mother Language Day",
+    },
+    practice: [
+      { title: "Evidence timeline", instruction: "Place 1947, 1952, 1956, 1999 and 2000 in order; attach one verified sentence to each." },
+      { title: "Cause or consequence", instruction: "Sort statements, then connect one pair with কারণ and এর ফলে." },
+      { title: "Museum label", instruction: "Write an 80-word bilingual label for a younger learner using calm, accurate language." },
+    ],
+    familyMission: "Ask what 21 February means to a relative. Treat the response as personal memory, not automatically as verified historical fact, and compare it with a source.",
+    quiz: [
+      { question: "Which statement is a consequence rather than a cause?", options: ["Disagreement over state-language policy", "The global observance of International Mother Language Day", "Students organised protests"], answer: 1, explanation: "The global observance developed later as part of the event’s legacy." },
+      { question: "Why label a family account as memory?", options: ["Memories never matter", "Personal testimony and verified public evidence are different source types", "Only videos are sources"], answer: 1, explanation: "Both can be valuable, but they answer different questions and require different checks." },
+    ],
+    video: { id: "c6-o4XgNWlM", title: "The History of International Mother Language Day", channel: "International School Dhaka", duration: "4:32", reason: "A school-produced overview to analyse alongside the UNESCO timeline." },
+    playlist: coursePlaylist,
+  },
+  {
+    id: "heritage-comparison",
+    level: "b2",
+    number: 14,
+    title: "Three heritage places, three stories",
+    titleBn: "তিন ঐতিহ্য, তিন গল্প",
+    duration: "45 min",
+    summary: "Compare the Sundarbans, Bagerhat and Paharpur and design an evidence-based visitor guide.",
+    canDo: "I can compare complex cultural information and adapt it for a younger audience.",
+    objectives: ["Use compare-and-contrast structures", "Identify natural and cultural heritage", "Summarise without copying"],
+    vocabulary: [
+      { bn: "ঐতিহ্য", transliteration: "oi-ti-h-jo", en: "heritage" },
+      { bn: "স্থাপত্য", transliteration: "stha-pot-to", en: "architecture" },
+      { bn: "প্রত্নতত্ত্ব", transliteration: "prot-no-tôt-to", en: "archaeology" },
+      { bn: "জীববৈচিত্র্য", transliteration: "jib-boi-chi-tro", en: "biodiversity" },
+      { bn: "সাদৃশ্য", transliteration: "sha-dri-sho", en: "similarity" },
+      { bn: "পার্থক্য", transliteration: "par-thok-ko", en: "difference" },
+    ],
+    patterns: [
+      { bn: "দুটির মধ্যে একটি সাদৃশ্য হলো…", transliteration: "du-tir mo-dhye e-k-ti sha-dri-sho ho-lo", en: "One similarity between the two is…" },
+      { bn: "অন্যদিকে, প্রধান পার্থক্য হলো…", transliteration: "on-no-di-ke, pro-dhan par-thok-ko ho-lo", en: "On the other hand, the main difference is…" },
+    ],
+    teaching: [
+      { title: "1 · Classify", body: "The Sundarbans is listed for natural values; Bagerhat and Paharpur are cultural sites. Classification helps organise information but does not remove the human stories connected with landscapes." },
+      { title: "2 · Compare fairly", body: "Compare the same feature across sites—location, period, materials, purpose, threats or visitor responsibility. Avoid a random list of unrelated facts." },
+      { title: "3 · Adapt", body: "Turn research notes into a child-friendly guide: one hook, three verified facts, one Bangla keyword and one respectful visitor action per place." },
+    ],
+    culture: {
+      title: "Bangladesh on the World Heritage List",
+      body: "UNESCO lists the Sundarbans, the Historic Mosque City of Bagerhat and the Ruins of the Buddhist Vihara at Paharpur. Each is significant for different evidence and values.",
+      source: "https://whc.unesco.org/en/statesparties/bd",
+      sourceLabel: "UNESCO sites in Bangladesh",
+    },
+    practice: [
+      { title: "Comparison matrix", instruction: "Complete the same five research headings for all three sites." },
+      { title: "No-copy summary", instruction: "Close the source and explain one site in three sentences from notes, then verify accuracy." },
+      { title: "Audio guide", instruction: "Record or perform a 60-second bilingual guide for one site with a source credit." },
+    ],
+    familyMission: "Let a family member choose which site they would visit. Ask for a reason, then add one evidence-based fact they may not know.",
+    quiz: [
+      { question: "Which is primarily listed as natural heritage?", options: ["Paharpur", "Bagerhat", "The Sundarbans"], answer: 2, explanation: "The Sundarbans is recognised for its exceptional natural ecosystem and biodiversity." },
+      { question: "A fair comparison should…", options: ["use the same criteria", "copy every source sentence", "rank sites without reasons"], answer: 0, explanation: "Shared criteria make similarities and differences meaningful." },
+    ],
+    video: { id: "Tt_7aIGGsqY", title: "Let’s Explore Bangladesh! Fun Facts and Culture for Kids", channel: "Little World Explorers", duration: "2:20", reason: "A short child-facing overview to critique and improve with stronger UNESCO evidence." },
+    playlist: coursePlaylist,
+  },
+  {
+    id: "living-arts",
+    level: "b2",
+    number: 15,
+    title: "Living arts and changing traditions",
+    titleBn: "জীবন্ত শিল্প আর বদলে যাওয়া ঐতিহ্য",
+    duration: "45 min",
+    summary: "Explore weaving, rickshaw art, music and craft as living practices rather than museum objects.",
+    canDo: "I can present a cultural practice, explain change and avoid unsupported generalisations.",
+    objectives: ["Use process language", "Discuss continuity and change", "Credit makers and communities"],
+    vocabulary: [
+      { bn: "তাঁত", transliteration: "tant", en: "handloom" },
+      { bn: "বয়ন", transliteration: "bô-yon", en: "weaving" },
+      { bn: "নকশা", transliteration: "nôk-sha", en: "design / motif" },
+      { bn: "কারিগর", transliteration: "ka-ri-gôr", en: "artisan" },
+      { bn: "লোকসংগীত", transliteration: "lok-shong-git", en: "folk music" },
+      { bn: "প্রজন্ম", transliteration: "pro-jôn-mo", en: "generation" },
+    ],
+    patterns: [
+      { bn: "প্রথমে…, এরপর…, সবশেষে…", transliteration: "pro-tho-me, er-por, shôb-she-she", en: "First…, next…, finally…" },
+      { bn: "ঐতিহ্যটি বদলাচ্ছে, কিন্তু…", transliteration: "oi-ti-h-jo-ti bôd-la-chhe, kin-tu", en: "The tradition is changing, but…" },
+    ],
+    teaching: [
+      { title: "1 · Describe a process", body: "Choose one practice and sequence how it is made or performed. Use evidence for materials, tools and roles rather than guessing from an image." },
+      { title: "2 · Name the maker", body: "Cultural objects do not make themselves. Credit artisans, performers and communities. Ask who benefits when a design is sold or shared." },
+      { title: "3 · Continuity and change", body: "Living heritage can adapt. Explain one element that continues, one that changes and one challenge or opportunity facing the practice." },
+    ],
+    culture: {
+      title: "Tangail saree weaving",
+      body: "UNESCO inscribed the traditional saree weaving art of Tangail on the Representative List of the Intangible Cultural Heritage of Humanity in 2025. The practice includes knowledge, motifs and community skills transmitted across generations.",
+      source: "https://ich.unesco.org/en/video/76008",
+      sourceLabel: "UNESCO Tangail weaving video",
+    },
+    practice: [
+      { title: "Process cards", instruction: "Arrange researched steps using প্রথমে, এরপর and সবশেষে." },
+      { title: "Motif reading", instruction: "Observe a credited example and describe line, colour and repeated shape without claiming a meaning you cannot verify." },
+      { title: "Mini exhibition", instruction: "Create a label naming the practice, community, process, change and source." },
+    ],
+    familyMission: "Choose a textile, song or crafted object with a family story. Ask permission before photographing it and record what is known versus assumed.",
+    quiz: [
+      { question: "Why name artisans and communities?", options: ["To credit the people who hold and create the practice", "Because objects have no history", "To make every tradition identical"], answer: 0, explanation: "Responsible cultural learning keeps makers and knowledge holders visible." },
+      { question: "Living heritage can…", options: ["never change", "change while carrying knowledge forward", "only exist in museums"], answer: 1, explanation: "Transmission often includes adaptation as well as continuity." },
+    ],
+    video: { id: "TqPqsC2XtxM", title: "Bangladesh: Culture and Tradition", channel: "Farid Haq", duration: "2:06", reason: "A brief visual prompt to question, research and improve rather than accept uncritically." },
+    playlist: coursePlaylist,
+  },
+  {
+    id: "two-homes",
+    level: "c1-c2",
+    number: 16,
+    title: "Identity across two homes",
+    titleBn: "দুই ঘরের পরিচয়",
+    duration: "50 min",
+    summary: "Develop a nuanced reflection on language, belonging and the different ways people relate to Bangladesh.",
+    canDo: "I can express a layered position, qualify claims and mediate between perspectives.",
+    objectives: ["Use qualification instead of absolutes", "Compare personal and public identity", "Mediate a disagreement respectfully"],
+    vocabulary: [
+      { bn: "পরিচয়", transliteration: "po-ri-chôy", en: "identity" },
+      { bn: "শিকড়", transliteration: "shi-kôr", en: "roots" },
+      { bn: "প্রবাস", transliteration: "pro-bash", en: "life abroad / diaspora" },
+      { bn: "অন্তর্ভুক্তি", transliteration: "ôn-tor-bhuk-ti", en: "inclusion" },
+      { bn: "দৃষ্টিভঙ্গি", transliteration: "drish-ti-bhông-gi", en: "perspective" },
+      { bn: "দ্বিধা", transliteration: "dwi-dha", en: "ambivalence / hesitation" },
+    ],
+    patterns: [
+      { bn: "এক অর্থে…, তবে অন্য দিক থেকে…", transliteration: "ek ôr-the, tô-be on-no dik the-ke", en: "In one sense…, yet from another perspective…" },
+      { bn: "সবার অভিজ্ঞতা এক নয়; বরং…", transliteration: "shô-bar ôb-hig-go-ta ek nôy; bô-rong", en: "Not everyone’s experience is the same; rather…" },
+    ],
+    teaching: [
+      { title: "1 · Reject the authenticity test", body: "Language proficiency, birthplace, accent, religion, food or travel history do not provide a single test of who is ‘Bangladeshi enough’. Analyse who sets such tests and what they exclude." },
+      { title: "2 · Qualify", body: "Replace always/never claims with অনেকের ক্ষেত্রে, কারও কারও কাছে, প্রায়ই or পরিস্থিতিভেদে. Nuance makes an argument stronger, not weaker." },
+      { title: "3 · Mediate", body: "Summarise two views fairly before proposing common ground. The mediator’s job is not to erase disagreement but to make each view understandable and identify a next step." },
+    ],
+    culture: {
+      title: "Intergenerational language learning",
+      body: "UNESCO describes multilingual learning as intergenerational: children learn from adults, adults from children and relatives from one another. A heritage-language platform should make room for all of those directions.",
+      source: "https://www.unesco.org/en/articles/international-mother-language-day-why-multilingual-education-key-intergenerational-learning",
+      sourceLabel: "UNESCO on intergenerational learning",
+    },
+    practice: [
+      { title: "Claim clinic", instruction: "Rewrite three absolute identity claims so they become accurate, inclusive and still meaningful." },
+      { title: "Perspective map", instruction: "Map what a child, parent, grandparent and newly arrived speaker may each value or worry about." },
+      { title: "Mediation response", instruction: "Write 150 words that represents two conflicting views and proposes one shared action." },
+    ],
+    familyMission: "Create a consent-based language map showing where and with whom family members use Bangla and other languages. Participants may leave any part blank.",
+    quiz: [
+      { question: "Which phrase best qualifies a claim?", options: ["সবাই সবসময়", "কারও কারও কাছে", "কোনো প্রশ্ন নেই"], answer: 1, explanation: "কারও কারও কাছে means ‘for some people’ and leaves room for different experiences." },
+      { question: "Good mediation begins by…", options: ["choosing a winner immediately", "representing each perspective fairly", "removing disagreement from the record"], answer: 1, explanation: "Accurate representation makes constructive common ground possible." },
+    ],
+    video: { id: "JJ9m3PyHa4c", title: "The origins of International Mother Language Day — and what we forget", channel: "Sophia Smith Galer", duration: "9:52", reason: "A more complex commentary to analyse for framing, evidence and omitted perspectives." },
+    playlist: coursePlaylist,
+  },
+  {
+    id: "poetry-place",
+    level: "c1-c2",
+    number: 17,
+    title: "How poetry makes a place",
+    titleBn: "কবিতায় গড়া দেশ",
+    duration: "50 min",
+    summary: "Interpret imagery and sound in a Bangla poem, then create and justify a short bilingual adaptation.",
+    canDo: "I can interpret figurative language and explain how form shapes meaning.",
+    objectives: ["Distinguish image from literal fact", "Comment on repetition and sound", "Create a responsible adaptation"],
+    vocabulary: [
+      { bn: "কবিতা", transliteration: "ko-bi-ta", en: "poem" },
+      { bn: "চিত্রকল্প", transliteration: "chi-tro-kôl-po", en: "imagery" },
+      { bn: "রূপক", transliteration: "ru-pôk", en: "metaphor" },
+      { bn: "ছন্দ", transliteration: "chhôn-do", en: "rhythm / metre" },
+      { bn: "অনুষঙ্গ", transliteration: "ô-nu-shông-go", en: "association / allusion" },
+      { bn: "ব্যাখ্যা", transliteration: "byakh-kha", en: "interpretation" },
+    ],
+    patterns: [
+      { bn: "এই চিত্রকল্পটি বোঝায় যে…", transliteration: "ei chi-tro-kôl-po-ti bo-jhay je", en: "This image suggests that…" },
+      { bn: "শব্দটির পুনরাবৃত্তি… প্রভাব তৈরি করে।", transliteration: "shôb-do-tir pu-no-ra-brit-ti pro-bhab toi-ri ko-re", en: "The repetition of the word creates… effect." },
+    ],
+    teaching: [
+      { title: "1 · First listening", body: "Listen without translating every word. Note colours, places, repeated sounds and emotional movement. Reception can be partial before it becomes analytical." },
+      { title: "2 · Interpret with evidence", body: "Offer more than one possible reading, then quote only a short phrase or describe a pattern that supports each interpretation. A reading is arguable, not arbitrary." },
+      { title: "3 · Adapt, do not flatten", body: "A bilingual adaptation may change rhythm or image to work for a new audience. Add a translator’s note explaining one choice and one meaning that could not be carried over exactly." },
+    ],
+    culture: { title: "Landscape in Bangla literature", body: "Rivers, fields, rain, birds and seasons appear across many Bangla literary traditions. Analyse a specific author and text rather than claiming one landscape represents every Bangla-speaking place or person." },
+    practice: [
+      { title: "Image bank", instruction: "Collect five concrete images heard in the performance and group them by sense." },
+      { title: "Two readings", instruction: "Write two plausible interpretations of one image and support each with evidence." },
+      { title: "Four-line adaptation", instruction: "Create four bilingual lines and a 100-word note on rhythm, image and translation choice." },
+    ],
+    familyMission: "Ask for a family favourite poem, rhyme or lyric. Use only a short excerpt with attribution and permission; summarise the rest in your own words.",
+    quiz: [
+      { question: "A literary interpretation is strongest when it…", options: ["has evidence from the text or performance", "claims there is only one possible feeling", "translates every word literally"], answer: 0, explanation: "Evidence makes an interpretation discussable and defensible." },
+      { question: "Why add a translator’s note?", options: ["To hide changes", "To explain choices and limits", "To replace the poem"], answer: 1, explanation: "The note makes adaptation decisions transparent." },
+    ],
+    video: { id: "SUFZ1ZaaZFM", title: "বাংলার মুখ — Jibanananda Das poetry recitation", channel: "Rain n Sunshine", duration: "Recitation", reason: "An authentic performance for advanced listening, imagery and delivery analysis." },
+    playlist: storyPlaylist,
+  },
+  {
+    id: "research-exhibition",
+    level: "c1-c2",
+    number: 18,
+    title: "Build a Bangladesh exhibition",
+    titleBn: "বাংলাদেশ প্রদর্শনী তৈরি করি",
+    duration: "60–90 min project",
+    summary: "Research, verify, synthesise and present one Bangladesh topic for younger bilingual learners.",
+    canDo: "I can produce a well-sourced, audience-aware multimedia explanation and answer questions precisely.",
+    objectives: ["Frame a focused research question", "Evaluate and triangulate sources", "Create bilingual media for a real audience"],
+    vocabulary: [
+      { bn: "গবেষণা", transliteration: "gô-be-shô-na", en: "research" },
+      { bn: "উৎস", transliteration: "ut-shô", en: "source" },
+      { bn: "প্রমাণ", transliteration: "pro-man", en: "evidence" },
+      { bn: "নির্ভরযোগ্য", transliteration: "nir-bhôr-jo-go", en: "reliable" },
+      { bn: "পক্ষপাত", transliteration: "pôk-kho-pat", en: "bias" },
+      { bn: "উপস্থাপনা", transliteration: "u-pô-stha-po-na", en: "presentation" },
+    ],
+    patterns: [
+      { bn: "উৎসটি নির্ভরযোগ্য বলে মনে হয়, কারণ…", transliteration: "ut-shô-ti nir-bhôr-jo-go bô-le mo-ne hoy, ka-ron", en: "The source appears reliable because…" },
+      { bn: "প্রমাণের সীমাবদ্ধতা হলো…", transliteration: "pro-ma-ner shi-ma-bôd-dho-ta ho-lo", en: "A limitation of the evidence is…" },
+    ],
+    teaching: [
+      { title: "1 · Narrow the question", body: "Replace ‘Tell me about Bangladesh’ with a researchable question: How has one craft changed? Why is one wetland protected? How do two generations remember one celebration?" },
+      { title: "2 · Triangulate", body: "Use at least one authoritative institutional source, one credible contextual source and—where consent allows—one clearly labelled personal account. Check date, author, evidence and purpose." },
+      { title: "3 · Design for children", body: "The final exhibit needs a 100-word English scaffold, 100–150 words of accessible Bangla, five audio-supported keywords, one interactive task, source credits and a note about uncertainty." },
+    ],
+    culture: { title: "No final, complete story", body: "Bangladesh is not a single village scene, historical moment or cultural symbol. A responsible exhibit states its scope, includes evidence, avoids tokenism and invites future revision by families and educators." },
+    practice: [
+      { title: "Source audit", instruction: "Score three sources for authority, evidence, date, relevance and perspective; explain rather than just total the score." },
+      { title: "Prototype review", instruction: "Ask a younger learner what they understand, enjoy and still wonder. Do not collect names or personal data." },
+      { title: "Defence", instruction: "Answer three questions: Why this topic? Why these sources? What would you change with more time?" },
+    ],
+    familyMission: "Invite a family or community reviewer to comment on accuracy and representation. Record only their approved feedback, not private stories or identifying details.",
+    quiz: [
+      { question: "Which is the strongest research question?", options: ["Everything about Bangladesh", "How has Tangail weaving knowledge been passed between generations?", "Is Bangladesh interesting?"], answer: 1, explanation: "It is focused, researchable and invites evidence about process and change." },
+      { question: "Triangulation means…", options: ["using three copies of one claim", "comparing different relevant source types", "choosing the longest video"], answer: 1, explanation: "Different sources can confirm, complicate or reveal gaps in a claim." },
+    ],
+    video: { id: "W_fRMRg5H9E", title: "Bangladesh Explained in 15 Minutes", channel: "Opentiera", duration: "14:46", reason: "A broad synthesis to audit for scope, evidence, framing and omissions before producing a better exhibit." },
+    playlist: coursePlaylist,
+  },
+];
+
+export const curriculumSources = [
+  { label: "CEFR level descriptions", url: "https://www.coe.int/en/web/common-european-framework-reference-languages/level-descriptions" },
+  { label: "CEFR young learner descriptors", url: "https://www.coe.int/en/web/common-european-framework-reference-languages/bank-of-supplementary-descriptors" },
+  { label: "UNESCO multilingual education", url: "https://www.unesco.org/en/articles/international-mother-language-day-why-multilingual-education-key-intergenerational-learning" },
+];
