@@ -8710,3 +8710,8 @@ body.modal-open .pwa-status {
   font-size: 0.9rem;
   color: var(--ink);
 }
+
+.conjunct-formula {
+  color: var(--muted);
+  font-size: 0.9rem;
+}

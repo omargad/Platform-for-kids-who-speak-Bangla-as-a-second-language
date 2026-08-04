@@ -41,3 +41,24 @@ test("digits cover ০-৯ with words", () => {
     assert.ok(digit.word.trim() && digit.transliteration.trim() && digit.en.trim(), `${digit.glyph}: incomplete`);
   }
 });
+
+test("conjuncts are well-formed and built from real consonants", async () => {
+  const { conjuncts, consonants } = await import("../app/alphabet-content.ts");
+  assert.equal(conjuncts.length, 16);
+  const consonantGlyphs = new Set(consonants.map((letter) => letter.glyph));
+  const seen = new Set();
+  for (const conjunct of conjuncts) {
+    assert.ok(!seen.has(conjunct.glyph), `${conjunct.glyph}: duplicate`);
+    seen.add(conjunct.glyph);
+    for (const part of conjunct.parts) {
+      assert.ok(consonantGlyphs.has(part), `${conjunct.glyph}: part ${part} is not a consonant`);
+    }
+    // The joined glyph must contain the hasanta that fuses the two parts.
+    assert.ok(conjunct.glyph.includes("্"), `${conjunct.glyph}: missing hasanta`);
+    assert.ok(
+      conjunct.example.bn.includes(conjunct.glyph),
+      `${conjunct.glyph}: example ${conjunct.example.bn} does not contain the conjunct`,
+    );
+    assert.ok(conjunct.example.transliteration.trim() && conjunct.example.en.trim(), `${conjunct.glyph}: incomplete example`);
+  }
+});

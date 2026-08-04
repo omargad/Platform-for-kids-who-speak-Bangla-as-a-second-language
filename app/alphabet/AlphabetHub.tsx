@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useLanguage } from "../../lib/use-language";
-import { consonants, digits, karForms, vowels, type Letter } from "../alphabet-content";
+import { conjuncts, consonants, digits, karForms, vowels, type Letter } from "../alphabet-content";
 
 export default function AlphabetHub() {
   const [language, toggleLanguage] = useLanguage();
@@ -143,6 +143,41 @@ export default function AlphabetHub() {
               <small>{form.sound}</small>
             </button>
           ))}
+        </div>
+      </section>
+
+      <section className="explore-section" aria-labelledby="conjuncts-heading">
+        <h2 id="conjuncts-heading">{s("Joined letters · যুক্তবর্ণ", "যুক্তবর্ণ")} <span className="alphabet-count">16</span></h2>
+        <p className="explore-section-note">
+          {s(
+            "Sometimes two consonants hold hands and become one new shape — the hidden helper is a tiny sign called hasanta (্). These sixteen appear in words you already know:",
+            "কখনো দুটি ব্যঞ্জন হাত ধরাধরি করে একটাই নতুন রূপ নেয় — লুকোনো সাহায্যকারী হলো হসন্ত (্)। চেনা শব্দে এই ষোলোটি পাবে:",
+          )}
+        </p>
+        <div className="letter-grid">
+          {conjuncts.map((conjunct) => {
+            const key = `j-${conjunct.glyph}`;
+            return (
+              <button
+                type="button"
+                key={conjunct.glyph}
+                className={`letter-card ${speaking === key ? "is-speaking" : ""}`}
+                onClick={() => speak(`${conjunct.example.bn}`, key)}
+                aria-label={`${conjunct.parts[0]} plus ${conjunct.parts[1]} makes ${conjunct.transliteration}. ${conjunct.example.transliteration}, ${conjunct.example.en}`}
+              >
+                <span className="conjunct-formula" lang="bn">
+                  {conjunct.parts[0]} + {conjunct.parts[1]} =
+                </span>
+                <span className="letter-glyph" lang="bn">{conjunct.glyph}</span>
+                <span className="letter-sound">{conjunct.transliteration}</span>
+                <span className="letter-example">
+                  <strong lang="bn">{conjunct.example.bn}</strong>
+                  <em>{conjunct.example.transliteration}</em>
+                  <small>{conjunct.example.en}</small>
+                </span>
+              </button>
+            );
+          })}
         </div>
       </section>
 
