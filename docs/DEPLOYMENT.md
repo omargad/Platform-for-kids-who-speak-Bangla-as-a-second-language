@@ -123,7 +123,10 @@ simple and cheap. When the platform needs more than one server instance:
 ## Security checklist before go-live
 
 - [ ] HTTPS enforced end to end (proxy redirects HTTP → HTTPS)
-- [ ] `.data/` on encrypted disk, scheduled backups tested
+- [ ] `.data/` on encrypted disk, scheduled backups tested — use
+      `scripts/backup.sh` (checkpoints the SQLite WAL, tars `.data`, prunes old
+      archives). Daily cron example:
+      `0 3 * * * cd /path/to/app && bash scripts/backup.sh /var/backups/bangla 14`
 - [ ] OS auto-updates on; SSH by key only
 - [ ] Rate limiting: the app enforces per-IP limits on `/api/auth/*` and account
       endpoints in-process (fine for one instance). Add proxy-level limits
