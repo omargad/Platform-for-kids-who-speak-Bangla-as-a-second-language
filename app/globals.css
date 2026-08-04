@@ -8910,3 +8910,128 @@ body.modal-open .pwa-status {
   display: grid;
   gap: 14px;
 }
+
+/* Word practice */
+.practice-stats {
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+.practice-stats span {
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  padding: 6px 16px;
+  box-shadow: 3px 4px 0 var(--ink);
+  font-size: 0.9rem;
+}
+
+.practice-stage {
+  max-width: 620px;
+}
+
+.practice-card-wrap {
+  display: grid;
+  gap: 16px;
+  justify-items: center;
+}
+
+.practice-progress {
+  margin: 0;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.practice-card {
+  width: 100%;
+  min-height: 230px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  border-radius: 20px;
+  box-shadow: 6px 7px 0 var(--ink);
+  padding: 28px;
+  font: inherit;
+  cursor: pointer;
+  text-align: center;
+}
+
+.practice-card strong {
+  font-size: 2.4rem;
+  color: var(--emerald);
+}
+
+.practice-card em {
+  font-style: normal;
+  color: var(--indigo);
+  font-size: 1.05rem;
+}
+
+.practice-card span {
+  font-size: 1.2rem;
+}
+
+.practice-card small {
+  color: var(--muted);
+}
+
+.practice-card.is-flipped {
+  background: var(--cream);
+}
+
+.practice-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.practice-knew,
+.practice-learning {
+  border-radius: 999px;
+  font: inherit;
+  font-weight: 700;
+  padding: 11px 18px;
+  cursor: pointer;
+}
+
+.practice-knew {
+  background: var(--emerald);
+  border: 2px solid var(--emerald);
+  color: #fff;
+}
+
+.practice-learning {
+  background: var(--banana);
+  border: 2px solid var(--ink);
+  color: var(--ink);
+}
+
+.practice-done {
+  text-align: center;
+  display: grid;
+  gap: 10px;
+  justify-items: center;
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  border-radius: 20px;
+  box-shadow: 6px 7px 0 var(--ink);
+  padding: 34px;
+}
+
+.practice-done span {
+  font-size: 2.4rem;
+}
+
+.practice-done h2 {
+  margin: 0;
+  font-family: var(--display);
+  color: var(--emerald);
+}
