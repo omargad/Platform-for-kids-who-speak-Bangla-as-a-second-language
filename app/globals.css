@@ -9035,3 +9035,133 @@ body.modal-open .pwa-status {
   font-family: var(--display);
   color: var(--emerald);
 }
+
+/* Certificate maker */
+.certificate-controls {
+  display: flex;
+  gap: 16px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  max-width: 780px;
+}
+
+.certificate-controls label {
+  display: grid;
+  gap: 6px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.certificate-controls input,
+.certificate-controls select {
+  border: 1.5px solid var(--ink);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font: inherit;
+  background: #fff;
+  min-width: 220px;
+}
+
+.certificate-sheet-wrap {
+  max-width: 860px;
+  margin: 28px auto 64px;
+  padding: 0 24px;
+}
+
+.certificate-sheet {
+  background: #fffdf4;
+  border: 3px solid var(--emerald);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  padding: 14px;
+}
+
+.certificate-border {
+  border: 2px dashed var(--saffron);
+  border-radius: 10px;
+  padding: 40px 28px;
+  text-align: center;
+  display: grid;
+  gap: 8px;
+  justify-items: center;
+}
+
+.certificate-brand {
+  margin: 0;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  color: var(--emerald);
+}
+
+.certificate-emoji {
+  font-size: 2.6rem;
+}
+
+.certificate-title {
+  font-family: var(--display);
+  font-size: 2rem;
+  color: var(--indigo);
+  margin: 0;
+}
+
+.certificate-presented {
+  margin: 0;
+  color: var(--muted);
+}
+
+.certificate-name {
+  font-family: var(--display);
+  font-size: 2.2rem;
+  color: var(--emerald);
+  margin: 4px 0;
+  border-bottom: 2px solid var(--ink);
+  padding: 0 30px 6px;
+  min-width: 50%;
+}
+
+.certificate-because {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.certificate-bn {
+  margin: 0;
+  color: var(--muted);
+}
+
+.certificate-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-top: 22px;
+  padding-top: 14px;
+  border-top: 1.5px solid var(--line);
+  font-size: 0.9rem;
+  color: var(--ink);
+}
+
+@media print {
+  .certificate-app {
+    background: #fff !important;
+    padding: 0;
+  }
+
+  .certificate-sheet-wrap {
+    margin: 0;
+    padding: 0;
+    max-width: none;
+  }
+
+  .certificate-sheet {
+    box-shadow: none;
+    border-radius: 0;
+    min-height: 95vh;
+    display: grid;
+    align-content: center;
+  }
+}
