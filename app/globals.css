@@ -9199,3 +9199,45 @@ body.modal-open .pwa-status {
   border-color: var(--emerald);
   color: var(--emerald);
 }
+
+/* Learn landing grid */
+.learn-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 16px;
+}
+
+.learn-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  border-radius: 16px;
+  padding: 20px;
+  text-decoration: none;
+  color: var(--ink);
+  box-shadow: 5px 6px 0 var(--ink);
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+.learn-card:hover,
+.learn-card:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 6px 8px 0 var(--ink);
+}
+
+.learn-emoji {
+  font-size: 2rem;
+}
+
+.learn-card strong {
+  color: var(--emerald);
+  font-size: 1.1rem;
+}
+
+.learn-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
