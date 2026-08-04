@@ -50,6 +50,12 @@ for (const lesson of lessons) {
     videoTargets.set(lesson.video.id, { intendedTitle: lesson.video.title, lessons: [] });
   }
   videoTargets.get(lesson.video.id).lessons.push(lesson.id);
+  for (const extra of lesson.extraVideos ?? []) {
+    if (!videoTargets.has(extra.id)) {
+      videoTargets.set(extra.id, { intendedTitle: extra.title, lessons: [] });
+    }
+    videoTargets.get(extra.id).lessons.push(`${lesson.id} (extra)`);
+  }
   if (!playlistTargets.has(lesson.playlist.id)) {
     playlistTargets.set(lesson.playlist.id, { intendedTitle: lesson.playlist.title, lessons: [] });
   }
