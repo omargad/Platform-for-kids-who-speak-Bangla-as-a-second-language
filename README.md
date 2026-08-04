@@ -91,6 +91,7 @@ npm test                 # curriculum integrity, audio coverage, crypto, rate li
 npm run build            # type-checks and produces the production bundle
 npm run test:integration # full HTTP flow against the built server (run after build)
 npm run verify:media     # check every lesson video/playlist resolves on YouTube
+npm run test:e2e         # Playwright browser tests (uses the workspace Chromium)
 ```
 
 ## Main source files
