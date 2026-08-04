@@ -8715,3 +8715,83 @@ body.modal-open .pwa-status {
   color: var(--muted);
   font-size: 0.9rem;
 }
+
+/* Grammar guide */
+.grammar-intro {
+  max-width: 70ch;
+}
+
+.grammar-table {
+  display: grid;
+  gap: 8px;
+}
+
+.grammar-head,
+.grammar-row {
+  display: grid;
+  grid-template-columns: 110px 110px 1fr 1.6fr;
+  gap: 10px;
+  align-items: center;
+}
+
+.grammar-head {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  padding: 0 12px;
+}
+
+.grammar-row {
+  background: var(--paper);
+  border: 2px solid var(--ink);
+  border-radius: 12px;
+  padding: 10px 12px;
+  box-shadow: 3px 4px 0 var(--ink);
+}
+
+.grammar-row strong {
+  font-size: 1.15rem;
+  color: var(--emerald);
+}
+
+.grammar-row em {
+  font-style: normal;
+  color: var(--indigo);
+  font-size: 0.85rem;
+}
+
+.grammar-example {
+  display: grid;
+  gap: 2px;
+  text-align: left;
+  background: var(--cream);
+  border: 1.5px solid var(--ink);
+  border-radius: 10px;
+  padding: 8px 10px;
+  font: inherit;
+  cursor: pointer;
+}
+
+.grammar-example.is-speaking {
+  border-color: var(--emerald);
+  background: var(--mint);
+}
+
+.grammar-example small {
+  color: var(--muted);
+}
+
+@media (max-width: 760px) {
+  .grammar-head {
+    display: none;
+  }
+
+  .grammar-row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .grammar-example {
+    grid-column: 1 / -1;
+  }
+}
