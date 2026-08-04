@@ -53,7 +53,7 @@ export const consonants: Letter[] = [
   { glyph: "ঙ", name: "ungô", sound: "ng as in 'song'", example: { bn: "ব্যাঙ", transliteration: "bêng", en: "frog" }, note: { en: "Usually appears inside or at the end of words.", bn: "সাধারণত শব্দের মাঝে বা শেষে বসে।" } },
   { glyph: "চ", name: "chô", sound: "ch as in 'chat'", example: { bn: "চশমা", transliteration: "choshma", en: "glasses" } },
   { glyph: "ছ", name: "chhô", sound: "chh (breathy ch)", example: { bn: "ছবি", transliteration: "chhobi", en: "picture" } },
-  { glyph: "জ", name: "borgio jô", sound: "j as in 'jam'", example: { bn: "জল", transliteration: "jol", en: "water" } },
+  { glyph: "জ", name: "borgio jô", sound: "j as in 'jam'", example: { bn: "জামা", transliteration: "jama", en: "shirt" } },
   { glyph: "ঝ", name: "jhô", sound: "jh (breathy j)", example: { bn: "ঝড়", transliteration: "jhor", en: "storm" } },
   { glyph: "ঞ", name: "niô", sound: "ny as in 'canyon'", example: { bn: "চঞ্চল", transliteration: "chonchol", en: "lively" }, note: { en: "Mostly appears inside words, next to চ-family letters.", bn: "সাধারণত শব্দের ভেতরে, চ-বর্গের পাশে বসে।" } },
   { glyph: "ট", name: "ṭô", sound: "t with tongue curled back", example: { bn: "টমেটো", transliteration: "tometo", en: "tomato" } },
@@ -113,4 +113,34 @@ export const digits: Digit[] = [
   { glyph: "৭", word: "সাত", transliteration: "shat", en: "seven" },
   { glyph: "৮", word: "আট", transliteration: "at", en: "eight" },
   { glyph: "৯", word: "নয়", transliteration: "noy", en: "nine" },
+];
+
+export type Conjunct = {
+  glyph: string; // the joined form, e.g. ক্ত
+  parts: [string, string]; // the two letters that join
+  transliteration: string;
+  example: { bn: string; transliteration: string; en: string };
+};
+
+/**
+ * Sixteen frequent conjuncts (যুক্তবর্ণ) chosen for words children actually
+ * meet. Two consonants join through a hidden hasanta (্) and make one shape.
+ */
+export const conjuncts: Conjunct[] = [
+  { glyph: "স্ক", parts: ["স", "ক"], transliteration: "sk", example: { bn: "স্কুল", transliteration: "skul", en: "school" } },
+  { glyph: "ল্প", parts: ["ল", "প"], transliteration: "lp", example: { bn: "গল্প", transliteration: "golpo", en: "story" } },
+  { glyph: "ন্দ", parts: ["ন", "দ"], transliteration: "nd", example: { bn: "আনন্দ", transliteration: "anondo", en: "joy" } },
+  { glyph: "ন্ত", parts: ["ন", "ত"], transliteration: "nt", example: { bn: "শান্ত", transliteration: "shanto", en: "calm" } },
+  { glyph: "ম্ব", parts: ["ম", "ব"], transliteration: "mb", example: { bn: "লম্বা", transliteration: "lomba", en: "tall" } },
+  { glyph: "ষ্ট", parts: ["ষ", "ট"], transliteration: "shṭ", example: { bn: "মিষ্টি", transliteration: "mishti", en: "sweet" } },
+  { glyph: "চ্ছ", parts: ["চ", "ছ"], transliteration: "cchh", example: { bn: "ইচ্ছা", transliteration: "ichchha", en: "wish" } },
+  { glyph: "ট্ট", parts: ["ট", "ট"], transliteration: "ṭṭ", example: { bn: "ছোট্ট", transliteration: "chhotto", en: "tiny" } },
+  { glyph: "ত্র", parts: ["ত", "র"], transliteration: "tr", example: { bn: "ছাত্র", transliteration: "chhatro", en: "student" } },
+  { glyph: "গ্র", parts: ["গ", "র"], transliteration: "gr", example: { bn: "গ্রাম", transliteration: "gram", en: "village" } },
+  { glyph: "প্র", parts: ["প", "র"], transliteration: "pr", example: { bn: "প্রিয়", transliteration: "priyo", en: "dear / favourite" } },
+  { glyph: "ক্ত", parts: ["ক", "ত"], transliteration: "kt", example: { bn: "শক্ত", transliteration: "shokto", en: "strong / hard" } },
+  { glyph: "ঙ্গ", parts: ["ঙ", "গ"], transliteration: "ngg", example: { bn: "বঙ্গ", transliteration: "bongo", en: "Bengal" } },
+  { glyph: "জ্ঞ", parts: ["জ", "ঞ"], transliteration: "gg (says 'gêñ')", example: { bn: "জ্ঞান", transliteration: "gêan", en: "knowledge" } },
+  { glyph: "ক্ষ", parts: ["ক", "ষ"], transliteration: "kkh", example: { bn: "ক্ষেত", transliteration: "khet", en: "field" } },
+  { glyph: "দ্ধ", parts: ["দ", "ধ"], transliteration: "ddh", example: { bn: "বুদ্ধি", transliteration: "buddhi", en: "cleverness" } },
 ];
