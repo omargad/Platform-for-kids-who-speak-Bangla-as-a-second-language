@@ -25,6 +25,7 @@ export type Lesson = {
   quiz: Array<{ question: string; options: string[]; answer: number; explanation: string }>;
   video: { id: string; title: string; channel: string; duration: string; reason: string };
   playlist: { id: string; title: string; channel: string };
+  extraVideos: Array<{ id: string; title: string }>;
 };
 
 export const levelBands: Array<{
@@ -160,6 +161,7 @@ export const lessons: Lesson[] = [
     ],
     video: { id: "RJ34xfoHJC8", title: "How to speak Bengali — Greetings", channel: "dialect101com", duration: "1:31", reason: "A short model to hear greeting rhythm before the role-play." },
     playlist: beginnerPlaylist,
+    extraVideos: [{ id: "ZjUjsrN3qi0", title: "Bengali Conversation for Beginners: Greetings & Self-Introduction" }, { id: "V-GQ5LQy5nA", title: "Basic Bengali Greetings: How to Say Hello and More" }],
   },
   {
     id: "my-family",
@@ -201,6 +203,7 @@ export const lessons: Lesson[] = [
     ],
     video: { id: "uHTorwKsVFg", title: "5 First Bengali Words: My Family", channel: "BanglaSprouts — Learn Bangla with Love", duration: "2:17", reason: "Simple family vocabulary with clear visual repetition." },
     playlist: beginnerPlaylist,
+    extraVideos: [{ id: "h-egsGh_VbQ", title: "Family Members in Bengali — Tutorial" }, { id: "dsyT7d8NCnE", title: "Bengali Family Relationship Words for Beginners" }],
   },
   {
     id: "numbers-colours",
@@ -242,6 +245,7 @@ export const lessons: Lesson[] = [
     ],
     video: { id: "J4PMaaG6TJ0", title: "বাংলা সংখ্যা ১–১০ শেখো", channel: "Ms Mun — Early Learning for Children", duration: "3:42", reason: "A child-focused count-along for numbers one to ten." },
     playlist: beginnerPlaylist,
+    extraVideos: [{ id: "ATFCupupgpo", title: "Numbers 1–10 Song in Bengali (Pebbles Rhymes)" }, { id: "oNyxF-Zos0o", title: "Count 1–10 in Bengali with Jingle Jeff" }],
   },
   {
     id: "letters-sounds",
@@ -283,6 +287,7 @@ export const lessons: Lesson[] = [
     ],
     video: { id: "2FtVGjJC68I", title: "How to write Bangla Alphabet", channel: "Namaste Nepal", duration: "Guided lesson", reason: "A visual stroke-order demonstration to pause and copy." },
     playlist: beginnerPlaylist,
+    extraVideos: [{ id: "tVZlSWicjlY", title: "Sing & Learn the Bengali Alphabet Letters" }, { id: "3_HhhOm6XJc", title: "ছন্দে ছন্দে ব্যঞ্জনবর্ণ শিখি — Alphabet Rhymes" }],
   },
   {
     id: "food-please",
@@ -324,6 +329,7 @@ export const lessons: Lesson[] = [
     ],
     video: { id: "WIrugnt71MM", title: "রঙিন খাবারের মেলা — Colourful Food Festival", channel: "Sisimpur", duration: "20:18", reason: "Authentic child-directed Bangla about colourful foods; use the first selected segment or watch in parts." },
     playlist: storyPlaylist,
+    extraVideos: [{ id: "LeP6ekBGV9M", title: "Bangla Food Names Through English" }, { id: "b-k9esCCoUs", title: "Food & Drinks Vocabulary for Kids (English–Bangla)" }],
   },
   {
     id: "my-day",
@@ -365,6 +371,7 @@ export const lessons: Lesson[] = [
     ],
     video: { id: "SO3YRD4vadE", title: "এলমো গোছায় নিজের বিছানা", channel: "Sisimpur", duration: "4:55", reason: "A familiar routine shown through child-friendly authentic Bangla." },
     playlist: storyPlaylist,
+    extraVideos: [{ id: "j-Q9V03WMxs", title: "Bengali 100 Important Sentences — Popular Phrases" }, { id: "g_-PvhZUd88", title: "125 Commonly Used Bengali Short Phrases" }],
   },
   {
     id: "school-home",
@@ -406,6 +413,7 @@ export const lessons: Lesson[] = [
     ],
     video: { id: "aLOIFFmT2Dk", title: "Learn Bengali Conversation: Daily Routines for Students", channel: "RASELraju Institute", duration: "14:45", reason: "A longer guided model; pause after each useful school or routine exchange." },
     playlist: conversationPlaylist,
+    extraVideos: [{ id: "0IbgjsokZ1c", title: "500+ Daily-Use Bengali Words by a Bangladeshi Tutor" }, { id: "uvlAlQiX668", title: "Learn Bengali — Beginners' Basics, Part 1" }],
   },
   {
     id: "directions",
@@ -447,6 +455,7 @@ export const lessons: Lesson[] = [
     ],
     video: { id: "vB3O4CgOv5Y", title: "Basic Bengali: Asking for Directions", channel: "LH", duration: "5:31", reason: "Clear real-life phrases to compare with the map dialogue." },
     playlist: conversationPlaylist,
+    extraVideos: [{ id: "23toGYR14hM", title: "Directions in Bengali & English — দিকের নাম" }, { id: "Dkjf3fSHvYI", title: "Direction Vocabulary with Bengali Meaning" }],
   },
   {
     id: "six-seasons",
@@ -488,6 +497,7 @@ export const lessons: Lesson[] = [
     ],
     video: { id: "7M07Wsq1zGU", title: "বাংলাদেশের ৬ ঋতুর নাম", channel: "Kids Fun Quiz", duration: "4:11", reason: "A bilingual child-focused overview of the six traditional seasons." },
     playlist: beginnerPlaylist,
+    extraVideos: [{ id: "xu4Ah2xJivM", title: "ছয় ঋতুর নাম — Six Seasons in Bengali & English" }, { id: "3vOJWPzhrTI", title: "The Six Seasons of Bangladesh: A Tale of Summer" }],
   },
   {
     id: "river-journey",
@@ -529,6 +539,7 @@ export const lessons: Lesson[] = [
     ],
     video: { id: "YngO5QzeQJk", title: "Bangladesh Geography and Divisions", channel: "KLT", duration: "3:29", reason: "A compact geographic frame before learners invent a route across Bangladesh." },
     playlist: conversationPlaylist,
+    extraVideos: [{ id: "KH8pq6c0Ptg", title: "Bangladesh: A Comprehensive Look at the Land of Rivers" }, { id: "gZTtvRKvla8", title: "Padma, Meghna and Jamuna — Rivers of Bangladesh" }],
   },
   {
     id: "sundarbans-voices",
@@ -575,6 +586,7 @@ export const lessons: Lesson[] = [
     ],
     video: { id: "KBd0bvExrtM", title: "Sundarbans Bangladesh — A UNESCO World Heritage", channel: "Exploration", duration: "4:12", reason: "Visual context for the ecosystem vocabulary and source comparison." },
     playlist: coursePlaylist,
+    extraVideos: [{ id: "LqSSG-EYS4k", title: "Sundarbans: Exploring the World's Largest Mangrove Forest" }, { id: "fZYgvSunyyc", title: "The Sundarbans, Bangladesh — Largest Mangrove Forest" }],
   },
   {
     id: "friendship-help",
@@ -616,6 +628,7 @@ export const lessons: Lesson[] = [
     ],
     video: { id: "Q59mZ8WE7nQ", title: "আমার প্রিয় বন্ধু — My Dear Friend", channel: "Sisimpur", duration: "3:44", reason: "Authentic child-directed Bangla for listening, feelings and friendship language." },
     playlist: storyPlaylist,
+    extraVideos: [{ id: "6tJmOVU5DBs", title: "Feelings & Emotions Vocabulary for Kids" }, { id: "1Gkp_f9EzXo", title: "Informal Greetings — Learn Bengali with Baneebee" }],
   },
   {
     id: "language-movement",
@@ -662,6 +675,7 @@ export const lessons: Lesson[] = [
     ],
     video: { id: "c6-o4XgNWlM", title: "The History of International Mother Language Day", channel: "International School Dhaka", duration: "4:32", reason: "A school-produced overview to analyse alongside the UNESCO timeline." },
     playlist: coursePlaylist,
+    extraVideos: [{ id: "RrHUBIFHuEA", title: "International Mother Language Day — 21 February" }, { id: "96ShLRyVIC4", title: "In Depth: International Mother Language Day" }],
   },
   {
     id: "heritage-comparison",
@@ -708,6 +722,7 @@ export const lessons: Lesson[] = [
     ],
     video: { id: "Tt_7aIGGsqY", title: "Let’s Explore Bangladesh! Fun Facts and Culture for Kids", channel: "Little World Explorers", duration: "2:20", reason: "A short child-facing overview to critique and improve with stronger UNESCO evidence." },
     playlist: coursePlaylist,
+    extraVideos: [{ id: "cnYyYfY4z2s", title: "60 Seconds on Site: Bagerhat (CyArk & ICOMOS)" }, { id: "HVSPfpx3Gko", title: "Sixty Dome Mosque 3D Animation, Bagerhat" }],
   },
   {
     id: "living-arts",
@@ -754,6 +769,7 @@ export const lessons: Lesson[] = [
     ],
     video: { id: "TqPqsC2XtxM", title: "Bangladesh: Culture and Tradition", channel: "Farid Haq", duration: "2:06", reason: "A brief visual prompt to question, research and improve rather than accept uncritically." },
     playlist: coursePlaylist,
+    extraVideos: [{ id: "U9_HXaXCx38", title: "The Traditional Art of Jamdani Weaving" }, { id: "jqhJOYGxn1w", title: "Jamdani: Design and Motifs" }],
   },
   {
     id: "two-homes",
@@ -800,6 +816,7 @@ export const lessons: Lesson[] = [
     ],
     video: { id: "JJ9m3PyHa4c", title: "The origins of International Mother Language Day — and what we forget", channel: "Sophia Smith Galer", duration: "9:52", reason: "A more complex commentary to analyse for framing, evidence and omitted perspectives." },
     playlist: coursePlaylist,
+    extraVideos: [{ id: "0sIgHREU6FU", title: "Where in the World is Bangladesh?" }, { id: "18p9RdWLRu4", title: "This is Life in Bangladesh: Places, People, Culture" }],
   },
   {
     id: "poetry-place",
@@ -841,6 +858,7 @@ export const lessons: Lesson[] = [
     ],
     video: { id: "SUFZ1ZaaZFM", title: "বাংলার মুখ — Jibanananda Das poetry recitation", channel: "Rain n Sunshine", duration: "Recitation", reason: "An authentic performance for advanced listening, imagery and delivery analysis." },
     playlist: storyPlaylist,
+    extraVideos: [{ id: "WJju6woz3Lc", title: "Tagore Poems for Children — Bratati Banerjee" }, { id: "s95umRq2zI4", title: "Tapur Tupur: Tagore Poems for Children" }],
   },
   {
     id: "research-exhibition",
@@ -882,6 +900,7 @@ export const lessons: Lesson[] = [
     ],
     video: { id: "W_fRMRg5H9E", title: "Bangladesh Explained in 15 Minutes", channel: "Opentiera", duration: "14:46", reason: "A broad synthesis to audit for scope, evidence, framing and omissions before producing a better exhibit." },
     playlist: coursePlaylist,
+    extraVideos: [{ id: "ySXQxTG7Iak", title: "Bangladesh Map Explained: The 8 Divisions" }, { id: "aFZWiH4_KPE", title: "The Bangladesh Geography Guide" }],
   },
 ];
 

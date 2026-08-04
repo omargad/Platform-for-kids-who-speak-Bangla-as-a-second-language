@@ -9165,3 +9165,37 @@ body.modal-open .pwa-status {
     align-content: center;
   }
 }
+
+/* Extra lesson videos */
+.extra-videos {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.extra-videos-label {
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+}
+
+.extra-videos a {
+  display: block;
+  background: var(--cream);
+  border: 1.5px solid var(--ink);
+  border-radius: 10px;
+  padding: 9px 12px;
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.extra-videos a:hover,
+.extra-videos a:focus-visible {
+  border-color: var(--emerald);
+  color: var(--emerald);
+}

@@ -69,3 +69,18 @@ test("bundled pronunciation audio exists for every lesson slot", () => {
     }
   }
 });
+
+test("every lesson has at least two extra videos with valid ids", () => {
+  const videoId = /^[A-Za-z0-9_-]{11}$/;
+  for (const lesson of lessons) {
+    assert.ok(Array.isArray(lesson.extraVideos) && lesson.extraVideos.length >= 2, `${lesson.id}: needs 2+ extra videos`);
+    const ids = new Set();
+    for (const extra of lesson.extraVideos) {
+      assert.match(extra.id, videoId, `${lesson.id}: bad extra video id ${extra.id}`);
+      assert.ok(extra.title.trim(), `${lesson.id}: extra video missing title`);
+      assert.ok(!ids.has(extra.id), `${lesson.id}: duplicate extra video`);
+      ids.add(extra.id);
+      assert.notEqual(extra.id, lesson.video.id, `${lesson.id}: extra duplicates the main video`);
+    }
+  }
+});

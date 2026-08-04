@@ -1626,6 +1626,14 @@ export default function Home() {
                         <span><small>{t.openPlaylist}</small><strong>{activeLesson.playlist.title}</strong><em>{activeLesson.playlist.channel} · YouTube</em></span>
                         <span aria-hidden="true">↗</span>
                       </a>
+                      <div className="extra-videos">
+                        <p className="extra-videos-label">{language === "en" ? "More to watch with a grown-up (opens YouTube)" : "বড়দের সঙ্গে আরও দেখো (YouTube-এ খুলবে)"}</p>
+                        {activeLesson.extraVideos.map((extra) => (
+                          <a key={extra.id} href={`https://www.youtube.com/watch?v=${extra.id}`} target="_blank" rel="noreferrer">
+                            <span aria-hidden="true">▶</span> {extra.title} ↗
+                          </a>
+                        ))}
+                      </div>
                       <p className="external-resource-note">{language === "en" ? "External videos are selected for learning relevance, but YouTube may show its own recommendations. A grown-up should supervise younger learners." : "শেখার উপযোগিতা দেখে বাইরের ভিডিও বাছাই করা হয়েছে, তবে YouTube নিজস্ব পরামর্শ দেখাতে পারে। ছোটদের সঙ্গে বড় কেউ থাকুন।"}</p>
                     </div>
                   )}
