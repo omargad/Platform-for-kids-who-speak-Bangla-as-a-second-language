@@ -9241,3 +9241,45 @@ body.modal-open .pwa-status {
   color: var(--muted);
   font-size: 0.9rem;
 }
+
+/* ============================================================
+   Homepage calm pass — reduce visual noise on the landing page.
+   Overrides only; remove this block to restore the original look.
+   ============================================================ */
+
+/* Turn the two full-bleed deep-colour slabs into contained rounded
+   panels floating on the warm page, so the background stops slamming
+   between cream, deep green and deep indigo as you scroll. */
+.story-section,
+.game-section {
+  max-width: 1160px;
+  margin: clamp(28px, 5vw, 64px) auto;
+  padding: clamp(40px, 6vw, 72px);
+  border-radius: 34px;
+  border: 2px solid var(--ink);
+  box-shadow: 10px 12px 0 var(--ink);
+}
+
+/* Calmer, quieter section rhythm and a consistent content width. */
+.culture-section,
+.game-section,
+.story-section,
+.lessons-shell,
+.starter-guide {
+  scroll-margin-top: 80px;
+}
+
+/* Soften the heaviest hard drop-shadows a touch so cards feel lighter. */
+.lesson-card,
+.word-card,
+.postcard,
+.match-column,
+.level-band-card,
+.diagnostic-card {
+  box-shadow: 5px 6px 0 rgba(23, 50, 77, 0.85);
+}
+
+/* A hair more calm: gentler top gap under the hero. */
+.hero + * {
+  margin-top: clamp(8px, 2vw, 24px);
+}
