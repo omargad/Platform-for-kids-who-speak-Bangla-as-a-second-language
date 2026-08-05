@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Bangla Adventures | 108 guided Bangla learning sessions",
+  title: "Bangla Adventures | 18 lessons, 108 guided Bangla sessions",
   description:
     "A bilingual learning journey with 18 modules and 108 guided listening, reading, speaking, writing, culture and mastery sessions.",
   manifest: "/manifest.webmanifest",
