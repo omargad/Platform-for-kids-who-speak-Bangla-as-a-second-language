@@ -15,9 +15,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Bangla Adventures | 18 lessons, 108 guided Bangla sessions",
+  title: "Bangla Adventures | Bangladesh's culture, history & literature for kids",
   description:
-    "A bilingual learning journey with 18 modules and 108 guided listening, reading, speaking, writing, culture and mastery sessions.",
+    "A bilingual platform for community-school kids outside Bangladesh: classroom topics on history, festivals, literature and arts sourced from official NCTB textbooks — plus an optional Bangla language corner.",
   manifest: "/manifest.webmanifest",
   applicationName: "Bangla Adventures",
   appleWebApp: { capable: true, title: "Bangla Adventures", statusBarStyle: "default" },

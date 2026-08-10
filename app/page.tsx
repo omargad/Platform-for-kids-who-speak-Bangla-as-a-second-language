@@ -27,10 +27,10 @@ const copy = {
     navPlay: "Play",
     grownups: "Grown-ups",
     age: "Made for curious explorers aged 6–12",
-    eyebrow: "Listen · Play · Discover",
-    title: "A little Bangla in every adventure.",
+    eyebrow: "Discover · Play · Belong",
+    title: "Discover Bangladesh — story by story.",
     intro:
-      "Travel along Bangladesh’s rivers with Bagh the tiger. Pick up words, open story postcards, and collect stars as you go.",
+      "Travel along Bangladesh’s rivers with Bagh the tiger. Explore the history, festivals and tales your Bangla school talks about — sourced from the official government textbooks — and pick up a little Bangla as you go.",
     start: "Start my quest",
     hearHello: "Hear ‘hello’",
     hello: "Hello, friend!",
@@ -68,7 +68,7 @@ const copy = {
       "No account, chat, location tracking, or personal details. Progress stays on this device; external videos load only when chosen.",
     sourceTitle: "Created with care",
     sourceText:
-      "A complete, review-ready curriculum with cultural facts grounded in UNESCO and proficiency goals adapted from CEFR-style progression.",
+      "Culture, history and literature content traces to Bangladesh's official NCTB textbooks; heritage places follow UNESCO listings. Kid-friendly retellings are original — stories and poems stay exactly as written.",
     back: "Back",
     next: "Next",
     finish: "Finish story",
@@ -151,10 +151,10 @@ const copy = {
     navPlay: "খেলি",
     grownups: "বড়দের জন্য",
     age: "৬–১২ বছরের কৌতূহলী অভিযাত্রীদের জন্য",
-    eyebrow: "শোনো · খেলো · আবিষ্কার করো",
-    title: "প্রতিটি অভিযানে একটু বাংলা।",
+    eyebrow: "আবিষ্কার করো · খেলো · আপন করো",
+    title: "গল্পে গল্পে বাংলাদেশকে জানো।",
     intro:
-      "বাঘের সঙ্গে বাংলাদেশের নদীপথে চলো। নতুন শব্দ শেখো, গল্পের পোস্টকার্ড খোলো আর তারা সংগ্রহ করো।",
+      "বাঘের সঙ্গে বাংলাদেশের নদীপথে চলো। বাংলা স্কুলে যে ইতিহাস, উৎসব আর গল্পের কথা হয় — সরকারি পাঠ্যবই থেকে নেওয়া — তা ঘুরে দেখো, আর পথে একটু বাংলাও শেখো।",
     start: "অভিযান শুরু করি",
     hearHello: "‘হ্যালো’ শুনি",
     hello: "Hello, friend!",
@@ -192,7 +192,7 @@ const copy = {
       "কোনো অ্যাকাউন্ট, চ্যাট, লোকেশন বা ব্যক্তিগত তথ্য নেই। অগ্রগতি এই ডিভাইসে থাকে; বাইরের ভিডিও শুধু বেছে নিলে লোড হয়।",
     sourceTitle: "যত্ন নিয়ে তৈরি",
     sourceText:
-      "সম্পূর্ণ ও পর্যালোচনার উপযোগী পাঠক্রম—সংস্কৃতির তথ্য UNESCO-ভিত্তিক এবং দক্ষতার লক্ষ্য CEFR-এর ধাঁচে অভিযোজিত।",
+      "সংস্কৃতি, ইতিহাস ও সাহিত্যের তথ্য বাংলাদেশের সরকারি এনসিটিবি পাঠ্যবই থেকে; ঐতিহ্যের স্থান UNESCO-তালিকা অনুযায়ী। শিশু-উপযোগী উপস্থাপনা মৌলিক — গল্প-কবিতা অবিকল থাকে।",
     back: "আগে",
     next: "পরের পাতা",
     finish: "গল্প শেষ",
@@ -1150,14 +1150,17 @@ export default function Home() {
                 <span className="sound-icon" aria-hidden="true">♪</span>
                 <span><small>{t.hearHello}</small><strong>{t.helloBn}</strong></span>
               </button>
+              <Link className="outline-button" href="/topics">
+                {language === "en" ? "Classroom topics" : "শ্রেণিকক্ষের বিষয়"} <span aria-hidden="true">🏛️</span>
+              </Link>
               <Link className="outline-button" href="/learn">
                 {language === "en" ? "All activities" : "সব কার্যক্রম"} <span aria-hidden="true">🎒</span>
               </Link>
             </div>
             <div className="hero-mini-stats" aria-label="What is inside">
-              <span><strong>18</strong> {language === "en" ? "lessons" : "পাঠ"}</span>
-              <span><strong>108</strong> {language === "en" ? "guided sessions" : "শেখার সেশন"}</span>
-              <span><strong>6</strong> {language === "en" ? "levels" : "দক্ষতার ধাপ"}</span>
+              <span><strong>13</strong> {language === "en" ? "classroom topics" : "শ্রেণিকক্ষের বিষয়"}</span>
+              <span><strong>7</strong> {language === "en" ? "NCTB textbooks" : "এনসিটিবি পাঠ্যবই"}</span>
+              <span><strong>18</strong> {language === "en" ? "Bangla lessons" : "বাংলা পাঠ"}</span>
               <span><strong>2</strong> {language === "en" ? "languages" : "ভাষা"}</span>
             </div>
           </div>
@@ -1428,7 +1431,7 @@ export default function Home() {
       <footer>
         <a className="brand footer-brand" href="#top"><span className="brand-mark" aria-hidden="true">বা</span><span><strong>Bangla</strong><small>Adventures</small></span></a>
         <div><strong>{t.sourceTitle}</strong><p>{t.sourceText}</p></div>
-        <div className="footer-links"><Link href="/learn">{language === "en" ? "All activities — alphabet, stories, games & more" : "সব কার্যক্রম — বর্ণমালা, গল্প, খেলা ও আরও"}</Link><Link href="/explore">{language === "en" ? "Explore Bangladesh" : "বাংলাদেশ ঘুরে দেখো"}</Link><a href="https://whc.unesco.org/en/statesparties/bd" target="_blank" rel="noreferrer">UNESCO places</a><a href="https://www.unesco.org/en/days/mother-language" target="_blank" rel="noreferrer">Mother Language Day</a><button type="button" onClick={() => setModal({ type: "grownups" })}>{t.privacy}</button></div>
+        <div className="footer-links"><Link href="/topics">{language === "en" ? "Classroom topics — history, festivals & literature" : "শ্রেণিকক্ষের বিষয় — ইতিহাস, উৎসব ও সাহিত্য"}</Link><Link href="/library">{language === "en" ? "NCTB textbook library" : "এনসিটিবি পাঠ্যবই লাইব্রেরি"}</Link><Link href="/learn">{language === "en" ? "All activities — alphabet, stories, games & more" : "সব কার্যক্রম — বর্ণমালা, গল্প, খেলা ও আরও"}</Link><Link href="/explore">{language === "en" ? "Explore Bangladesh" : "বাংলাদেশ ঘুরে দেখো"}</Link><a href="https://whc.unesco.org/en/statesparties/bd" target="_blank" rel="noreferrer">UNESCO places</a><a href="https://www.unesco.org/en/days/mother-language" target="_blank" rel="noreferrer">Mother Language Day</a><button type="button" onClick={() => setModal({ type: "grownups" })}>{t.privacy}</button></div>
       </footer>
 
       {modal && (

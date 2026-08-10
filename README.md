@@ -1,10 +1,18 @@
 # Bangla Adventures
 
-**Platform for kids who speak Bangla as a second language** — a bilingual, interactive learning platform for children aged 6–12 who live outside Bangladesh and use Bangla as a second or heritage language. Built for the ICT30018 project with client iBrella.
+**Platform for kids who speak Bangla as a second language** — a bilingual, interactive platform that teaches **Bangladesh's culture, history and literature** to children of the Bangladeshi diaspora (prep–year 12) who attend community-run Bangla schools. Built for the ICT Project B capstone with clients Dr Tanjila Kanij and Faysal Alam.
+
+Per the client brief (see `docs/CLIENT_REQUIREMENTS_2026-08-10.md`): content is sourced from **Bangladesh's official NCTB government textbooks**, adapted to be kid-friendly for heritage learners (stories and poems are never altered), presented English-first with a full Bangla translation. Language teaching is deliberately **not** the focus — community schools already run a set language curriculum — so the Bangla-language tools live on as an optional extension corner.
 
 The experience combines three visual ideas: a warm river storybook, a postcard-style culture passport, and a Bangladesh quest map.
 
 ## What is built
+
+### Culture, history & literature (the core)
+- **/topics** — 13 classroom topics across three themes (history & the national story · culture & celebrations · literature & arts). Each is a short bilingual reading with fun facts, a citation of the NCTB textbook it draws from, and a three-question quiz with a "show your teacher" result screen (stored on-device only)
+- **/library** — the NCTB textbook catalog: which government books back the platform (Bangladesh and Global Studies, History of Bangladesh and World Civilization, the Bangla readers, Arts and Crafts, Language and Culture of Minority Ethnic Groups…), which classes use them, English-version availability, official download links, and the yearly-refresh + client-approval sourcing policy
+- **/explore** — history timeline, landmarks, festivals, food and music
+- **/stories** — folk tales and two-homes stories, told bilingually
 
 ### Learner site (no account needed)
 - English/Bangla interface switch
