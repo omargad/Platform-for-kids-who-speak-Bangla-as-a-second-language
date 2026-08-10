@@ -8,14 +8,14 @@ import type { LibraryBook } from "../library-content";
 
 type CatalogBook = LibraryBook & { downloadUrl?: string; customised?: boolean };
 
-const levels: Array<{ id: "primary" | "secondary"; en: string; bn: string; note: { en: string; bn: string } }> = [
+const levels: Array<{ id: "primary" | "secondary" | "higher-secondary"; en: string; bn: string; note: { en: string; bn: string } }> = [
   {
     id: "primary",
-    en: "Primary level (Classes 1–5)",
-    bn: "প্রাথমিক স্তর (১ম–৫ম শ্রেণি)",
+    en: "Pre-primary & primary (prep–Class 5)",
+    bn: "প্রাক-প্রাথমিক ও প্রাথমিক (প্রেপ–৫ম শ্রেণি)",
     note: {
-      en: "Class 1 focuses mostly on learning to read; the culture and history material grows from Class 3.",
-      bn: "১ম শ্রেণি মূলত পড়তে শেখার; সংস্কৃতি ও ইতিহাসের উপকরণ বাড়ে ৩য় শ্রেণি থেকে।",
+      en: "Prep and Class 1 focus mostly on learning to read; the culture and history material grows from Class 3.",
+      bn: "প্রেপ ও ১ম শ্রেণি মূলত পড়তে শেখার; সংস্কৃতি ও ইতিহাসের উপকরণ বাড়ে ৩য় শ্রেণি থেকে।",
     },
   },
   {
@@ -25,6 +25,15 @@ const levels: Array<{ id: "primary" | "secondary"; en: string; bn: string; note:
     note: {
       en: "Richer history, literature and arts — several of these books also come in official English versions.",
       bn: "গভীর ইতিহাস, সাহিত্য ও শিল্পকলা — এর কয়েকটি বইয়ের সরকারি ইংরেজি সংস্করণও আছে।",
+    },
+  },
+  {
+    id: "higher-secondary",
+    en: "Higher secondary (Classes 11–12)",
+    bn: "উচ্চ মাধ্যমিক (একাদশ–দ্বাদশ শ্রেণি)",
+    note: {
+      en: "For the oldest students in the client's prep-to-year-12 scope — mainly the senior literature readers.",
+      bn: "ক্লায়েন্টের প্রেপ-থেকে-দ্বাদশ পরিসরের সবচেয়ে বড় শিক্ষার্থীদের জন্য — মূলত সাহিত্যের বই।",
     },
   },
 ];

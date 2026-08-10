@@ -29,7 +29,7 @@ export type LibraryBook = {
   titleBn: string;
   titleEn: string;
   classes: Bilingual;
-  level: "primary" | "secondary";
+  level: "primary" | "secondary" | "higher-secondary";
   subjectArea: Bilingual;
   covers: Bilingual;
   whyItMatters: Bilingual;
@@ -41,6 +41,24 @@ export type LibraryBook = {
 };
 
 export const libraryBooks: LibraryBook[] = [
+  {
+    id: "amar-boi-pre-primary",
+    titleBn: "আমার বই",
+    titleEn: "Amar Boi (My Book) — pre-primary",
+    classes: { en: "Pre-primary (prep)", bn: "প্রাক-প্রাথমিক" },
+    level: "primary",
+    subjectArea: { en: "First picture book", bn: "প্রথম ছবির বই" },
+    covers: {
+      en: "NCTB's picture book for the very youngest: colours, animals, family, rhymes and first ideas of home — the gentlest possible start.",
+      bn: "সবচেয়ে ছোটদের জন্য এনসিটিবির ছবির বই: রং, পশুপাখি, পরিবার, ছড়া আর দেশের প্রথম ধারণা — সবচেয়ে নরম শুরু।",
+    },
+    whyItMatters: {
+      en: "The client's scope starts at prep — this is the official book that age group holds in Bangladesh, full of picture ideas for our youngest topics and crafts.",
+      bn: "ক্লায়েন্টের পরিধি প্রেপ থেকে শুরু — বাংলাদেশে এই বয়সের শিশুরা এই সরকারি বইটিই পড়ে; ছোটদের বিষয় ও হাতের কাজের ছবির ধারণায় ভরপুর।",
+    },
+    hasEnglishVersion: false,
+    status: "listed",
+  },
   {
     id: "amar-bangla-boi",
     titleBn: "আমার বাংলা বই",
@@ -203,6 +221,60 @@ export const libraryBooks: LibraryBook[] = [
     },
     hasEnglishVersion: true,
     status: "confirm",
+  },
+  {
+    id: "geography-9-10",
+    titleBn: "ভূগোল ও পরিবেশ",
+    titleEn: "Geography and Environment",
+    classes: { en: "Classes 9–10 (SSC)", bn: "৯ম–১০ম শ্রেণি (এসএসসি)" },
+    level: "secondary",
+    subjectArea: { en: "Geography & environment", bn: "ভূগোল ও পরিবেশ" },
+    covers: {
+      en: "Bangladesh's land, rivers and delta, climate and monsoon, natural disasters and how people adapt — the geographic backbone of everyday life.",
+      bn: "বাংলাদেশের ভূমি, নদী ও ব-দ্বীপ, জলবায়ু ও বর্ষা, প্রাকৃতিক দুর্যোগ আর মানুষের অভিযোজন — দৈনন্দিন জীবনের ভৌগোলিক ভিত্তি।",
+    },
+    whyItMatters: {
+      en: "Grounds the rivers and climate/disaster topics for older students; pairs naturally with Bangladesh and Global Studies.",
+      bn: "বড়দের জন্য নদী ও জলবায়ু-দুর্যোগ বিষয়ের ভিত্তি; বাংলাদেশ ও বিশ্বপরিচয়ের স্বাভাবিক সঙ্গী।",
+    },
+    hasEnglishVersion: true,
+    status: "confirm",
+  },
+  {
+    id: "mother-tongue-books",
+    titleBn: "মাতৃভাষার বই (চাকমা · মারমা · ত্রিপুরা · গারো · সাদরি)",
+    titleEn: "Mother-tongue books (Chakma, Marma, Tripura, Garo, Sadri)",
+    classes: { en: "Pre-primary–primary", bn: "প্রাক-প্রাথমিক–প্রাথমিক" },
+    level: "primary",
+    subjectArea: { en: "Ethnic-community languages", bn: "নৃগোষ্ঠীর ভাষা" },
+    covers: {
+      en: "NCTB publishes early-grade books in five ethnic-community languages so children can start school in their own mother tongue.",
+      bn: "এনসিটিবি পাঁচটি নৃগোষ্ঠীর ভাষায় শুরুর শ্রেণির বই ছাপে, যেন শিশুরা নিজের মাতৃভাষায় স্কুল শুরু করতে পারে।",
+    },
+    whyItMatters: {
+      en: "Living proof of the Ekushey promise — the country of Mother Language Day prints schoolbooks in its smaller languages too. A wonderful show-and-tell for the hill-and-plains communities topic.",
+      bn: "একুশের প্রতিশ্রুতির জীবন্ত প্রমাণ — মাতৃভাষা দিবসের দেশ ছোট ভাষাগুলোর জন্যও পাঠ্যবই ছাপে। পাহাড় ও সমতলের জনগোষ্ঠী বিষয়ের চমৎকার উদাহরণ।",
+    },
+    hasEnglishVersion: false,
+    status: "confirm",
+  },
+  {
+    id: "hsc-sahityapath",
+    titleBn: "সাহিত্যপাঠ · বাংলা সহপাঠ",
+    titleEn: "Sahityapath & Bangla Shohopath (HSC literature)",
+    classes: { en: "Classes 11–12 (HSC)", bn: "একাদশ–দ্বাদশ শ্রেণি (এইচএসসি)" },
+    level: "higher-secondary",
+    subjectArea: { en: "Bangla literature", bn: "বাংলা সাহিত্য" },
+    covers: {
+      en: "The senior literature pair: Sahityapath collects the prescribed poems and prose; Shohopath carries the novel and drama read alongside them.",
+      bn: "বড়দের সাহিত্যের জুটি: সাহিত্যপাঠে নির্ধারিত কবিতা ও গদ্য; সহপাঠে সঙ্গে পড়ার উপন্যাস ও নাটক।",
+    },
+    whyItMatters: {
+      en: "Completes the prep-to-year-12 span the client asked for — year 11–12 students get the same trusted-source pathway as the younger ones.",
+      bn: "ক্লায়েন্টের চাওয়া প্রেপ-থেকে-দ্বাদশ পরিসর পূর্ণ করে — একাদশ-দ্বাদশের শিক্ষার্থীরাও ছোটদের মতোই নির্ভরযোগ্য উৎস পায়।",
+    },
+    hasEnglishVersion: false,
+    status: "listed",
   },
 ];
 

@@ -15,7 +15,7 @@ test("library books are unique, bilingual and levelled", () => {
     assert.ok(!ids.has(book.id), `${book.id}: duplicate id`);
     ids.add(book.id);
     assert.ok(book.titleBn.trim() && book.titleEn.trim(), `${book.id}: needs both titles`);
-    assert.ok(["primary", "secondary"].includes(book.level), `${book.id}: bad level`);
+    assert.ok(["primary", "secondary", "higher-secondary"].includes(book.level), `${book.id}: bad level`);
     assert.ok(["listed", "confirm"].includes(book.status), `${book.id}: bad status`);
     for (const field of [book.classes, book.subjectArea, book.covers, book.whyItMatters]) {
       assert.ok(field.en.trim() && field.bn.trim(), `${book.id}: missing bilingual field`);
@@ -23,9 +23,10 @@ test("library books are unique, bilingual and levelled", () => {
   }
 });
 
-test("both school levels are represented", () => {
+test("the full prep-to-year-12 span is represented", () => {
   assert.ok(libraryBooks.some((book) => book.level === "primary"), "primary books listed");
   assert.ok(libraryBooks.some((book) => book.level === "secondary"), "secondary books listed");
+  assert.ok(libraryBooks.some((book) => book.level === "higher-secondary"), "higher-secondary books listed");
 });
 
 test("chapter maps are bilingual and cross-link only real topics", () => {

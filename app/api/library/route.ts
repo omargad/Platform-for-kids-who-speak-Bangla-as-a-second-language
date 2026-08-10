@@ -113,7 +113,7 @@ function sanitizeOverride(raw: Record<string, unknown>): SourceOverride {
   }
   if (typeof raw.titleBn === "string" && raw.titleBn.trim()) out.titleBn = raw.titleBn.trim().slice(0, 160);
   if (typeof raw.titleEn === "string" && raw.titleEn.trim()) out.titleEn = raw.titleEn.trim().slice(0, 160);
-  if (raw.level === "primary" || raw.level === "secondary") out.level = raw.level;
+  if (raw.level === "primary" || raw.level === "secondary" || raw.level === "higher-secondary") out.level = raw.level;
   if (raw.status === "listed" || raw.status === "confirm") out.status = raw.status;
   if (typeof raw.hasEnglishVersion === "boolean") out.hasEnglishVersion = raw.hasEnglishVersion;
   for (const key of ["classes", "subjectArea", "covers", "whyItMatters"] as const) {

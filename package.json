@@ -17,7 +17,8 @@
     "audio:generate": "node scripts/generate-voice-assets.cjs",
     "verify:media": "node scripts/verify-media.mjs",
     "verify:links": "node scripts/verify-links.mjs",
-    "fetch:nctb": "node scripts/fetch-nctb.mjs"
+    "fetch:nctb": "node scripts/fetch-nctb.mjs",
+    "crawl:nctb": "node scripts/crawl-nctb.mjs"
   },
   "dependencies": {
     "better-sqlite3": "^13.0.2",

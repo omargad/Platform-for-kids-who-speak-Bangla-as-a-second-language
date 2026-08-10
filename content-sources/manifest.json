@@ -57,6 +57,35 @@
       "versions": [
         { "file": "ethnic-culture-en", "label": "English version if published", "pdfUrl": "", "portalHint": "Secondary → the class Faysal showed in the meeting → culture of minority ethnic groups → English Version" }
       ]
+    },
+    {
+      "id": "amar-boi-pre-primary",
+      "titleEn": "Amar Boi (pre-primary picture book)",
+      "versions": [
+        { "file": "amar-boi-pre-primary", "label": "Pre-primary, Bangla", "pdfUrl": "", "portalHint": "Primary → প্রাক-প্রাথমিক → আমার বই" }
+      ]
+    },
+    {
+      "id": "geography-9-10",
+      "titleEn": "Geography and Environment",
+      "versions": [
+        { "file": "geography-9-10-en", "label": "Class 9-10, English version", "pdfUrl": "", "portalHint": "Secondary → Class 9-10 → ভূগোল ও পরিবেশ → English Version" }
+      ]
+    },
+    {
+      "id": "hsc-sahityapath",
+      "titleEn": "HSC literature readers",
+      "versions": [
+        { "file": "sahityapath-11-12", "label": "Class 11-12 Sahityapath, Bangla", "pdfUrl": "", "portalHint": "Higher secondary → Class 11-12 → সাহিত্যপাঠ" },
+        { "file": "shohopath-11-12", "label": "Class 11-12 Bangla Shohopath, Bangla", "pdfUrl": "", "portalHint": "Higher secondary → Class 11-12 → বাংলা সহপাঠ" }
+      ]
+    },
+    {
+      "id": "mother-tongue-books",
+      "titleEn": "Mother-tongue early-grade books (Chakma, Marma, Tripura, Garo, Sadri)",
+      "versions": [
+        { "file": "mother-tongue-chakma-pre-primary", "label": "Chakma pre-primary (sample of the five-language set)", "pdfUrl": "", "portalHint": "Primary → প্রাক-প্রাথমিক → ক্ষুদ্র নৃগোষ্ঠীর ভাষার বই" }
+      ]
     }
   ]
 }
