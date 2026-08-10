@@ -1155,6 +1155,7 @@ export default function Home() {
               </Link>
             </div>
             <div className="hero-mini-stats" aria-label="What is inside">
+              <span><strong>18</strong> {language === "en" ? "lessons" : "পাঠ"}</span>
               <span><strong>108</strong> {language === "en" ? "guided sessions" : "শেখার সেশন"}</span>
               <span><strong>6</strong> {language === "en" ? "levels" : "দক্ষতার ধাপ"}</span>
               <span><strong>2</strong> {language === "en" ? "languages" : "ভাষা"}</span>
