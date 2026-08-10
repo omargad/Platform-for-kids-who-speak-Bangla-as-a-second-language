@@ -1,0 +1,62 @@
+{
+  "portal": "https://nctb.gov.bd/ → পাঠ্যপুস্তক (Textbook) → 2026 academic year → primary/secondary → class → book (each row has Bangla and English version download links, as Faysal demonstrated in the client meeting)",
+  "note": "pdfUrl fields are intentionally blank: NCTB reshuffles deep links between years and the dev sandbox cannot reach the site to pin them. Paste this year's links in (or download by hand into content-sources/pdf/ with the listed filename) and run: npm run fetch:nctb",
+  "books": [
+    {
+      "id": "bgs-primary",
+      "titleEn": "Bangladesh and Global Studies (primary)",
+      "versions": [
+        { "file": "bgs-3-en", "label": "Class 3, English version", "pdfUrl": "", "portalHint": "Primary → Class 3 → বাংলাদেশ ও বিশ্বপরিচয় → English Version" },
+        { "file": "bgs-4-en", "label": "Class 4, English version", "pdfUrl": "", "portalHint": "Primary → Class 4 → বাংলাদেশ ও বিশ্বপরিচয় → English Version" },
+        { "file": "bgs-5-en", "label": "Class 5, English version", "pdfUrl": "", "portalHint": "Primary → Class 5 → বাংলাদেশ ও বিশ্বপরিচয় → English Version" }
+      ]
+    },
+    {
+      "id": "bgs-secondary",
+      "titleEn": "Bangladesh and Global Studies (secondary)",
+      "versions": [
+        { "file": "bgs-6-en", "label": "Class 6, English version", "pdfUrl": "", "portalHint": "Secondary → Class 6 → বাংলাদেশ ও বিশ্বপরিচয় → English Version" },
+        { "file": "bgs-7-en", "label": "Class 7, English version", "pdfUrl": "", "portalHint": "Secondary → Class 7 → বাংলাদেশ ও বিশ্বপরিচয় → English Version" },
+        { "file": "bgs-8-en", "label": "Class 8, English version", "pdfUrl": "", "portalHint": "Secondary → Class 8 → বাংলাদেশ ও বিশ্বপরিচয় → English Version" },
+        { "file": "bgs-9-10-en", "label": "Class 9-10, English version", "pdfUrl": "", "portalHint": "Secondary → Class 9-10 → বাংলাদেশ ও বিশ্বপরিচয় → English Version" }
+      ]
+    },
+    {
+      "id": "history-9-10",
+      "titleEn": "History of Bangladesh and World Civilization",
+      "versions": [
+        { "file": "history-9-10-en", "label": "Class 9-10, English version", "pdfUrl": "", "portalHint": "Secondary → Class 9-10 → বাংলাদেশের ইতিহাস ও বিশ্বসভ্যতা → English Version" }
+      ]
+    },
+    {
+      "id": "amar-bangla-boi",
+      "titleEn": "Amar Bangla Boi (My Bangla Book)",
+      "versions": [
+        { "file": "amar-bangla-2", "label": "Class 2, Bangla", "pdfUrl": "", "portalHint": "Primary → Class 2 → আমার বাংলা বই" },
+        { "file": "amar-bangla-5", "label": "Class 5, Bangla", "pdfUrl": "", "portalHint": "Primary → Class 5 → আমার বাংলা বই" }
+      ]
+    },
+    {
+      "id": "literature-secondary",
+      "titleEn": "Secondary Bangla readers",
+      "versions": [
+        { "file": "charupath-6", "label": "Class 6 Charupath, Bangla", "pdfUrl": "", "portalHint": "Secondary → Class 6 → চারুপাঠ" },
+        { "file": "sahitya-kanika-8", "label": "Class 8 Sahitya Kanika, Bangla", "pdfUrl": "", "portalHint": "Secondary → Class 8 → সাহিত্য কণিকা" }
+      ]
+    },
+    {
+      "id": "arts-crafts",
+      "titleEn": "Arts and Crafts (Charu O Karukola)",
+      "versions": [
+        { "file": "arts-crafts-6-en", "label": "Class 6, English version if published", "pdfUrl": "", "portalHint": "Secondary → Class 6 → চারু ও কারুকলা" }
+      ]
+    },
+    {
+      "id": "ethnic-culture",
+      "titleEn": "Language and Culture of Minority Ethnic Groups",
+      "versions": [
+        { "file": "ethnic-culture-en", "label": "English version if published", "pdfUrl": "", "portalHint": "Secondary → the class Faysal showed in the meeting → culture of minority ethnic groups → English Version" }
+      ]
+    }
+  ]
+}

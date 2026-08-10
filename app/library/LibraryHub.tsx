@@ -117,6 +117,29 @@ export default function LibraryHub() {
                     <p className="library-why">
                       <em>{book.whyItMatters[language]}</em>
                     </p>
+                    {book.chapterMap && (
+                      <details className="library-chapters">
+                        <summary>
+                          {s("What's inside this book", "বইয়ের ভেতরে যা আছে")}
+                          {!book.chapterMap.verified && (
+                            <span className="library-chip-confirm"> {s("to confirm", "মিলিয়ে নেওয়া হবে")}</span>
+                          )}
+                        </summary>
+                        <p className="library-chapters-note">{book.chapterMap.note[language]}</p>
+                        <ol>
+                          {book.chapterMap.chapters.map((chapter) => (
+                            <li key={chapter.title.en}>
+                              {chapter.title[language]}
+                              {chapter.topicId && (
+                                <Link href="/topics" className="library-chapter-topic">
+                                  {s("read it here →", "এখানে পড়ো →")}
+                                </Link>
+                              )}
+                            </li>
+                          ))}
+                        </ol>
+                      </details>
+                    )}
                     <a href={book.downloadUrl ?? NCTB_PORTAL_URL} target="_blank" rel="noreferrer">
                       {book.downloadUrl
                         ? s("Download this year's edition ↗", "এ বছরের সংস্করণ নামান ↗")

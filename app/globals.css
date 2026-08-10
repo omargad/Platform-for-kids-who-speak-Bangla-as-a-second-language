@@ -10196,3 +10196,42 @@ body.modal-open .pwa-status {
   font-size: 0.92rem;
   line-height: 1.5;
 }
+
+/* ---- library chapter maps ---- */
+
+.library-chapters {
+  border: 1.5px solid var(--line);
+  border-radius: 12px;
+  padding: 8px 12px;
+  background: var(--cream);
+}
+
+.library-chapters summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--emerald);
+}
+
+.library-chapters-note {
+  margin: 8px 0 4px;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.library-chapters ol {
+  margin: 6px 0 4px;
+  padding-left: 22px;
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.library-chapters ol li {
+  margin-bottom: 5px;
+}
+
+.library-chapter-topic {
+  margin-left: 8px;
+  font-weight: 700;
+  color: var(--emerald);
+  white-space: nowrap;
+}

@@ -47,3 +47,6 @@ next-env.d.ts
 
 # keep the documented example env file
 !.env.example
+
+# NCTB source PDFs (large; extracted text in content-sources/text is committed instead)
+content-sources/pdf/

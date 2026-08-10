@@ -10,6 +10,19 @@ import type { Bilingual } from "./topics-content";
 
 export const NCTB_PORTAL_URL = "https://nctb.gov.bd/";
 
+export type BookChapter = {
+  title: Bilingual;
+  // Classroom topic on /topics that adapts this chapter, when one exists.
+  topicId?: string;
+};
+
+export type ChapterMap = {
+  // Which edition the map was read from, and how sure we are.
+  note: Bilingual;
+  verified: boolean;
+  chapters: BookChapter[];
+};
+
 export type LibraryBook = {
   id: string;
   // Bangla title as printed on the cover, and the English name used for it.
@@ -24,6 +37,7 @@ export type LibraryBook = {
   // "listed" = title/classes confirmed; "confirm" = include, but double-check
   // the exact edition with the client/school before relying on it in class.
   status: "listed" | "confirm";
+  chapterMap?: ChapterMap;
 };
 
 export const libraryBooks: LibraryBook[] = [
@@ -62,6 +76,27 @@ export const libraryBooks: LibraryBook[] = [
     },
     hasEnglishVersion: true,
     status: "listed",
+    chapterMap: {
+      note: {
+        en: "Chapter map of the Class 5 volume (English version). Re-check against the 2026 PDF after ingestion.",
+        bn: "৫ম শ্রেণির বইয়ের (ইংরেজি সংস্করণ) অধ্যায়-তালিকা। ২০২৬-এর পিডিএফ নামানোর পর মিলিয়ে নিন।",
+      },
+      verified: true,
+      chapters: [
+        { title: { en: "Our Liberation War", bn: "আমাদের মুক্তিযুদ্ধ" }, topicId: "liberation-1971" },
+        { title: { en: "British Rule", bn: "ব্রিটিশ শাসন" }, topicId: "british-rule" },
+        { title: { en: "Historical places and artifacts of Bangladesh", bn: "বাংলাদেশের ঐতিহাসিক স্থান ও নিদর্শন" }, topicId: "ancient-bengal" },
+        { title: { en: "Our economy: agriculture and industry", bn: "আমাদের অর্থনীতি: কৃষি ও শিল্প" } },
+        { title: { en: "Population and human resources", bn: "জনসংখ্যা ও মানবসম্পদ" } },
+        { title: { en: "Climate and disaster", bn: "জলবায়ু ও দুর্যোগ" }, topicId: "climate-and-disasters" },
+        { title: { en: "Human rights", bn: "মানবাধিকার" } },
+        { title: { en: "Equal rights of women and men", bn: "নারী-পুরুষের সমান অধিকার" } },
+        { title: { en: "Our duties and responsibilities", bn: "আমাদের কর্তব্য ও দায়িত্ব" } },
+        { title: { en: "Democratic attitude", bn: "গণতান্ত্রিক মনোভাব" } },
+        { title: { en: "Ethnic groups of Bangladesh", bn: "বাংলাদেশের নৃগোষ্ঠী" }, topicId: "ethnic-communities" },
+        { title: { en: "Bangladesh and the world", bn: "বাংলাদেশ ও বিশ্ব" }, topicId: "amar-ekushey" },
+      ],
+    },
   },
   {
     id: "bgs-secondary",
@@ -98,6 +133,22 @@ export const libraryBooks: LibraryBook[] = [
     },
     hasEnglishVersion: true,
     status: "listed",
+    chapterMap: {
+      note: {
+        en: "Unit map by theme — chapter numbers/titles to be confirmed against the 2026 PDF after ingestion.",
+        bn: "থিম অনুযায়ী ইউনিট-তালিকা — অধ্যায় নম্বর/নাম ২০২৬-এর পিডিএফের সঙ্গে মিলিয়ে নেওয়া হবে।",
+      },
+      verified: false,
+      chapters: [
+        { title: { en: "What history is, and why it matters", bn: "ইতিহাস কী ও কেন" } },
+        { title: { en: "World civilizations (Egypt, Greece, Rome)", bn: "বিশ্বসভ্যতা (মিশর, গ্রিস, রোম)" } },
+        { title: { en: "Janapadas and rulers of ancient Bengal", bn: "প্রাচীন বাংলার জনপদ ও শাসকগণ" }, topicId: "ancient-bengal" },
+        { title: { en: "Medieval Bengal: sultans and Mughals", bn: "মধ্যযুগের বাংলা: সুলতানি ও মুঘল আমল" } },
+        { title: { en: "Colonial rule and the road to 1947", bn: "ঔপনিবেশিক শাসন ও ১৯৪৭-এর পথ" }, topicId: "british-rule" },
+        { title: { en: "The Language Movement of 1952", bn: "১৯৫২-এর ভাষা আন্দোলন" }, topicId: "amar-ekushey" },
+        { title: { en: "The Liberation War and independent Bangladesh", bn: "মুক্তিযুদ্ধ ও স্বাধীন বাংলাদেশ" }, topicId: "liberation-1971" },
+      ],
+    },
   },
   {
     id: "literature-secondary",

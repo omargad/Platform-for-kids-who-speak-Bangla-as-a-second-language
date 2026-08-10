@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 
 const { libraryBooks, NCTB_PORTAL_URL, bookById } = await import("../app/library-content.ts");
+const { topics } = await import("../app/topics-content.ts");
 
 test("the NCTB portal link is the official government domain over https", () => {
   assert.match(NCTB_PORTAL_URL, /^https:\/\/nctb\.gov\.bd\/?$/);
@@ -25,6 +26,24 @@ test("library books are unique, bilingual and levelled", () => {
 test("both school levels are represented", () => {
   assert.ok(libraryBooks.some((book) => book.level === "primary"), "primary books listed");
   assert.ok(libraryBooks.some((book) => book.level === "secondary"), "secondary books listed");
+});
+
+test("chapter maps are bilingual and cross-link only real topics", () => {
+  const topicIds = new Set(topics.map((topic) => topic.id));
+  const mapped = libraryBooks.filter((book) => book.chapterMap);
+  assert.ok(mapped.length >= 2, "core books carry a chapter map");
+  for (const book of mapped) {
+    const { note, verified, chapters } = book.chapterMap;
+    assert.ok(note.en.trim() && note.bn.trim(), `${book.id}: chapter map needs a bilingual note`);
+    assert.equal(typeof verified, "boolean", `${book.id}: verified flag`);
+    assert.ok(chapters.length >= 5, `${book.id}: chapter map looks too short`);
+    for (const chapter of chapters) {
+      assert.ok(chapter.title.en.trim() && chapter.title.bn.trim(), `${book.id}: chapter title must be bilingual`);
+      if (chapter.topicId) {
+        assert.ok(topicIds.has(chapter.topicId), `${book.id}: chapter links unknown topic '${chapter.topicId}'`);
+      }
+    }
+  }
 });
 
 test("bookById resolves and misses safely", () => {

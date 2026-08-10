@@ -358,6 +358,72 @@ export const topics: Topic[] = [
     ],
   },
 
+  {
+    id: "british-rule",
+    theme: "history",
+    emoji: "🚂",
+    title: { en: "British rule — and the road to 1947", bn: "ব্রিটিশ শাসন — এবং ১৯৪৭-এর পথ" },
+    tagline: {
+      en: "Two hundred years of colonial rule, the people who resisted, and how Bengal was divided.",
+      bn: "দুই শতকের ঔপনিবেশিক শাসন, প্রতিরোধের মানুষেরা, আর বাংলার ভাগ।",
+    },
+    minutes: 4,
+    sections: [
+      {
+        heading: { en: "How a trading company became a ruler", bn: "বাণিজ্য কোম্পানি যেভাবে শাসক হলো" },
+        body: {
+          en: "In 1757, at the Battle of Palashi (Plassey), the young Nawab of Bengal, Siraj ud-Daulah, was defeated after being betrayed by people he trusted. The British East India Company — a trading company! — took control, and later the British Crown ruled directly. Colonial rule brought railways, tea gardens and new schools, but also heavy taxes, terrible famines and hardship for farmers, like those forced to grow indigo instead of food.",
+          bn: "১৭৫৭ সালে পলাশীর যুদ্ধে বিশ্বাসঘাতকতার শিকার হয়ে হেরে যান বাংলার তরুণ নবাব সিরাজউদ্দৌলা। ক্ষমতা নেয় ব্রিটিশ ইস্ট ইন্ডিয়া কোম্পানি — একটি বাণিজ্য কোম্পানি! — পরে সরাসরি ব্রিটিশ রাজ। ঔপনিবেশিক শাসনে রেলগাড়ি, চা-বাগান আর নতুন স্কুল এসেছিল, কিন্তু সঙ্গে এসেছিল ভারী খাজনা, ভয়াবহ দুর্ভিক্ষ, আর নীল চাষে বাধ্য কৃষকদের মতো মানুষের কষ্ট।",
+        },
+      },
+      {
+        heading: { en: "Resistance, and a land divided", bn: "প্রতিরোধ, তারপর দেশভাগ" },
+        body: {
+          en: "People fought back in many ways: Titumir built his famous bamboo fort, sepoys rose up in 1857, and later generations marched, wrote and organised for freedom. In 1947 British rule ended and the land was divided — Bengal's east became part of a new country called Pakistan. But the new rulers were far away too… which is where the Language Movement story begins.",
+          bn: "মানুষ নানা ভাবে রুখে দাঁড়িয়েছে: তিতুমীর গড়েছিলেন বিখ্যাত বাঁশের কেল্লা, ১৮৫৭ সালে সিপাহিরা বিদ্রোহ করে, পরের প্রজন্মরা মিছিলে-লেখায়-সংগঠনে স্বাধীনতার লড়াই চালায়। ১৯৪৭ সালে ব্রিটিশ শাসন শেষ হয়, দেশ ভাগ হয় — বাংলার পূর্ব অংশ হয় নতুন দেশ পাকিস্তানের অংশ। কিন্তু নতুন শাসকরাও ছিল বহু দূরে… আর সেখান থেকেই শুরু ভাষা আন্দোলনের গল্প।",
+        },
+      },
+    ],
+    funFacts: [
+      { en: "Before colonial rule, Bengal was one of the richest regions on Earth — its muslin and silk were world-famous.", bn: "ঔপনিবেশিক শাসনের আগে বাংলা ছিল পৃথিবীর সবচেয়ে সমৃদ্ধ অঞ্চলগুলোর একটি — মসলিন আর রেশমের খ্যাতি ছিল বিশ্বজোড়া।" },
+      { en: "Titumir's bamboo fort (basher kella) is still a symbol of standing up to injustice.", bn: "তিতুমীরের বাঁশের কেল্লা আজও অন্যায়ের বিরুদ্ধে দাঁড়ানোর প্রতীক।" },
+      { en: "The railways the British built to move goods now carry millions of Eid travellers home every year.", bn: "পণ্য টানতে বানানো সেই রেলপথেই এখন প্রতি বছর লাখ লাখ মানুষ ঈদে বাড়ি ফেরে।" },
+    ],
+    quiz: [
+      {
+        question: { en: "What happened at Palashi in 1757?", bn: "১৭৫৭ সালে পলাশীতে কী হয়েছিল?" },
+        options: [
+          { en: "Nawab Siraj ud-Daulah was defeated and Company rule began", bn: "নবাব সিরাজউদ্দৌলা পরাজিত হন, কোম্পানির শাসন শুরু হয়" },
+          { en: "Bangladesh became independent", bn: "বাংলাদেশ স্বাধীন হয়" },
+          { en: "The first railway opened", bn: "প্রথম রেলপথ খোলে" },
+        ],
+        answer: 0,
+      },
+      {
+        question: { en: "Who built the famous bamboo fort?", bn: "বিখ্যাত বাঁশের কেল্লা কে গড়েছিলেন?" },
+        options: [
+          { en: "Titumir", bn: "তিতুমীর" },
+          { en: "Rabindranath Tagore", bn: "রবীন্দ্রনাথ ঠাকুর" },
+          { en: "The East India Company", bn: "ইস্ট ইন্ডিয়া কোম্পানি" },
+        ],
+        answer: 0,
+      },
+      {
+        question: { en: "What happened in 1947?", bn: "১৯৪৭ সালে কী হয়?" },
+        options: [
+          { en: "British rule ended and Bengal was divided", bn: "ব্রিটিশ শাসন শেষ হয়, বাংলা ভাগ হয়" },
+          { en: "The Liberation War began", bn: "মুক্তিযুদ্ধ শুরু হয়" },
+          { en: "UNESCO was founded in Dhaka", bn: "ঢাকায় ইউনেসকো প্রতিষ্ঠিত হয়" },
+        ],
+        answer: 0,
+      },
+    ],
+    sources: [
+      { bookId: "bgs-primary", note: { en: "The 'British Rule' chapter", bn: "‘ব্রিটিশ শাসন’ অধ্যায়" } },
+      { bookId: "history-9-10", note: { en: "Colonial period and the road to 1947, in depth", bn: "বিস্তারিত: ঔপনিবেশিক আমল ও ১৯৪৭-এর পথ" } },
+    ],
+  },
+
   // ---------------------------------------------------------------- culture
   {
     id: "pohela-boishakh",
@@ -617,6 +683,72 @@ export const topics: Topic[] = [
     sources: [
       { bookId: "bgs-primary", note: { en: "Rivers of Bangladesh chapters", bn: "বাংলাদেশের নদ-নদী অধ্যায়" } },
       { bookId: "amar-bangla-boi", note: { en: "The rivers lesson the client showed in our meeting", bn: "ক্লায়েন্ট মিটিংয়ে দেখানো নদী বিষয়ক পাঠ" } },
+    ],
+  },
+
+  {
+    id: "climate-and-disasters",
+    theme: "culture",
+    emoji: "🌧️",
+    title: { en: "Monsoon, floods & the bravest volunteers", bn: "বর্ষা, বন্যা আর সাহসী স্বেচ্ছাসেবকেরা" },
+    tagline: {
+      en: "How Bangladesh lives with water — and became a world teacher in facing disasters.",
+      bn: "পানির সঙ্গে বাংলাদেশের বসবাস — আর দুর্যোগ মোকাবিলায় বিশ্বের শিক্ষক হয়ে ওঠা।",
+    },
+    minutes: 4,
+    sections: [
+      {
+        heading: { en: "A land shaped by water", bn: "পানিতে গড়া দেশ" },
+        body: {
+          en: "Bangladesh sits on the world's largest river delta, and the monsoon season (borsha) pours life onto its fields — rice, jute and fish all depend on it. But the same water can turn dangerous: floods spread across the low land, and cyclones spin in from the Bay of Bengal. Living wisely with water is part of being Bangladeshi.",
+          bn: "বাংলাদেশ পৃথিবীর বৃহত্তম ব-দ্বীপে দাঁড়িয়ে, আর বর্ষা তার মাঠে ঢেলে দেয় প্রাণ — ধান, পাট, মাছ সবই এর ওপর নির্ভর করে। কিন্তু সেই পানিই কখনো বিপজ্জনক: নিচু জমিতে বন্যা ছড়ায়, বঙ্গোপসাগর থেকে ধেয়ে আসে ঘূর্ণিঝড়। পানির সঙ্গে বুদ্ধি করে বাঁচাটাই বাংলাদেশি জীবনের অংশ।",
+        },
+      },
+      {
+        heading: { en: "The country that learned to be ready", bn: "প্রস্তুত থাকতে শেখা দেশ" },
+        body: {
+          en: "Bangladesh answered with preparation the whole world studies: tens of thousands of trained volunteers carry warnings to every village, families move to strong cyclone shelters, and schools practise drills. In flood-prone wetlands, farmers even grow vegetables on floating gardens that rise with the water. Fewer lives are lost every decade — a quiet national victory.",
+          bn: "বাংলাদেশ জবাব দিয়েছে এমন প্রস্তুতিতে, যা আজ সারা বিশ্ব শেখে: হাজার হাজার প্রশিক্ষিত স্বেচ্ছাসেবক গ্রামে গ্রামে সতর্কবার্তা পৌঁছে দেন, পরিবারগুলো আশ্রয় নেয় মজবুত সাইক্লোন শেল্টারে, স্কুলে হয় মহড়া। বন্যাপ্রবণ জলাভূমিতে কৃষকরা পানির সঙ্গে ভেসে থাকা ধাপ-বাগানে সবজি ফলান। প্রতি দশকে প্রাণহানি কমছে — এ এক নীরব জাতীয় বিজয়।",
+        },
+      },
+    ],
+    funFacts: [
+      { en: "The Cyclone Preparedness Programme's volunteers — many of them women — warn villages with flags, megaphones and door-knocks.", bn: "ঘূর্ণিঝড় প্রস্তুতি কর্মসূচির স্বেচ্ছাসেবকেরা — অনেকেই নারী — পতাকা, মাইক আর দরজায় কড়া নেড়ে গ্রাম সতর্ক করেন।" },
+      { en: "Floating gardens (dhap) are an old Bengali invention now studied as a climate solution.", bn: "ভাসমান ধাপ-বাগান বাংলার পুরোনো উদ্ভাবন — এখন জলবায়ু-সমাধান হিসেবে গবেষণা হয়।" },
+      { en: "Many cyclone shelters double as schools on ordinary days.", bn: "অনেক সাইক্লোন শেল্টার সাধারণ দিনে স্কুল হিসেবে চলে।" },
+    ],
+    quiz: [
+      {
+        question: { en: "What does the monsoon (borsha) bring to Bangladesh?", bn: "বর্ষা বাংলাদেশে কী নিয়ে আসে?" },
+        options: [
+          { en: "Life-giving rain for rice, jute and fish", bn: "ধান-পাট-মাছের জন্য প্রাণ জাগানো বৃষ্টি" },
+          { en: "Snow", bn: "তুষার" },
+          { en: "Sandstorms", bn: "বালুঝড়" },
+        ],
+        answer: 0,
+      },
+      {
+        question: { en: "Where do families go when a big cyclone is coming?", bn: "বড় ঘূর্ণিঝড় এলে পরিবারগুলো কোথায় যায়?" },
+        options: [
+          { en: "Cyclone shelters", bn: "সাইক্লোন শেল্টারে" },
+          { en: "The beach", bn: "সৈকতে" },
+          { en: "Boats on the river", bn: "নদীর নৌকায়" },
+        ],
+        answer: 0,
+      },
+      {
+        question: { en: "What are dhap?", bn: "ধাপ কী?" },
+        options: [
+          { en: "Floating gardens that rise with flood water", bn: "বন্যার পানির সঙ্গে ভেসে থাকা বাগান" },
+          { en: "A kind of drum", bn: "এক রকম ঢোল" },
+          { en: "Mountain caves", bn: "পাহাড়ের গুহা" },
+        ],
+        answer: 0,
+      },
+    ],
+    sources: [
+      { bookId: "bgs-primary", note: { en: "The 'Climate and disaster' chapter", bn: "‘জলবায়ু ও দুর্যোগ’ অধ্যায়" } },
+      { bookId: "bgs-secondary", note: { en: "Geography and environment chapters", bn: "ভূগোল ও পরিবেশ অধ্যায়" } },
     ],
   },
 

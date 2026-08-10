@@ -74,8 +74,13 @@ missing systematic resource.
 1. Confirm with the principal: parent access (R9), the "confirm" library
    entries, and the topic list priorities for the term plan.
 2. Team reads the actual NCTB books (client: "six of you pick different
-   things") and verifies each topic's facts against them; add per-book deep
-   links via the `/teach` source editor once verified from a normal network.
+   things") and verifies each topic's facts against them. The ingestion
+   pipeline is ready: run `npm run fetch:nctb` from a Codespace/laptop (the
+   dev sandbox cannot reach nctb.gov.bd — verified: the egress proxy blocks
+   it), drop any hand-downloaded PDFs into `content-sources/pdf/`, and the
+   script extracts their text into `content-sources/text/` for commit. See
+   `content-sources/README.md`. Add per-book deep links via the `/teach`
+   source editor at the same time.
 3. Client demo of the teacher/classroom flow; gather kid feedback via the
    school (the client offered to organise this).
 4. Deployment to the client's hosting once credentials arrive (runbook ready).

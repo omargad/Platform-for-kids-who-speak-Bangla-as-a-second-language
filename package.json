@@ -16,7 +16,8 @@
     "db:generate": "drizzle-kit generate",
     "audio:generate": "node scripts/generate-voice-assets.cjs",
     "verify:media": "node scripts/verify-media.mjs",
-    "verify:links": "node scripts/verify-links.mjs"
+    "verify:links": "node scripts/verify-links.mjs",
+    "fetch:nctb": "node scripts/fetch-nctb.mjs"
   },
   "dependencies": {
     "better-sqlite3": "^13.0.2",
@@ -35,6 +36,7 @@
     "drizzle-kit": "^0.31.10",
     "eslint": "^9.39.4",
     "eslint-config-next": "^16.2.12",
+    "pdf-parse": "^2.4.5",
     "tailwindcss": "^4.2.1",
     "text2wav": "^0.0.14",
     "typescript": "^5.9.3"
