@@ -15,6 +15,8 @@ type HubCard = {
 const cultureHubs: HubCard[] = [
   { href: "/topics", emoji: "🏛️", title: { en: "Classroom topics", bn: "শ্রেণিকক্ষের বিষয়" }, blurb: { en: "History, festivals, literature and arts — short readings with quizzes, each citing its NCTB textbook.", bn: "ইতিহাস, উৎসব, সাহিত্য ও শিল্প — কুইজসহ ছোট পাঠ, প্রতিটিতে এনসিটিবি বইয়ের উৎস।" } },
   { href: "/library", emoji: "📚", title: { en: "NCTB textbook library", bn: "এনসিটিবি পাঠ্যবই লাইব্রেরি" }, blurb: { en: "The government textbooks behind every topic, with official free download links.", bn: "প্রতিটি বিষয়ের পেছনের সরকারি পাঠ্যবই, বিনামূল্যের অফিসিয়াল ডাউনলোড লিংকসহ।" } },
+  { href: "/classroom", emoji: "🏫", title: { en: "My classroom", bn: "আমার শ্রেণিকক্ষ" }, blurb: { en: "Join your Bangla-school class with a code, do the activities your teacher sets.", bn: "কোড দিয়ে ক্লাসে যোগ দাও, শিক্ষকের দেওয়া কার্যক্রম করো।" } },
+  { href: "/poems", emoji: "🪶", title: { en: "Poetry corner", bn: "কবিতার কোণ" }, blurb: { en: "Beloved poems and rhymes, exactly as the poets wrote them.", bn: "প্রিয় কবিতা ও ছড়া — কবি যেমন লিখেছেন, ঠিক তেমনই।" } },
   { href: "/explore", emoji: "🗺️", title: { en: "Explore Bangladesh", bn: "বাংলাদেশ ঘুরে দেখো" }, blurb: { en: "History timeline, landmarks, festivals, food and music of the homeland.", bn: "ইতিহাস, দর্শনীয় স্থান, উৎসব, খাবার ও গান।" } },
   { href: "/stories", emoji: "📖", title: { en: "Story time", bn: "গল্পের সময়" }, blurb: { en: "Folk tales retold gently, and stories about two homes.", bn: "নরম করে বলা লোককথা আর দুই বাড়ির গল্প।" } },
   { href: "/calendar", emoji: "🗓️", title: { en: "Days & seasons", bn: "দিন ও ঋতু" }, blurb: { en: "The week, the twelve Bengali months and the six seasons.", bn: "সপ্তাহ, বারো মাস আর ছয় ঋতু।" } },

@@ -280,9 +280,10 @@ export default function TopicsHub() {
         <span aria-hidden="true">🍎</span>
         <p>
           {s(
-            "Teachers: every topic names the NCTB textbook it draws from, so you can match topics to your term plan. Quizzes run on the child's device and store nothing on our servers.",
-            "শিক্ষকদের জন্য: প্রতিটি বিষয়ে উৎস এনসিটিবি পাঠ্যবইয়ের নাম দেওয়া আছে, তাই টার্ম-পরিকল্পনার সঙ্গে মেলানো সহজ। কুইজ শিশুর ডিভাইসেই চলে, আমাদের সার্ভারে কিছুই জমা হয় না।",
+            "Teachers: every topic names the NCTB textbook it draws from, so you can match topics to your term plan. These practice quizzes stay on the child's device — to set your own quizzes and collect real submissions, open the ",
+            "শিক্ষকদের জন্য: প্রতিটি বিষয়ে উৎস এনসিটিবি পাঠ্যবইয়ের নাম দেওয়া আছে, তাই টার্ম-পরিকল্পনার সঙ্গে মেলানো সহজ। এই অনুশীলন-কুইজ শিশুর ডিভাইসেই থাকে — নিজের কুইজ দিতে ও জমা নিতে খুলুন ",
           )}
+          <Link href="/teach">{s("teacher workspace →", "শিক্ষকের কর্মক্ষেত্র →")}</Link>
         </p>
       </section>
     </main>

@@ -130,6 +130,73 @@ CREATE TABLE IF NOT EXISTS adult_sessions (
 );
 CREATE INDEX IF NOT EXISTS adult_sessions_adult_idx ON adult_sessions (adult_id);
 
+CREATE TABLE IF NOT EXISTS classes (
+  id text PRIMARY KEY NOT NULL,
+  teacher_id text NOT NULL,
+  name text NOT NULL,
+  join_code text NOT NULL,
+  created_at text DEFAULT CURRENT_TIMESTAMP NOT NULL,
+  FOREIGN KEY (teacher_id) REFERENCES adults(id) ON UPDATE no action ON DELETE cascade
+);
+CREATE UNIQUE INDEX IF NOT EXISTS classes_join_code_unique ON classes (join_code);
+CREATE INDEX IF NOT EXISTS classes_teacher_idx ON classes (teacher_id);
+
+CREATE TABLE IF NOT EXISTS class_students (
+  id text PRIMARY KEY NOT NULL,
+  class_id text NOT NULL,
+  display_name text NOT NULL,
+  token_hash text NOT NULL,
+  created_at text DEFAULT CURRENT_TIMESTAMP NOT NULL,
+  FOREIGN KEY (class_id) REFERENCES classes(id) ON UPDATE no action ON DELETE cascade
+);
+CREATE UNIQUE INDEX IF NOT EXISTS class_students_token_unique ON class_students (token_hash);
+CREATE INDEX IF NOT EXISTS class_students_class_idx ON class_students (class_id);
+
+CREATE TABLE IF NOT EXISTS class_activities (
+  id text PRIMARY KEY NOT NULL,
+  class_id text NOT NULL,
+  title text NOT NULL,
+  instructions text DEFAULT '' NOT NULL,
+  topic_id text,
+  questions_json text DEFAULT '[]' NOT NULL,
+  status text DEFAULT 'open' NOT NULL,
+  created_at text DEFAULT CURRENT_TIMESTAMP NOT NULL,
+  updated_at text DEFAULT CURRENT_TIMESTAMP NOT NULL,
+  FOREIGN KEY (class_id) REFERENCES classes(id) ON UPDATE no action ON DELETE cascade
+);
+CREATE INDEX IF NOT EXISTS class_activities_class_idx ON class_activities (class_id);
+
+CREATE TABLE IF NOT EXISTS activity_submissions (
+  id text PRIMARY KEY NOT NULL,
+  activity_id text NOT NULL,
+  student_id text NOT NULL,
+  answers_json text DEFAULT '[]' NOT NULL,
+  score integer DEFAULT 0 NOT NULL,
+  total integer DEFAULT 0 NOT NULL,
+  submitted_at text DEFAULT CURRENT_TIMESTAMP NOT NULL,
+  FOREIGN KEY (activity_id) REFERENCES class_activities(id) ON UPDATE no action ON DELETE cascade,
+  FOREIGN KEY (student_id) REFERENCES class_students(id) ON UPDATE no action ON DELETE cascade
+);
+CREATE UNIQUE INDEX IF NOT EXISTS activity_submissions_unique ON activity_submissions (activity_id, student_id);
+CREATE INDEX IF NOT EXISTS activity_submissions_activity_idx ON activity_submissions (activity_id);
+
+CREATE TABLE IF NOT EXISTS class_announcements (
+  id text PRIMARY KEY NOT NULL,
+  class_id text NOT NULL,
+  body text NOT NULL,
+  created_at text DEFAULT CURRENT_TIMESTAMP NOT NULL,
+  FOREIGN KEY (class_id) REFERENCES classes(id) ON UPDATE no action ON DELETE cascade
+);
+CREATE INDEX IF NOT EXISTS class_announcements_class_idx ON class_announcements (class_id);
+
+CREATE TABLE IF NOT EXISTS knowledge_sources (
+  id text PRIMARY KEY NOT NULL,
+  updated_by text DEFAULT '' NOT NULL,
+  data_json text DEFAULT '{}' NOT NULL,
+  active integer DEFAULT true NOT NULL,
+  updated_at text DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
 CREATE TABLE IF NOT EXISTS recovery_codes (
   id text PRIMARY KEY NOT NULL,
   adult_id text NOT NULL,

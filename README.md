@@ -10,9 +10,15 @@ The experience combines three visual ideas: a warm river storybook, a postcard-s
 
 ### Culture, history & literature (the core)
 - **/topics** — 13 classroom topics across three themes (history & the national story · culture & celebrations · literature & arts). Each is a short bilingual reading with fun facts, a citation of the NCTB textbook it draws from, and a three-question quiz with a "show your teacher" result screen (stored on-device only)
-- **/library** — the NCTB textbook catalog: which government books back the platform (Bangladesh and Global Studies, History of Bangladesh and World Civilization, the Bangla readers, Arts and Crafts, Language and Culture of Minority Ethnic Groups…), which classes use them, English-version availability, official download links, and the yearly-refresh + client-approval sourcing policy
+- **/library** — the NCTB textbook catalog: which government books back the platform (Bangladesh and Global Studies, History of Bangladesh and World Civilization, the Bangla readers, Arts and Crafts, Language and Culture of Minority Ethnic Groups…), which classes use them, English-version availability, official download links, and the yearly-refresh + client-approval sourcing policy. Backed by `/api/library`, which merges teacher-maintained overrides
+- **/poems** — literature exactly as written: public-domain verse (Tagore, Kusumkumari Das, folk rhymes) verbatim with author credits and gentle English helpers; in-copyright poets (e.g. Nazrul, until 2036) are cited but never reproduced
 - **/explore** — history timeline, landmarks, festivals, food and music
 - **/stories** — folk tales and two-homes stories, told bilingually
+
+### The classroom (teacher ↔ student)
+- **/teach** (teacher, signs in as a grown-up) — create classes that get a 6-letter join code; author quizzes/activities (optionally linked to a classroom topic) with a question builder; open/close activities; post announcements; see every student's graded submission. Also hosts the **textbook knowledge sources** editor: refresh each NCTB book's official download link every academic year (or add/hide books) with no code change
+- **/classroom** (student) — join with the class code and a **first name or nickname only** (no email, no password, no birthday); read announcements; complete activities; answers are graded server-side and the score goes to the teacher. The answer key never reaches the student's browser
+- Join/submit endpoints are rate-limited; teachers only ever see their own classes
 
 ### Learner site (no account needed)
 - English/Bangla interface switch

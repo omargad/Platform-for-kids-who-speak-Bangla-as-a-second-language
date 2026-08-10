@@ -161,6 +161,91 @@ export const adultSessions = sqliteTable(
   (table) => [index("adult_sessions_adult_idx").on(table.adultId)],
 );
 
+export const classes = sqliteTable(
+  "classes",
+  {
+    id: text("id").primaryKey(),
+    teacherId: text("teacher_id").notNull().references(() => adults.id, { onDelete: "cascade" }),
+    name: text("name").notNull(),
+    joinCode: text("join_code").notNull(),
+    createdAt: text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+  },
+  (table) => [
+    uniqueIndex("classes_join_code_unique").on(table.joinCode),
+    index("classes_teacher_idx").on(table.teacherId),
+  ],
+);
+
+export const classStudents = sqliteTable(
+  "class_students",
+  {
+    id: text("id").primaryKey(),
+    classId: text("class_id").notNull().references(() => classes.id, { onDelete: "cascade" }),
+    displayName: text("display_name").notNull(),
+    tokenHash: text("token_hash").notNull(),
+    createdAt: text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+  },
+  (table) => [
+    uniqueIndex("class_students_token_unique").on(table.tokenHash),
+    index("class_students_class_idx").on(table.classId),
+  ],
+);
+
+export const classActivities = sqliteTable(
+  "class_activities",
+  {
+    id: text("id").primaryKey(),
+    classId: text("class_id").notNull().references(() => classes.id, { onDelete: "cascade" }),
+    title: text("title").notNull(),
+    instructions: text("instructions").notNull().default(""),
+    topicId: text("topic_id"),
+    questionsJson: text("questions_json").notNull().default("[]"),
+    status: text("status").notNull().default("open"),
+    createdAt: text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+    updatedAt: text("updated_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+  },
+  (table) => [index("class_activities_class_idx").on(table.classId)],
+);
+
+export const activitySubmissions = sqliteTable(
+  "activity_submissions",
+  {
+    id: text("id").primaryKey(),
+    activityId: text("activity_id").notNull().references(() => classActivities.id, { onDelete: "cascade" }),
+    studentId: text("student_id").notNull().references(() => classStudents.id, { onDelete: "cascade" }),
+    answersJson: text("answers_json").notNull().default("[]"),
+    score: integer("score").notNull().default(0),
+    total: integer("total").notNull().default(0),
+    submittedAt: text("submitted_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+  },
+  (table) => [
+    uniqueIndex("activity_submissions_unique").on(table.activityId, table.studentId),
+    index("activity_submissions_activity_idx").on(table.activityId),
+  ],
+);
+
+export const classAnnouncements = sqliteTable(
+  "class_announcements",
+  {
+    id: text("id").primaryKey(),
+    classId: text("class_id").notNull().references(() => classes.id, { onDelete: "cascade" }),
+    body: text("body").notNull(),
+    createdAt: text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+  },
+  (table) => [index("class_announcements_class_idx").on(table.classId)],
+);
+
+export const knowledgeSources = sqliteTable(
+  "knowledge_sources",
+  {
+    id: text("id").primaryKey(),
+    updatedBy: text("updated_by").notNull().default(""),
+    dataJson: text("data_json").notNull().default("{}"),
+    active: integer("active", { mode: "boolean" }).notNull().default(true),
+    updatedAt: text("updated_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+  },
+);
+
 export const recoveryCodes = sqliteTable(
   "recovery_codes",
   {

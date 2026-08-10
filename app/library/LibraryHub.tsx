@@ -1,8 +1,12 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useLanguage } from "../../lib/use-language";
 import { libraryBooks, NCTB_PORTAL_URL } from "../library-content";
+import type { LibraryBook } from "../library-content";
+
+type CatalogBook = LibraryBook & { downloadUrl?: string; customised?: boolean };
 
 const levels: Array<{ id: "primary" | "secondary"; en: string; bn: string; note: { en: string; bn: string } }> = [
   {
@@ -28,6 +32,24 @@ const levels: Array<{ id: "primary" | "secondary"; en: string; bn: string; note:
 export default function LibraryHub() {
   const [language, toggleLanguage] = useLanguage();
   const s = (en: string, bn: string) => (language === "bn" ? bn : en);
+  const [books, setBooks] = useState<CatalogBook[]>(libraryBooks);
+
+  useEffect(() => {
+    // The static catalog renders immediately; teacher-maintained overrides
+    // (yearly links, added books) merge in from the knowledge-sources API.
+    let cancelled = false;
+    fetch("/api/library")
+      .then((response) => (response.ok ? response.json() : null))
+      .then((data: { books?: CatalogBook[] } | null) => {
+        if (!cancelled && data?.books?.length) setBooks(data.books);
+      })
+      .catch(() => {
+        // Offline or API unavailable — the static baseline stays up.
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   return (
     <main className="adult-app library-app" lang={language}>
@@ -73,7 +95,7 @@ export default function LibraryHub() {
             <h2>{language === "bn" ? level.bn : level.en}</h2>
             <p className="resources-note">{level.note[language]}</p>
             <div className="library-grid">
-              {libraryBooks
+              {books
                 .filter((book) => book.level === level.id)
                 .map((book) => (
                   <article className="library-card" key={book.id} id={book.id}>
@@ -95,8 +117,10 @@ export default function LibraryHub() {
                     <p className="library-why">
                       <em>{book.whyItMatters[language]}</em>
                     </p>
-                    <a href={NCTB_PORTAL_URL} target="_blank" rel="noreferrer">
-                      {s("Download from NCTB ↗", "এনসিটিবি থেকে নামান ↗")}
+                    <a href={book.downloadUrl ?? NCTB_PORTAL_URL} target="_blank" rel="noreferrer">
+                      {book.downloadUrl
+                        ? s("Download this year's edition ↗", "এ বছরের সংস্করণ নামান ↗")
+                        : s("Download from NCTB ↗", "এনসিটিবি থেকে নামান ↗")}
                     </a>
                   </article>
                 ))}
