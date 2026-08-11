@@ -32,10 +32,28 @@ const pdfDir = path.join(outDir, "pdf");
 
 const SEEDS = ["https://nctb.gov.bd/"];
 const ALLOWED_HOSTS = new Set(["nctb.gov.bd", "www.nctb.gov.bd", "nctb.portal.gov.bd"]);
-const MAX_PAGES = 200;
-const MAX_DEPTH = 4;
-const DELAY_MS = 500;
+const MAX_PAGES = 400;
+const MAX_DEPTH = 6;
+const DELAY_MS = 300;
 void USER_AGENT; // set in nctb-http.mjs, shared by every request
+
+// Textbook-flavoured pages get crawled first so the page budget is spent on
+// the book listings, not the news archive.
+const PRIORITY = /(পাঠ্যপুস্তক|পুস্তক|পাঠ্যবই|বই|শ্রেণি|প্রাথমিক|মাধ্যমিক|প্রাক|textbook|pustak|book|class|primary|secondary|pre-?primary|higher|download|ডাউনলোড|202[5-6]|১ম|২য়|৩য়|৪র্থ|৫ম|৬ষ্ঠ|৭ম|৮ম|৯ম|১০ম|একাদশ|দ্বাদশ)/i;
+
+function scoreLink(href, text) {
+  let decoded = href;
+  try {
+    decoded = decodeURIComponent(href);
+  } catch {
+    // keep raw
+  }
+  const haystack = `${decoded} ${text}`;
+  let score = 0;
+  if (PRIORITY.test(haystack)) score += 2;
+  if (/(পাঠ্যপুস্তক|textbook|পাঠ্যবই|pustak)/i.test(haystack)) score += 4;
+  return score;
+}
 
 // Subjects this platform draws on — used to decide which PDFs --download grabs.
 const RELEVANT = /(বিশ্বপরিচয়|ইতিহাস|চারুপাঠ|সপ্তবর্ণা|সাহিত্য|আনন্দপাঠ|আমার\s*বাংলা|আমার\s*বই|চারু\s*ও\s*কারুকলা|নৃগোষ্ঠ|ভূগোল|সহপাঠ|global\s*studies|history|geograph|arts?\s*and\s*crafts|sahitto|shahitto|charupat)/i;
@@ -49,6 +67,14 @@ function normalize(url, base) {
     return resolved.href;
   } catch {
     return null;
+  }
+}
+
+function decodeSafe(value) {
+  try {
+    return decodeURIComponent(value);
+  } catch {
+    return value;
   }
 }
 
@@ -73,7 +99,11 @@ async function main() {
   const pdfs = new Map(); // url -> { text, foundOn }
   let visited = 0;
 
+  const visitedSample = [];
+
   while (queue.length > 0 && visited < MAX_PAGES) {
+    // Highest-scoring link first (priority queue over textbook-ish URLs).
+    queue.sort((a, b) => (b.score ?? 0) - (a.score ?? 0));
     const { url, depth } = queue.shift();
     let html;
     try {
@@ -87,6 +117,7 @@ async function main() {
       if (!response.ok || !type.includes("text/html")) continue;
       html = await response.text();
       visited += 1;
+      if (visitedSample.length < 150) visitedSample.push(url);
       process.stdout.write(`\rcrawled ${visited} pages, found ${pdfs.size} PDFs …`);
     } catch (error) {
       if (visited === 0) {
@@ -107,14 +138,27 @@ async function main() {
       } catch {
         continue;
       }
-      if (!ALLOWED_HOSTS.has(host)) continue;
 
       const text = match[2].replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim().slice(0, 120);
-      if (/\.pdf(\?|$)/i.test(href)) {
-        if (!pdfs.has(href)) pdfs.set(href, { text, foundOn: url });
-      } else if (depth < MAX_DEPTH && !seen.has(href) && !/\.(jpe?g|png|gif|docx?|xlsx?|pptx?|zip|mp4)(\?|$)/i.test(href)) {
+
+      // PDF files are accepted from ANY gov.bd host (assets often live on a
+      // sister portal), and NCTB sometimes hosts books on Google Drive.
+      if (/\.pdf(\?|$)/i.test(href) && /(^|\.)gov\.bd$/.test(host)) {
+        if (!pdfs.has(href)) pdfs.set(href, { text, foundOn: url, kind: "pdf" });
+        continue;
+      }
+      if (host === "drive.google.com" && /\/file\/d\/[\w-]+/.test(href)) {
+        const id = href.match(/\/file\/d\/([\w-]+)/)?.[1];
+        const direct = `https://drive.google.com/uc?export=download&id=${id}`;
+        if (!pdfs.has(direct)) pdfs.set(direct, { text, foundOn: url, kind: "drive" });
+        continue;
+      }
+
+      // Only NCTB's own hosts are crawled for further pages.
+      if (!ALLOWED_HOSTS.has(host)) continue;
+      if (depth < MAX_DEPTH && !seen.has(href) && !/\.(jpe?g|png|gif|docx?|xlsx?|pptx?|zip|mp4)(\?|$)/i.test(href)) {
         seen.add(href);
-        queue.push({ url: href, depth: depth + 1 });
+        queue.push({ url: href, depth: depth + 1, score: scoreLink(href, text) });
       }
     }
   }
@@ -124,8 +168,16 @@ async function main() {
     pagesVisited: visited,
     pdfCount: pdfs.size,
     pdfs: [...pdfs.entries()]
-      .map(([url, meta]) => ({ url, linkText: meta.text, foundOn: meta.foundOn, relevant: RELEVANT.test(`${meta.text} ${url}`) }))
+      .map(([url, meta]) => ({
+        url,
+        linkText: meta.text,
+        foundOn: meta.foundOn,
+        kind: meta.kind ?? "pdf",
+        relevant: RELEVANT.test(`${decodeSafe(meta.text)} ${decodeSafe(url)}`),
+      }))
       .sort((a, b) => Number(b.relevant) - Number(a.relevant) || a.url.localeCompare(b.url)),
+    // Diagnostic: which pages the budget was actually spent on.
+    visitedSample,
   };
   const reportPath = path.join(outDir, "discovered-pdfs.json");
   await writeFile(reportPath, JSON.stringify(report, null, 2) + "\n", "utf8");
