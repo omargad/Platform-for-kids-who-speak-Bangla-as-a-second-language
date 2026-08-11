@@ -1,0 +1,47 @@
+name: Ingest NCTB textbooks
+
+# Manually-triggered: crawls the public NCTB portal from a GitHub runner
+# (which has open internet, unlike the cloud dev sandbox), downloads the
+# culture/history/literature textbook PDFs, extracts their text and commits
+# content-sources/ back to the branch. The PDFs themselves stay untracked.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+        env:
+          PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: "1"
+      - name: Crawl the NCTB portal and download relevant PDFs
+        run: node scripts/crawl-nctb.mjs --download
+      - name: Extract text from every downloaded PDF
+        run: node scripts/fetch-nctb.mjs
+      - name: Show what was gathered
+        run: |
+          echo "--- discovered-pdfs.json (head) ---"
+          head -c 4000 content-sources/discovered-pdfs.json || true
+          echo
+          echo "--- extracted text files ---"
+          ls -la content-sources/text || true
+      - name: Commit extracted text
+        run: |
+          git config user.name "omargad"
+          git config user.email "36771653+omargad@users.noreply.github.com"
+          git add content-sources/text content-sources/discovered-pdfs.json 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "Nothing new to commit."
+          else
+            git commit -m "Add crawled NCTB PDF catalog and extracted textbook text"
+            git push
+          fi

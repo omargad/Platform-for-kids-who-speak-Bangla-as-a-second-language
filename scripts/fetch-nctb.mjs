@@ -23,11 +23,9 @@
  * classroom topic against the official books, per the client's instruction.
  */
 
-import { createRequire } from "node:module";
 import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 
-const require = createRequire(import.meta.url);
 const root = new URL("..", import.meta.url).pathname;
 const pdfDir = path.join(root, "content-sources", "pdf");
 const textDir = path.join(root, "content-sources", "text");
@@ -69,9 +67,9 @@ async function main() {
   }
 
   // Extract text from every PDF present, however it arrived.
-  let pdfParse;
+  let PDFParse;
   try {
-    pdfParse = require("pdf-parse");
+    ({ PDFParse } = await import("pdf-parse"));
   } catch {
     console.error("\npdf-parse is not installed. Run: npm install --save-dev pdf-parse");
     process.exit(1);
@@ -91,11 +89,14 @@ async function main() {
     }
     process.stdout.write(`⇢ extracting ${name} … `);
     try {
-      const data = await pdfParse(await readFile(path.join(pdfDir, name)));
-      const text = data.text.replace(/\r/g, "").replace(/\n{3,}/g, "\n\n").trim();
-      const header = `# Extracted from ${name} — ${data.numpages} pages\n# Source: NCTB (nctb.gov.bd). For content verification only; not for republication.\n\n`;
+      const parser = new PDFParse({ data: new Uint8Array(await readFile(path.join(pdfDir, name))) });
+      const result = await parser.getText();
+      await parser.destroy();
+      const text = result.text.replace(/\r/g, "").replace(/\n{3,}/g, "\n\n").trim();
+      const pageCount = result.total ?? result.pages?.length ?? "?";
+      const header = `# Extracted from ${name} — ${pageCount} pages\n# Source: NCTB (nctb.gov.bd). For content verification only; not for republication.\n\n`;
       await writeFile(outPath, header + text, "utf8");
-      console.log(`${data.numpages} pages → content-sources/text/${outName}`);
+      console.log(`${pageCount} pages → content-sources/text/${outName}`);
       if (text.replace(/\s/g, "").length < 500) {
         console.log(`  ⚠ ${name}: almost no selectable text — likely a scanned/legacy-font PDF; needs OCR or the English version.`);
       }
