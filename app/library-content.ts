@@ -17,6 +17,8 @@ export type BookChapter = {
 };
 
 export type ChapterMap = {
+  // Which volume/edition this map describes.
+  volume: Bilingual;
   // Which edition the map was read from, and how sure we are.
   note: Bilingual;
   verified: boolean;
@@ -37,7 +39,9 @@ export type LibraryBook = {
   // "listed" = title/classes confirmed; "confirm" = include, but double-check
   // the exact edition with the client/school before relying on it in class.
   status: "listed" | "confirm";
-  chapterMap?: ChapterMap;
+  // One map per volume where known (e.g. the Class 4 and Class 5 volumes of
+  // a multi-grade series have different structures).
+  chapterMaps?: ChapterMap[];
 };
 
 export const libraryBooks: LibraryBook[] = [
@@ -94,13 +98,34 @@ export const libraryBooks: LibraryBook[] = [
     },
     hasEnglishVersion: true,
     status: "listed",
-    chapterMap: {
-      note: {
-        en: "Chapter map of the Class 5 volume (English version). Re-check against the 2026 PDF after ingestion.",
-        bn: "৫ম শ্রেণির বইয়ের (ইংরেজি সংস্করণ) অধ্যায়-তালিকা। ২০২৬-এর পিডিএফ নামানোর পর মিলিয়ে নিন।",
+    chapterMaps: [
+      {
+        volume: { en: "Class 4 volume (2026)", bn: "৪র্থ শ্রেণির বই (২০২৬)" },
+        note: {
+          en: "Read directly from the extracted 2026 Class 4 English-version textbook (experimental edition, Sept 2025) — grades 1–4 follow the revised primary curriculum.",
+          bn: "২০২৬-এর ৪র্থ শ্রেণির ইংরেজি সংস্করণ (পরীক্ষামূলক সংস্করণ) থেকে সরাসরি পড়ে নেওয়া — ১ম–৪র্থ শ্রেণি সংশোধিত প্রাথমিক শিক্ষাক্রম অনুসরণ করে।",
+        },
+        verified: true,
+        chapters: [
+          { title: { en: "Natural and Social Environment", bn: "প্রাকৃতিক ও সামাজিক পরিবেশ" }, topicId: "rivers-everyday-life" },
+          { title: { en: "Religious Harmony", bn: "ধর্মীয় সম্প্রীতি" }, topicId: "festivals-of-many-faiths" },
+          { title: { en: "Gender Equality", bn: "জেন্ডার সমতা" } },
+          { title: { en: "The Ethnic Communities of Bangladesh", bn: "বাংলাদেশের নৃগোষ্ঠী" }, topicId: "ethnic-communities" },
+          { title: { en: "The Background of the Liberation War of Bangladesh", bn: "বাংলাদেশের মুক্তিযুদ্ধের পটভূমি" }, topicId: "liberation-1971" },
+          { title: { en: "The Traditional Cultural Festivals of Bangladesh", bn: "বাংলাদেশের ঐতিহ্যবাহী সাংস্কৃতিক উৎসব" }, topicId: "pohela-boishakh" },
+          { title: { en: "The Geographical and Cultural Diversity of Asia", bn: "এশিয়ার ভৌগোলিক ও সাংস্কৃতিক বৈচিত্র্য" } },
+          { title: { en: "Social Responsibility and Citizen Rights", bn: "সামাজিক দায়িত্ব ও নাগরিক অধিকার" } },
+          { title: { en: "Moral and Human Qualities", bn: "নৈতিক ও মানবিক গুণাবলি" } },
+        ],
       },
-      verified: true,
-      chapters: [
+      {
+        volume: { en: "Class 5 volume", bn: "৫ম শ্রেণির বই" },
+        note: {
+          en: "The Class 5 volume still follows the earlier curriculum line; its 2026 PDF is image-based, so this map awaits visual verification.",
+          bn: "৫ম শ্রেণির বই এখনো আগের শিক্ষাক্রম-ধারায়; ২০২৬-এর পিডিএফ ছবি-ভিত্তিক, তাই তালিকাটি চোখে মিলিয়ে নেওয়া বাকি।",
+        },
+        verified: false,
+        chapters: [
         { title: { en: "Our Liberation War", bn: "আমাদের মুক্তিযুদ্ধ" }, topicId: "liberation-1971" },
         { title: { en: "British Rule", bn: "ব্রিটিশ শাসন" }, topicId: "british-rule" },
         { title: { en: "Historical places and artifacts of Bangladesh", bn: "বাংলাদেশের ঐতিহাসিক স্থান ও নিদর্শন" }, topicId: "ancient-bengal" },
@@ -113,8 +138,9 @@ export const libraryBooks: LibraryBook[] = [
         { title: { en: "Democratic attitude", bn: "গণতান্ত্রিক মনোভাব" } },
         { title: { en: "Ethnic groups of Bangladesh", bn: "বাংলাদেশের নৃগোষ্ঠী" }, topicId: "ethnic-communities" },
         { title: { en: "Bangladesh and the world", bn: "বাংলাদেশ ও বিশ্ব" }, topicId: "amar-ekushey" },
-      ],
-    },
+        ],
+      },
+    ],
   },
   {
     id: "bgs-secondary",
@@ -151,13 +177,15 @@ export const libraryBooks: LibraryBook[] = [
     },
     hasEnglishVersion: true,
     status: "listed",
-    chapterMap: {
-      note: {
-        en: "Unit map by theme — chapter numbers/titles to be confirmed against the 2026 PDF after ingestion.",
-        bn: "থিম অনুযায়ী ইউনিট-তালিকা — অধ্যায় নম্বর/নাম ২০২৬-এর পিডিএফের সঙ্গে মিলিয়ে নেওয়া হবে।",
-      },
-      verified: false,
-      chapters: [
+    chapterMaps: [
+      {
+        volume: { en: "Classes 9–10 (SSC)", bn: "৯ম–১০ম শ্রেণি (এসএসসি)" },
+        note: {
+          en: "Unit map by theme — the 2026 PDF is image-based, so chapter numbers/titles await visual verification.",
+          bn: "থিম অনুযায়ী ইউনিট-তালিকা — ২০২৬-এর পিডিএফ ছবি-ভিত্তিক, তাই অধ্যায় নম্বর/নাম চোখে মিলিয়ে নেওয়া বাকি।",
+        },
+        verified: false,
+        chapters: [
         { title: { en: "What history is, and why it matters", bn: "ইতিহাস কী ও কেন" } },
         { title: { en: "World civilizations (Egypt, Greece, Rome)", bn: "বিশ্বসভ্যতা (মিশর, গ্রিস, রোম)" } },
         { title: { en: "Janapadas and rulers of ancient Bengal", bn: "প্রাচীন বাংলার জনপদ ও শাসকগণ" }, topicId: "ancient-bengal" },
@@ -165,19 +193,20 @@ export const libraryBooks: LibraryBook[] = [
         { title: { en: "Colonial rule and the road to 1947", bn: "ঔপনিবেশিক শাসন ও ১৯৪৭-এর পথ" }, topicId: "british-rule" },
         { title: { en: "The Language Movement of 1952", bn: "১৯৫২-এর ভাষা আন্দোলন" }, topicId: "amar-ekushey" },
         { title: { en: "The Liberation War and independent Bangladesh", bn: "মুক্তিযুদ্ধ ও স্বাধীন বাংলাদেশ" }, topicId: "liberation-1971" },
-      ],
-    },
+        ],
+      },
+    ],
   },
   {
     id: "literature-secondary",
-    titleBn: "চারুপাঠ · সপ্তবর্ণা · সাহিত্য কণিকা · আনন্দপাঠ",
-    titleEn: "The secondary Bangla readers (Charupath, Saptabarna, Sahitya Kanika, Anandapath)",
+    titleBn: "চারুপাঠ · আনন্দপাঠ · সপ্তবর্ণা · সাহিত্য কণিকা",
+    titleEn: "The secondary Bangla readers (Charupath & Anandapath for Class 6, Saptabarna, Sahitya Kanika)",
     classes: { en: "Classes 6–8", bn: "৬ষ্ঠ–৮ম শ্রেণি" },
     level: "secondary",
     subjectArea: { en: "Bangla literature", bn: "বাংলা সাহিত্য" },
     covers: {
-      en: "Selected poems, essays and stories by Tagore, Nazrul, Jasimuddin and more — the literature canon as Bangladesh's schools teach it.",
-      bn: "রবীন্দ্রনাথ, নজরুল, জসীমউদ্দীনসহ নানা লেখকের নির্বাচিত কবিতা, প্রবন্ধ ও গল্প — বাংলাদেশের স্কুলে পড়ানো সাহিত্যের মূল ধারা।",
+      en: "Selected poems, essays and stories by Tagore, Nazrul, Jasimuddin and more — the literature canon as Bangladesh's schools teach it. Charupath and the Anandapath rapid reader are the Class 6 pair (2025 editions confirmed in our ingest).",
+      bn: "রবীন্দ্রনাথ, নজরুল, জসীমউদ্দীনসহ নানা লেখকের নির্বাচিত কবিতা, প্রবন্ধ ও গল্প — বাংলাদেশের স্কুলে পড়ানো সাহিত্যের মূল ধারা। চারুপাঠ ও দ্রুতপঠন আনন্দপাঠ ৬ষ্ঠ শ্রেণির জুটি (২০২৫ সংস্করণ আমাদের সংগ্রহে নিশ্চিত)।",
     },
     whyItMatters: {
       en: "Our literature topics point here for the real texts. Poems and stories are read as printed — never adapted.",
@@ -234,11 +263,11 @@ export const libraryBooks: LibraryBook[] = [
       bn: "বাংলাদেশের ভূমি, নদী ও ব-দ্বীপ, জলবায়ু ও বর্ষা, প্রাকৃতিক দুর্যোগ আর মানুষের অভিযোজন — দৈনন্দিন জীবনের ভৌগোলিক ভিত্তি।",
     },
     whyItMatters: {
-      en: "Grounds the rivers and climate/disaster topics for older students; pairs naturally with Bangladesh and Global Studies.",
-      bn: "বড়দের জন্য নদী ও জলবায়ু-দুর্যোগ বিষয়ের ভিত্তি; বাংলাদেশ ও বিশ্বপরিচয়ের স্বাভাবিক সঙ্গী।",
+      en: "Grounds the rivers and climate/disaster topics for older students; pairs naturally with Bangladesh and Global Studies. The 2026 edition is confirmed — its PDF is in our source ingest.",
+      bn: "বড়দের জন্য নদী ও জলবায়ু-দুর্যোগ বিষয়ের ভিত্তি; বাংলাদেশ ও বিশ্বপরিচয়ের স্বাভাবিক সঙ্গী। ২০২৬ সংস্করণ নিশ্চিত — পিডিএফ আমাদের সংগ্রহে আছে।",
     },
     hasEnglishVersion: true,
-    status: "confirm",
+    status: "listed",
   },
   {
     id: "mother-tongue-books",
@@ -252,11 +281,11 @@ export const libraryBooks: LibraryBook[] = [
       bn: "এনসিটিবি পাঁচটি নৃগোষ্ঠীর ভাষায় শুরুর শ্রেণির বই ছাপে, যেন শিশুরা নিজের মাতৃভাষায় স্কুল শুরু করতে পারে।",
     },
     whyItMatters: {
-      en: "Living proof of the Ekushey promise — the country of Mother Language Day prints schoolbooks in its smaller languages too. A wonderful show-and-tell for the hill-and-plains communities topic.",
-      bn: "একুশের প্রতিশ্রুতির জীবন্ত প্রমাণ — মাতৃভাষা দিবসের দেশ ছোট ভাষাগুলোর জন্যও পাঠ্যবই ছাপে। পাহাড় ও সমতলের জনগোষ্ঠী বিষয়ের চমৎকার উদাহরণ।",
+      en: "Living proof of the Ekushey promise — the country of Mother Language Day prints schoolbooks in its smaller languages too. Confirmed first-hand: Chakma, Garo, Tripura and Marma editions are in our source ingest.",
+      bn: "একুশের প্রতিশ্রুতির জীবন্ত প্রমাণ — মাতৃভাষা দিবসের দেশ ছোট ভাষাগুলোর জন্যও পাঠ্যবই ছাপে। সরাসরি নিশ্চিত: চাকমা, গারো, ত্রিপুরা ও মারমা সংস্করণ আমাদের সংগ্রহে আছে।",
     },
     hasEnglishVersion: false,
-    status: "confirm",
+    status: "listed",
   },
   {
     id: "hsc-sahityapath",

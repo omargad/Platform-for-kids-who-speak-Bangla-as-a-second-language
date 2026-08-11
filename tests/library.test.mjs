@@ -29,19 +29,25 @@ test("the full prep-to-year-12 span is represented", () => {
   assert.ok(libraryBooks.some((book) => book.level === "higher-secondary"), "higher-secondary books listed");
 });
 
-test("chapter maps are bilingual and cross-link only real topics", () => {
+test("chapter maps are bilingual, volume-labelled and cross-link only real topics", () => {
   const topicIds = new Set(topics.map((topic) => topic.id));
-  const mapped = libraryBooks.filter((book) => book.chapterMap);
-  assert.ok(mapped.length >= 2, "core books carry a chapter map");
+  const mapped = libraryBooks.filter((book) => book.chapterMaps?.length);
+  assert.ok(mapped.length >= 2, "core books carry chapter maps");
+  assert.ok(
+    mapped.some((book) => book.chapterMaps.some((map) => map.verified)),
+    "at least one map has been verified against an extracted book",
+  );
   for (const book of mapped) {
-    const { note, verified, chapters } = book.chapterMap;
-    assert.ok(note.en.trim() && note.bn.trim(), `${book.id}: chapter map needs a bilingual note`);
-    assert.equal(typeof verified, "boolean", `${book.id}: verified flag`);
-    assert.ok(chapters.length >= 5, `${book.id}: chapter map looks too short`);
-    for (const chapter of chapters) {
-      assert.ok(chapter.title.en.trim() && chapter.title.bn.trim(), `${book.id}: chapter title must be bilingual`);
-      if (chapter.topicId) {
-        assert.ok(topicIds.has(chapter.topicId), `${book.id}: chapter links unknown topic '${chapter.topicId}'`);
+    for (const map of book.chapterMaps) {
+      assert.ok(map.volume.en.trim() && map.volume.bn.trim(), `${book.id}: map needs a bilingual volume label`);
+      assert.ok(map.note.en.trim() && map.note.bn.trim(), `${book.id}: chapter map needs a bilingual note`);
+      assert.equal(typeof map.verified, "boolean", `${book.id}: verified flag`);
+      assert.ok(map.chapters.length >= 5, `${book.id}: chapter map looks too short`);
+      for (const chapter of map.chapters) {
+        assert.ok(chapter.title.en.trim() && chapter.title.bn.trim(), `${book.id}: chapter title must be bilingual`);
+        if (chapter.topicId) {
+          assert.ok(topicIds.has(chapter.topicId), `${book.id}: chapter links unknown topic '${chapter.topicId}'`);
+        }
       }
     }
   }
