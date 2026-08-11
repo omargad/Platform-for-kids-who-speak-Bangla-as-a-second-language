@@ -59,8 +59,18 @@ function rawGet(url, redirectsLeft = 5) {
   });
 }
 
-/** fetch() with a per-host, chain-error-only relaxed-TLS fallback. */
-export async function nctbFetch(url) {
+function isTransientError(error) {
+  const code = error?.cause?.code ?? error?.code ?? "";
+  const message = `${error?.cause?.message ?? ""} ${error?.message ?? ""}`;
+  return (
+    ["ETIMEDOUT", "ECONNRESET", "ECONNREFUSED", "EAI_AGAIN", "UND_ERR_CONNECT_TIMEOUT", "UND_ERR_SOCKET"].includes(code) ||
+    /timeout|reset|refused|EAI_AGAIN/i.test(message)
+  );
+}
+
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+async function fetchOnce(url) {
   const host = new URL(url).hostname;
   if (!relaxedHosts.has(host)) {
     try {
@@ -78,4 +88,24 @@ export async function nctbFetch(url) {
     }
   }
   return rawGet(url);
+}
+
+/**
+ * fetch() with a per-host, chain-error-only relaxed-TLS fallback and
+ * retry-with-backoff for the NCTB server's frequent connect timeouts.
+ */
+export async function nctbFetch(url, { attempts = 4 } = {}) {
+  let lastError;
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    try {
+      return await fetchOnce(url);
+    } catch (error) {
+      lastError = error;
+      if (!isTransientError(error) || attempt === attempts) throw error;
+      const backoff = attempt * 5000;
+      console.warn(`\n… ${new URL(url).hostname} not answering (attempt ${attempt}/${attempts}); retrying in ${backoff / 1000}s`);
+      await sleep(backoff);
+    }
+  }
+  throw lastError;
 }

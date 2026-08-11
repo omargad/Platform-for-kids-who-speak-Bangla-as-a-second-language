@@ -23,6 +23,7 @@
  * classroom topic against the official books, per the client's instruction.
  */
 
+import { execFileSync } from "node:child_process";
 import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { nctbFetch } from "./nctb-http.mjs";
@@ -64,6 +65,18 @@ async function main() {
         console.log(`FAILED (${error.message})`);
         missing.push({ book, version, filename });
       }
+    }
+  }
+
+  // Some collections (e.g. story sets) ship as a ZIP of PDFs — unpack them
+  // into the same folder first so extraction sees every book.
+  const zips = (await readdir(pdfDir)).filter((name) => name.toLowerCase().endsWith(".zip"));
+  for (const name of zips) {
+    try {
+      execFileSync("unzip", ["-o", "-j", path.join(pdfDir, name), "*.pdf", "-d", pdfDir], { stdio: "pipe" });
+      console.log(`⇢ unpacked ${name}`);
+    } catch {
+      console.log(`⚠ could not unpack ${name} automatically — unzip it by hand into content-sources/pdf/`);
     }
   }
 

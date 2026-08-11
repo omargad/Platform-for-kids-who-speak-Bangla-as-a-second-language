@@ -187,6 +187,12 @@ export default function LibraryHub() {
                 "অনুকরণ নয়, অভিযোজন: আমরা নিজেরা শিশু-উপযোগী সারমর্ম ও কুইজ লিখি। কেবল সাহিত্য (গল্প, কবিতা) ছাপা অনুযায়ী দেখানো হয়, কারণ সাহিত্য বদলানো চলে না।",
               )}
             </li>
+            <li>
+              {s(
+                "Accessible by design: most NCTB PDFs are image scans that screen readers cannot read, so this platform never embeds them as lessons — every reading here is real, accessible HTML text, and the PDFs stay as downloads for those who want the original book.",
+                "সহজগম্যতার নকশা: এনসিটিবির বেশির ভাগ পিডিএফ ছবি-স্ক্যান, স্ক্রিন রিডার পড়তে পারে না — তাই এই প্ল্যাটফর্ম পিডিএফ কখনো পাঠ হিসেবে বসায় না; এখানকার প্রতিটি পাঠ প্রকৃত, সহজগম্য এইচটিএমএল লেখা, আর মূল বই চাইলে পিডিএফ ডাউনলোডে থাকে।",
+              )}
+            </li>
           </ul>
         </section>
 

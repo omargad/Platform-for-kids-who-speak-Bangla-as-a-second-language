@@ -141,10 +141,12 @@ async function main() {
 
       const text = match[2].replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim().slice(0, 120);
 
-      // PDF files are accepted from ANY gov.bd host (assets often live on a
-      // sister portal), and NCTB sometimes hosts books on Google Drive.
-      if (/\.pdf(\?|$)/i.test(href) && /(^|\.)gov\.bd$/.test(host)) {
-        if (!pdfs.has(href)) pdfs.set(href, { text, foundOn: url, kind: "pdf" });
+      // PDF/ZIP files are accepted from ANY gov.bd host (assets often live on
+      // a sister portal; some story collections ship as a ZIP of PDFs), and
+      // NCTB sometimes hosts books on Google Drive.
+      if (/\.(pdf|zip)(\?|$)/i.test(href) && /(^|\.)gov\.bd$/.test(host)) {
+        const kind = /\.zip(\?|$)/i.test(href) ? "zip" : "pdf";
+        if (!pdfs.has(href)) pdfs.set(href, { text, foundOn: url, kind });
         continue;
       }
       if (host === "drive.google.com" && /\/file\/d\/[\w-]+/.test(href)) {
@@ -189,7 +191,7 @@ async function main() {
     await mkdir(pdfDir, { recursive: true });
     console.log(`\nDownloading the ${relevant.length} relevant PDFs …`);
     for (const item of relevant) {
-      const filename = `${slugify(item.linkText, item.url)}.pdf`;
+      const filename = `${slugify(item.linkText, item.url)}.${item.kind === "zip" ? "zip" : "pdf"}`;
       const target = path.join(pdfDir, filename);
       process.stdout.write(`  ↓ ${filename} … `);
       try {

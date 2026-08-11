@@ -52,3 +52,21 @@ Notes:
 - Some Bangla-version PDFs use legacy fonts or scans and extract garbage —
   the script warns when that happens. Prefer the English versions for
   machine-readable text; the Bangla originals are still the reading copy.
+
+## Independent audit findings (team, 11 Aug 2026)
+
+A manual audit of 25 official NCTB pages (Python requests + BeautifulSoup)
+found **143 unique government-cloud downloads** — 142 PDFs plus one ZIP
+containing ten story PDFs — all answering HTTP 200. 26 representative PDFs
+were inspected: **no encryption, JavaScript, launch actions, embedded files
+or rich media** (safe to process). Key production finding: **most textbooks
+are image-based scans and not screen-reader-ready.** Standing decision:
+PDFs are never embedded as lesson content — platform readings are original,
+accessible HTML (see the policy on /library); the PDFs remain reference
+downloads and human reading copies. Image-based books need OCR (or the
+digitally-typeset English versions) before machine text verification.
+
+The NCTB origin server times out intermittently from some networks (GitHub
+runners hit this); the scripts retry with backoff. If a crawl finds fewer
+than the audited 143 endpoints, re-run later or paste the audited URL list
+into `discovered-pdfs.json` and run `npm run fetch:nctb` against it.
