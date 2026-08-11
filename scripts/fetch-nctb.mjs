@@ -68,6 +68,50 @@ async function main() {
     }
   }
 
+  // Audited Book Bridge sources (app/nctb-books.ts): the team's read-only
+  // audit pinned direct 2026 download links on the government cloud
+  // (drive.egovcloud.gov.bd). These are the highest-trust URLs we have —
+  // download every variant plus the pre-primary and teen resources.
+  try {
+    const bridge = await import("../app/nctb-books.ts");
+    const auditedFiles = [];
+    for (const book of bridge.nctbCoreBooks ?? []) {
+      for (const variant of book.variants) auditedFiles.push({ id: variant.id, url: variant.url, kind: "pdf" });
+    }
+    for (const resource of bridge.nctbPrePrimaryResources ?? []) {
+      // egovcloud share URLs carry no extension — trust the audited format field.
+      if (resource.url) auditedFiles.push({ id: resource.id, url: resource.url, kind: resource.format === "zip" ? "zip" : "pdf" });
+    }
+    for (const resource of bridge.nctbConditionalTeenResources ?? []) {
+      if (resource.url) auditedFiles.push({ id: resource.id, url: resource.url, kind: "pdf" });
+    }
+    console.log(`\nBook Bridge: ${auditedFiles.length} audited files to fetch.`);
+    for (const item of auditedFiles) {
+      const filename = `${item.id}.${item.kind}`;
+      const target = path.join(pdfDir, filename);
+      const exists = await readFile(target).then(() => true).catch(() => false);
+      if (exists) {
+        console.log(`✓ already downloaded: ${filename}`);
+        continue;
+      }
+      process.stdout.write(`↓ downloading ${filename} … `);
+      try {
+        const response = await nctbFetch(item.url);
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const bytes = Buffer.from(await response.arrayBuffer());
+        if (item.kind === "pdf" && !bytes.subarray(0, 5).toString("latin1").startsWith("%PDF")) {
+          throw new Error("response is not a PDF");
+        }
+        await writeFile(target, bytes);
+        console.log(`${(bytes.length / 1024 / 1024).toFixed(1)} MB`);
+      } catch (error) {
+        console.log(`FAILED (${error.message})`);
+      }
+    }
+  } catch (error) {
+    console.log(`(Book Bridge sources skipped: ${error instanceof Error ? error.message : error})`);
+  }
+
   // Some collections (e.g. story sets) ship as a ZIP of PDFs — unpack them
   // into the same folder first so extraction sees every book.
   const zips = (await readdir(pdfDir)).filter((name) => name.toLowerCase().endsWith(".zip"));
