@@ -78,6 +78,15 @@ function decodeSafe(value) {
   }
 }
 
+function cleanText(fragment) {
+  return fragment
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&nbsp;|&#160;/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 function slugify(text, url) {
   const base = (text || path.basename(new URL(url).pathname, ".pdf"))
     .trim()
@@ -128,34 +137,61 @@ async function main() {
       continue;
     }
 
-    // Same job BeautifulSoup's find_all("a") would do: pull every href.
-    for (const match of html.matchAll(/<a\b[^>]*href\s*=\s*["']([^"'#]+)["'][^>]*>([\s\S]*?)<\/a>/gi)) {
+    const pageTitle = cleanText(html.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1] ?? "").slice(0, 120);
+
+    const recordFile = (href, text, rowTitle) => {
+      let host;
+      try {
+        host = new URL(href).hostname;
+      } catch {
+        return false;
+      }
+      // Book files live on gov.bd sister portals or (mostly) Google Drive —
+      // the portal's tables put the book name in a sibling cell, not the link.
+      if (/\.(pdf|zip)(\?|$)/i.test(href) && /(^|\.)gov\.bd$/.test(host)) {
+        const kind = /\.zip(\?|$)/i.test(href) ? "zip" : "pdf";
+        const existing = pdfs.get(href);
+        if (!existing || (!existing.rowTitle && rowTitle)) pdfs.set(href, { text, rowTitle, pageTitle, foundOn: url, kind });
+        return true;
+      }
+      const driveId = host === "drive.google.com" ? href.match(/(?:\/file\/d\/|[?&]id=)([\w-]{10,})/)?.[1] : null;
+      if (driveId) {
+        const direct = `https://drive.google.com/uc?export=download&id=${driveId}`;
+        const existing = pdfs.get(direct);
+        if (!existing || (!existing.rowTitle && rowTitle)) pdfs.set(direct, { text, rowTitle, pageTitle, foundOn: url, kind: "drive" });
+        return true;
+      }
+      return false;
+    };
+
+    const anchorRe = /<a\b[^>]*href\s*=\s*["']([^"'#]+)["'][^>]*>([\s\S]*?)<\/a>/gi;
+
+    // Pass 1 — table rows: pair each download link with the row's book title,
+    // the way a human reads the portal's book tables.
+    for (const rowMatch of html.matchAll(/<tr\b[\s\S]*?<\/tr>/gi)) {
+      const row = rowMatch[0];
+      const cells = [...row.matchAll(/<t[dh][^>]*>([\s\S]*?)<\/t[dh]>/gi)].map((cell) => cleanText(cell[1]));
+      const rowTitle =
+        cells.find((cell) => cell && cell.length > 2 && !/ডাউনলোড|download|লিংক|link|^\d+$|^[০-৯]+$/i.test(cell)) ?? "";
+      for (const match of row.matchAll(anchorRe)) {
+        const href = normalize(match[1], url);
+        if (href) recordFile(href, cleanText(match[2]), rowTitle);
+      }
+    }
+
+    // Pass 2 — every anchor: catches non-table downloads and feeds the crawl.
+    for (const match of html.matchAll(anchorRe)) {
       const href = normalize(match[1], url);
       if (!href) continue;
+      const text = cleanText(match[2]).slice(0, 120);
+      if (recordFile(href, text, "")) continue;
+
       let host;
       try {
         host = new URL(href).hostname;
       } catch {
         continue;
       }
-
-      const text = match[2].replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim().slice(0, 120);
-
-      // PDF/ZIP files are accepted from ANY gov.bd host (assets often live on
-      // a sister portal; some story collections ship as a ZIP of PDFs), and
-      // NCTB sometimes hosts books on Google Drive.
-      if (/\.(pdf|zip)(\?|$)/i.test(href) && /(^|\.)gov\.bd$/.test(host)) {
-        const kind = /\.zip(\?|$)/i.test(href) ? "zip" : "pdf";
-        if (!pdfs.has(href)) pdfs.set(href, { text, foundOn: url, kind });
-        continue;
-      }
-      if (host === "drive.google.com" && /\/file\/d\/[\w-]+/.test(href)) {
-        const id = href.match(/\/file\/d\/([\w-]+)/)?.[1];
-        const direct = `https://drive.google.com/uc?export=download&id=${id}`;
-        if (!pdfs.has(direct)) pdfs.set(direct, { text, foundOn: url, kind: "drive" });
-        continue;
-      }
-
       // Only NCTB's own hosts are crawled for further pages.
       if (!ALLOWED_HOSTS.has(host)) continue;
       if (depth < MAX_DEPTH && !seen.has(href) && !/\.(jpe?g|png|gif|docx?|xlsx?|pptx?|zip|mp4)(\?|$)/i.test(href)) {
@@ -172,10 +208,12 @@ async function main() {
     pdfs: [...pdfs.entries()]
       .map(([url, meta]) => ({
         url,
+        bookTitle: meta.rowTitle || meta.text,
         linkText: meta.text,
+        pageTitle: meta.pageTitle ?? "",
         foundOn: meta.foundOn,
         kind: meta.kind ?? "pdf",
-        relevant: RELEVANT.test(`${decodeSafe(meta.text)} ${decodeSafe(url)}`),
+        relevant: RELEVANT.test(`${decodeSafe(meta.rowTitle ?? "")} ${decodeSafe(meta.text)} ${decodeSafe(meta.pageTitle ?? "")} ${decodeSafe(url)}`),
       }))
       .sort((a, b) => Number(b.relevant) - Number(a.relevant) || a.url.localeCompare(b.url)),
     // Diagnostic: which pages the budget was actually spent on.
@@ -189,17 +227,30 @@ async function main() {
 
   if (shouldDownload && relevant.length > 0) {
     await mkdir(pdfDir, { recursive: true });
-    console.log(`\nDownloading the ${relevant.length} relevant PDFs …`);
-    for (const item of relevant) {
-      const filename = `${slugify(item.linkText, item.url)}.${item.kind === "zip" ? "zip" : "pdf"}`;
+    // Cap the batch so a single run stays polite and inside runner limits.
+    const MAX_DOWNLOADS = 80;
+    const batch = relevant.slice(0, MAX_DOWNLOADS);
+    if (relevant.length > batch.length) {
+      console.log(`\n(only the first ${MAX_DOWNLOADS} of ${relevant.length} relevant files this run — re-run for the rest)`);
+    }
+    console.log(`\nDownloading ${batch.length} relevant files …`);
+    for (const item of batch) {
+      const label = [item.bookTitle, item.pageTitle.split("|")[0]].filter(Boolean).join("-");
+      const filename = `${slugify(label, item.url)}.${item.kind === "zip" ? "zip" : "pdf"}`;
       const target = path.join(pdfDir, filename);
       process.stdout.write(`  ↓ ${filename} … `);
       try {
-        const response = await politeFetch(item.url);
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        const bytes = Buffer.from(await response.arrayBuffer());
+        let bytes = await downloadBytes(item.url);
+        // Google Drive interposes an HTML confirm page for big files.
+        if (looksLikeHtml(bytes) && item.url.includes("drive.google.com")) {
+          const id = item.url.match(/[?&]id=([\w-]+)/)?.[1];
+          bytes = await downloadBytes(`https://drive.usercontent.google.com/download?id=${id}&export=download&confirm=t`);
+        }
+        if (item.kind !== "zip" && !bytes.subarray(0, 5).toString("latin1").startsWith("%PDF")) {
+          throw new Error("response is not a PDF (login page or quota notice?)");
+        }
         await writeFile(target, bytes);
-        console.log(`${Math.round(bytes.length / 1024 / 1024)} MB`);
+        console.log(`${(bytes.length / 1024 / 1024).toFixed(1)} MB`);
       } catch (error) {
         console.log(`FAILED (${error.message})`);
       }
@@ -208,6 +259,17 @@ async function main() {
   } else if (!shouldDownload) {
     console.log("Re-run with --download to fetch the relevant ones into content-sources/pdf/.");
   }
+}
+
+function looksLikeHtml(bytes) {
+  const head = bytes.subarray(0, 200).toString("latin1").trimStart().toLowerCase();
+  return head.startsWith("<!doctype") || head.startsWith("<html") || head.startsWith("<");
+}
+
+async function downloadBytes(url) {
+  const response = await politeFetch(url);
+  if (!response.ok) throw new Error(`HTTP ${response.status}`);
+  return Buffer.from(await response.arrayBuffer());
 }
 
 main().catch((error) => {
