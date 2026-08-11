@@ -24,6 +24,7 @@
 
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { nctbFetch, USER_AGENT } from "./nctb-http.mjs";
 
 const root = new URL("..", import.meta.url).pathname;
 const outDir = path.join(root, "content-sources");
@@ -34,7 +35,7 @@ const ALLOWED_HOSTS = new Set(["nctb.gov.bd", "www.nctb.gov.bd", "nctb.portal.go
 const MAX_PAGES = 200;
 const MAX_DEPTH = 4;
 const DELAY_MS = 500;
-const USER_AGENT = "BanglaAdventures-TextbookIndexer/1.0 (student capstone; fetches freely distributed NCTB textbooks)";
+void USER_AGENT; // set in nctb-http.mjs, shared by every request
 
 // Subjects this platform draws on — used to decide which PDFs --download grabs.
 const RELEVANT = /(বিশ্বপরিচয়|ইতিহাস|চারুপাঠ|সপ্তবর্ণা|সাহিত্য|আনন্দপাঠ|আমার\s*বাংলা|আমার\s*বই|চারু\s*ও\s*কারুকলা|নৃগোষ্ঠ|ভূগোল|সহপাঠ|global\s*studies|history|geograph|arts?\s*and\s*crafts|sahitto|shahitto|charupat)/i;
@@ -62,7 +63,7 @@ function slugify(text, url) {
 
 async function politeFetch(url) {
   await new Promise((resolve) => setTimeout(resolve, DELAY_MS));
-  return fetch(url, { headers: { "User-Agent": USER_AGENT }, redirect: "follow" });
+  return nctbFetch(url);
 }
 
 async function main() {

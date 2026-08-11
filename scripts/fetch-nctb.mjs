@@ -25,6 +25,7 @@
 
 import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { nctbFetch } from "./nctb-http.mjs";
 
 const root = new URL("..", import.meta.url).pathname;
 const pdfDir = path.join(root, "content-sources", "pdf");
@@ -53,7 +54,7 @@ async function main() {
       }
       process.stdout.write(`↓ downloading ${filename} … `);
       try {
-        const response = await fetch(version.pdfUrl, { redirect: "follow" });
+        const response = await nctbFetch(version.pdfUrl);
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         const bytes = Buffer.from(await response.arrayBuffer());
         if (bytes.length < 10_000) throw new Error("response too small to be the textbook PDF");
