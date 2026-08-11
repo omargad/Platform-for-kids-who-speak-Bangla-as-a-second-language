@@ -18,6 +18,7 @@ export default function ResourcesHub() {
           <Link href="/">{s("Learner site", "শেখার সাইট")}</Link>
           <Link href="/explore">{s("Explore", "ঘুরে দেখো")}</Link>
           <Link href="/worksheets">{s("Worksheets", "ওয়ার্কশিট")}</Link>
+          <Link href="/books">{s("NCTB audit", "এনসিটিবি নিরীক্ষা")}</Link>
           <Link className="active" href="/resources">{s("Resources", "সম্পদ")}</Link>
           <Link href="/safety">{s("Safety & access", "নিরাপত্তা ও প্রবেশ")}</Link>
         </nav>
