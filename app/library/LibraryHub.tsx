@@ -73,6 +73,7 @@ export default function LibraryHub() {
         <nav aria-label="Sections">
           <Link href="/topics">{s("Classroom topics", "শ্রেণিকক্ষের বিষয়")}</Link>
           <Link className="active" href="/library">{s("Library", "লাইব্রেরি")}</Link>
+          <Link href="/books">{s("Source audit", "উৎস নিরীক্ষা")}</Link>
           <Link href="/resources">{s("More resources", "আরও সম্পদ")}</Link>
         </nav>
         <div className="adult-account">
@@ -89,8 +90,8 @@ export default function LibraryHub() {
             <h1>{s("The government textbooks behind every topic.", "প্রতিটি বিষয়ের পেছনের সরকারি পাঠ্যবই।")}</h1>
             <p>
               {s(
-                "Bangladesh's National Curriculum and Textbook Board (NCTB) publishes the official school textbooks and offers them free on its website. On our client's direction, these books are the platform's approved source for culture, history and literature content: we adapt facts to be kid-friendly for heritage learners, cite the book they come from, and present stories and poems exactly as written.",
-                "বাংলাদেশের জাতীয় শিক্ষাক্রম ও পাঠ্যপুস্তক বোর্ড (এনসিটিবি) সরকারি পাঠ্যবই প্রকাশ করে এবং ওয়েবসাইটে বিনামূল্যে দেয়। ক্লায়েন্টের নির্দেশনায় এই বইগুলোই সংস্কৃতি, ইতিহাস ও সাহিত্যের অনুমোদিত উৎস: আমরা তথ্যকে প্রবাসী শিশুদের উপযোগী করি, উৎস বইয়ের নাম উল্লেখ করি, আর গল্প-কবিতা অবিকল রাখি।",
+                "Bangladesh's National Curriculum and Textbook Board (NCTB) publishes the official school textbooks and offers them free on its website. On our client's direction, these books are the platform's primary evidence base for culture, history and literature: we create original, kid-friendly adaptations, cite the exact title and page, and link to the official source. Stories and poems are not republished unless permission and accessibility review are recorded.",
+                "বাংলাদেশের জাতীয় শিক্ষাক্রম ও পাঠ্যপুস্তক বোর্ড (এনসিটিবি) সরকারি পাঠ্যবই প্রকাশ করে এবং ওয়েবসাইটে বিনামূল্যে দেয়। ক্লায়েন্টের নির্দেশনায় এই বইগুলো সংস্কৃতি, ইতিহাস ও সাহিত্যের প্রধান প্রমাণভিত্তি: আমরা প্রবাসী শিশুদের জন্য মৌলিক ও শিশু-উপযোগী অভিযোজন তৈরি করি, সঠিক বই ও পৃষ্ঠা উল্লেখ করি এবং সরকারি উৎসে লিংক দিই। অনুমতি ও প্রবেশযোগ্যতা পর্যালোচনা নথিভুক্ত না হলে গল্প-কবিতা পুনঃপ্রকাশ করি না।",
               )}
             </p>
             <a className="primary-button" href={NCTB_PORTAL_URL} target="_blank" rel="noreferrer">
@@ -183,8 +184,8 @@ export default function LibraryHub() {
             </li>
             <li>
               {s(
-                "Adapted, never copied: we write our own kid-friendly summaries and quizzes. Only literature (stories, poems) is shown as printed, because literature must not be altered.",
-                "অনুকরণ নয়, অভিযোজন: আমরা নিজেরা শিশু-উপযোগী সারমর্ম ও কুইজ লিখি। কেবল সাহিত্য (গল্প, কবিতা) ছাপা অনুযায়ী দেখানো হয়, কারণ সাহিত্য বদলানো চলে না।",
+                "Original and accessible: we write our own kid-friendly summaries, activities and quizzes. A short literary excerpt is used only when the legal or permission basis, source citation and accessibility review are recorded.",
+                "মৌলিক ও প্রবেশযোগ্য: আমরা নিজেরা শিশু-উপযোগী সারমর্ম, কার্যক্রম ও কুইজ লিখি। ছোট কোনো সাহিত্যিক উদ্ধৃতি কেবল তখনই ব্যবহার করা হয়, যখন আইনি বা অনুমতির ভিত্তি, উৎস-উল্লেখ এবং প্রবেশযোগ্যতা পর্যালোচনা নথিভুক্ত থাকে।",
               )}
             </li>
             <li>
