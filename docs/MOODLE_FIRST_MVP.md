@@ -56,16 +56,18 @@ it is not the launch configuration.
 
 ## First pilot
 
-The controlled manifest is `moodle/pilot/content-manifest.json`:
+The controlled manifest is
+`moodle/local/banglapilot/data/content-manifest.json`:
 
 1. **Ekushey** — history and commemoration;
 2. **Pohela Boishakh** — culture and varied family traditions; and
 3. **Folk tales** — literature, evidence and learner retelling.
 
-Each has a Moodle Book/read activity, a three-question bilingual quiz and one
-teacher-reviewed response. The third activity is an Assignment except where a
-teacher-moderated forum is explicitly suitable. The nine draft quiz items are
-importable from `moodle/pilot/questions.gift`.
+Each has a Moodle Book with five substantive bilingual draft chapters, a
+three-question bilingual quiz and one teacher-reviewed response. The third
+activity is an Assignment except where a teacher-moderated forum is explicitly
+suitable. The installable local plugin seeds all nine activities and imports
+the nine draft GIFT items into private quiz question banks.
 
 All 27 module gates start pending. This is intentional. `npm run
 verify:moodle-release` fails until every gate has a named reviewer, date and
@@ -116,8 +118,9 @@ directory. The maintained installation instructions are linked in
 ## Migration order
 
 1. Provision a private Moodle test site and create named adult accounts.
-2. Build the hidden three-section course from the manifest; import the GIFT
-   questions.
+2. Package and install `local_banglapilot`; its CLI builds the hidden
+   three-section course, imports questions and proves a repeat application has
+   no drift.
 3. Complete source mapping, language, cultural, age, rights, accessibility and
    media review in that order.
 4. Run teacher-only acceptance testing and correct the course.
@@ -149,8 +152,8 @@ directory. The maintained installation instructions are linked in
 
 ## Explicitly not complete
 
-This branch does not deploy Moodle because cloud, DNS and administrator access
-have not been supplied. It does not approve educational content or complete
+The repository does not deploy Moodle to the client's account because cloud,
+DNS and administrator access have not been supplied. It does not approve educational content or complete
 legal, privacy, safeguarding, accessibility or child testing. Those are launch
 dependencies with named human owners, not programming tasks that can be marked
 done by a build.

@@ -10,6 +10,7 @@ const infraRoot = path.join(repoRoot, "infra", "moodle");
 const scripts = [
   "bootstrap-ubuntu.sh",
   "install-site.sh",
+  "install-pilot-plugin.sh",
   "enable-tls.sh",
   "verify-host.sh",
 ];
@@ -36,18 +37,20 @@ for (const script of scripts) {
 }
 
 const bootstrap = read("bootstrap-ubuntu.sh");
-assert.match(bootstrap, /MOODLE_TAG="MOODLE_5022"/);
+assert.match(bootstrap, /MOODLE_TAG="v5\.2\.2"/);
 assert.match(bootstrap, /https:\/\/github\.com\/moodle\/moodle\.git/);
 assert.match(bootstrap, /SUPPORTED_VERSION="24\.04"/);
 assert.match(bootstrap, /MOODLE_ROOT="\/var\/www\/moodle"/);
 assert.match(bootstrap, /MOODLE_DATA="\/var\/lib\/moodledata"/);
 assert.match(bootstrap, /a2dissite moodle\.conf/);
+assert.match(bootstrap, /composer install/);
+assert.match(bootstrap, /vendor\/autoload\.php/);
 assert.doesNotMatch(bootstrap, /chmod\s+-R\s+0?777/);
 assert.doesNotMatch(bootstrap, /(curl|wget)[^\n|]*\|\s*(ba)?sh/);
 
 const plan = run("bootstrap-ubuntu.sh", ["--plan", "--hostname", "learn.bangla.test"]);
 assert.equal(plan.status, 0, plan.stderr);
-assert.match(plan.stdout, /MOODLE_5022/);
+assert.match(plan.stdout, /v5\.2\.2/);
 assert.match(plan.stdout, /no host changes were made/i);
 
 const unsafeHost = run("bootstrap-ubuntu.sh", ["--plan", "--hostname", "HTTPS://Bad Host"]);
@@ -66,6 +69,17 @@ for (const setting of [
 }
 assert.match(installer, /refusing a destructive reinstall/);
 assert.doesNotMatch(installer, /source\s+["']?\$?config_file/);
+
+const pluginInstaller = read("install-pilot-plugin.sh");
+assert.match(pluginInstaller, /REQUIRED_TAG="v5\.2\.2"/);
+assert.match(pluginInstaller, /--check-package/);
+assert.match(pluginInstaller, /--sha256-file/);
+assert.match(pluginInstaller, /path traversal/);
+assert.match(pluginInstaller, /public\/local\/banglapilot/);
+assert.match(pluginInstaller, /cli\/seed\.php" --apply/);
+assert.match(pluginInstaller, /cli\/seed\.php" --check --json/);
+assert.match(pluginInstaller, /previous plugin backed up/);
+assert.doesNotMatch(pluginInstaller, /chmod\s+-R\s+0?777/);
 
 const temporary = mkdtempSync(path.join(tmpdir(), "bangla-moodle-infra-"));
 try {
@@ -130,4 +144,4 @@ for (const check of ["PHP 8.3", "MariaDB 10.11", "moodle-cron.timer", "HTTP redi
   assert.ok(verifier.includes(check), `host verifier is missing: ${check}`);
 }
 
-console.log("Moodle infrastructure validation passed: 4 shell tools, secret-safe config, pinned host plan and release prerequisites.");
+console.log("Moodle infrastructure validation passed: 5 shell tools, secret-safe config, pinned host plan and release prerequisites.");

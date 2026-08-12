@@ -19,7 +19,9 @@
     "verify:links": "node scripts/verify-links.mjs",
     "verify:moodle-pilot": "node scripts/verify-moodle-pilot.mjs",
     "verify:moodle-release": "node scripts/verify-moodle-pilot.mjs --release",
+    "verify:moodle-plugin": "node scripts/verify-moodle-plugin.mjs",
     "verify:moodle-infra": "node scripts/verify-moodle-infra.mjs",
+    "moodle:package": "node scripts/package-moodle-plugin.mjs",
     "fetch:nctb": "node scripts/fetch-nctb.mjs",
     "crawl:nctb": "node scripts/crawl-nctb.mjs"
   },

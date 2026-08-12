@@ -26,7 +26,7 @@ architecture and acceptance criteria.
 | --- | --- |
 | Official NCTB catalogue and PDF audit | Source records implemented; a verified PDF is not an approved adaptation |
 | Bilingual topic prototypes | Implemented as drafts; educational/community review remains |
-| Moodle pilot pack | Three-module manifest and nine-question GIFT bank implemented |
+| Moodle pilot course | Installable hidden-course plugin implemented: 15 bilingual chapters, nine activities and nine questions |
 | Automated publication control | Draft validation passes; release validation intentionally fails while 27 gates are pending |
 | Custom learner/teacher/family LMS | Frozen for launch; redirected/retired when Moodle mode is enabled |
 | Human Bangla audio | Not complete |
@@ -53,24 +53,28 @@ scaffolds, outcomes and teacher success criteria.
 
 ## First Moodle pilot
 
-`moodle/pilot/` contains:
+`moodle/local/banglapilot/` contains an installable Moodle 5.2 local plugin for:
 
 1. Ekushey and the Language Movement;
 2. Pohela Boishakh; and
 3. folk tales and retelling.
 
-Each candidate module has official NCTB source anchors, a small Moodle-core
-activity plan and nine mandatory gates: source mapping, Bangla, English
-adaptation, cultural/historical accuracy, age suitability, rights, access,
-media safety and a consented child pilot.
+Each candidate module has five substantial bilingual draft chapters, a
+three-question quiz and a teacher-reviewed response. Official NCTB source
+anchors and nine mandatory gates cover source mapping, Bangla, English
+adaptation, cultural/historical accuracy, age suitability, rights,
+accessibility, media safety and a consented child pilot.
 
 ```bash
 npm run verify:moodle-pilot   # validates a draft and reports blockers
+npm run verify:moodle-plugin  # validates the installable Moodle plugin boundary
+npm run moodle:package        # builds a checksummed local_banglapilot.zip
 npm run verify:moodle-release # must fail until all review evidence is approved
 ```
 
-The question bank is `moodle/pilot/questions.gift`, importable through Moodle's
-native GIFT importer after review.
+The controlled lesson, manifest and GIFT sources are packaged under
+`moodle/local/banglapilot/data/`. The seeder creates the hidden course
+repeatably; it has no command that can publish it.
 
 ## Public companion surfaces
 
@@ -127,6 +131,7 @@ Production accepts HTTPS only. See `.env.example`.
 npm run lint
 npm test
 npm run verify:moodle-pilot
+npm run verify:moodle-plugin
 npm run verify:moodle-infra
 npm run build
 npm run test:integration
@@ -171,7 +176,7 @@ support, safeguarding/privacy and curriculum owners.
 ## Key documents
 
 - `docs/MOODLE_FIRST_MVP.md` — recovery decision, scope and definition of done
-- `moodle/pilot/README.md` — course authoring and release workflow
+- `moodle/README.md` — plugin packaging, installation and release boundary
 - `docs/NCTB_CONTENT_AUDIT.md` — PDF/source audit and its limits
 - `docs/CLIENT_REQUIREMENTS_2026-08-10.md` — requirement traceability
 - `docs/MEDIA_REVIEW.md` — unverified-video and human-audio process

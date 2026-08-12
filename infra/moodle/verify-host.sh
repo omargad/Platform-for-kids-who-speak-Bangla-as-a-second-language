@@ -5,7 +5,7 @@ IFS=$'\n\t'
 
 readonly MOODLE_ROOT="/var/www/moodle"
 readonly MOODLE_DATA="/var/lib/moodledata"
-readonly REQUIRED_TAG="MOODLE_5022"
+readonly REQUIRED_TAG="v5.2.2"
 
 hostname=""
 failures=0
@@ -77,6 +77,8 @@ check_filesystem() {
     local config_mode data_mode current expected
 
     [[ -f "$MOODLE_ROOT/admin/cli/cfg.php" ]] && pass "Moodle CLI present" || fail "Moodle CLI present"
+    [[ -f "$MOODLE_ROOT/vendor/autoload.php" ]] && pass "Composer runtime dependencies present" || \
+        fail "Composer runtime dependencies present"
     [[ -f "$MOODLE_ROOT/config.php" ]] && pass "Moodle config present" || fail "Moodle config present"
     [[ -d "$MOODLE_ROOT/public" ]] && pass "Moodle public web root present" || fail "Moodle public web root present"
     [[ -d "$MOODLE_DATA" && ! -L "$MOODLE_DATA" ]] && pass "Moodle data directory is outside the web root" || \
@@ -121,6 +123,14 @@ check_application() {
     if [[ -f "$MOODLE_ROOT/config.php" ]]; then
         check_command "Moodle configuration is readable by www-data" \
             runuser -u www-data -- /usr/bin/php "$MOODLE_ROOT/admin/cli/cfg.php" --name=release
+    fi
+
+    if [[ -f "$MOODLE_ROOT/public/local/banglapilot/cli/seed.php" ]]; then
+        check_command "Hidden Bangla pilot seed has no drift" \
+            runuser -u www-data -- /usr/bin/php \
+            "$MOODLE_ROOT/public/local/banglapilot/cli/seed.php" --check --json
+    else
+        fail "Hidden Bangla pilot plugin installed"
     fi
 
     if curl --proto '=https' --tlsv1.2 --connect-timeout 10 --max-time 20 \

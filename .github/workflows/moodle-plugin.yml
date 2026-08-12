@@ -1,0 +1,140 @@
+name: Moodle plugin integration
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/moodle-plugin.yml"
+      - "infra/moodle/**"
+      - "moodle/**"
+      - "scripts/package-moodle-plugin.mjs"
+      - "scripts/verify-moodle-plugin.mjs"
+      - "scripts/verify-moodle-pilot.mjs"
+      - "tests/moodle-pilot.test.mjs"
+      - "package.json"
+  push:
+    branches: ["main", "agent/**"]
+    paths:
+      - ".github/workflows/moodle-plugin.yml"
+      - "infra/moodle/**"
+      - "moodle/**"
+      - "scripts/package-moodle-plugin.mjs"
+      - "scripts/verify-moodle-plugin.mjs"
+      - "scripts/verify-moodle-pilot.mjs"
+      - "tests/moodle-pilot.test.mjs"
+      - "package.json"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: moodle-plugin-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  install-seed-check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      MOODLE_ROOT: /var/www/moodle
+      MOODLE_DATA: /var/lib/moodledata
+      DB_NAME: bangla_moodle_ci
+      DB_USER: bangla_moodle_ci
+      DB_PASSWORD: MoodleCi_Db_2026_Safe_Value
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Validate and package the plugin
+        run: |
+          node scripts/verify-moodle-pilot.mjs
+          node scripts/verify-moodle-plugin.mjs
+          node scripts/package-moodle-plugin.mjs
+
+      - name: Install the Moodle 5.2.2 runtime
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends \
+            composer mariadb-server php8.3-cli php8.3-curl php8.3-gd \
+            php8.3-intl php8.3-mbstring php8.3-mysql php8.3-soap \
+            php8.3-xml php8.3-zip unzip
+          test "$(php -r 'echo PHP_MAJOR_VERSION.".".PHP_MINOR_VERSION;')" = "8.3"
+          bash infra/moodle/install-pilot-plugin.sh \
+            --check-package dist/local_banglapilot.zip \
+            --sha256-file dist/local_banglapilot.zip.sha256
+          sudo systemctl start mariadb
+          sudo install -d -o "$(id -un)" -g "$(id -gn)" -m 0755 "$MOODLE_ROOT"
+          git clone --depth 1 --branch v5.2.2 \
+            https://github.com/moodle/moodle.git "$MOODLE_ROOT"
+          composer install \
+            --working-dir "$MOODLE_ROOT" \
+            --no-dev \
+            --classmap-authoritative \
+            --no-interaction \
+            --no-progress
+          test -f "$MOODLE_ROOT/vendor/autoload.php"
+
+      - name: Install a closed Moodle test site
+        run: |
+          sudo mariadb --batch --execute="CREATE DATABASE ${DB_NAME} DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci; CREATE USER '${DB_USER}'@'localhost' IDENTIFIED BY '${DB_PASSWORD}'; GRANT ALL PRIVILEGES ON ${DB_NAME}.* TO '${DB_USER}'@'localhost'; FLUSH PRIVILEGES;"
+          sudo install -d -o "$(id -un)" -g "$(id -gn)" -m 0770 "$MOODLE_DATA"
+          php "$MOODLE_ROOT/admin/cli/install.php" \
+            --non-interactive \
+            --agree-license \
+            --lang=en \
+            --wwwroot=http://127.0.0.1 \
+            --dataroot="$MOODLE_DATA" \
+            --dbtype=mariadb \
+            --dbhost=localhost \
+            --dbname="$DB_NAME" \
+            --dbuser="$DB_USER" \
+            --dbpass="$DB_PASSWORD" \
+            --prefix=mdl_ \
+            --fullname="Bangla Pilot CI" \
+            --shortname="Bangla CI" \
+            --adminuser=platformadmin \
+            --adminpass="MoodleCi_Admin_2026_Safe" \
+            --adminemail=ci@example.invalid \
+            --chmod=0770
+          sudo chown -R root:root "$MOODLE_ROOT"
+          sudo chown root:www-data "$MOODLE_ROOT/config.php"
+          sudo chmod 0640 "$MOODLE_ROOT/config.php"
+          sudo chown -R www-data:www-data "$MOODLE_DATA"
+
+      - name: Install, seed twice and verify the hidden course
+        run: |
+          sudo bash infra/moodle/install-pilot-plugin.sh \
+            --install dist/local_banglapilot.zip \
+            --sha256-file dist/local_banglapilot.zip.sha256
+          sudo -u www-data php \
+            "$MOODLE_ROOT/public/local/banglapilot/cli/seed.php" \
+            --check --json > /tmp/banglapilot-report.json
+          php -r '
+            $report = json_decode(file_get_contents($argv[1]), true, 512, JSON_THROW_ON_ERROR);
+            $expected = [
+              "categoryHidden" => true, "courseHidden" => true,
+              "sectionCount" => 3, "activityCount" => 9,
+              "bookCount" => 3, "quizCount" => 3,
+              "assignmentCount" => 2, "forumCount" => 1,
+              "chapterCount" => 15, "questionCount" => 9,
+              "quizSlotCount" => 9, "releaseReady" => false,
+              "releaseBlockers" => 27,
+            ];
+            foreach ($expected as $field => $value) {
+              if (($report[$field] ?? null) !== $value) {
+                fwrite(STDERR, "$field mismatch\n");
+                exit(1);
+              }
+            }
+            if ($report["contentHash"] !== $report["expectedContentHash"]) exit(1);
+          ' /tmp/banglapilot-report.json
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: local-banglapilot-${{ github.sha }}
+          path: |
+            dist/local_banglapilot.zip
+            dist/local_banglapilot.zip.sha256
+          if-no-files-found: error
+          retention-days: 14

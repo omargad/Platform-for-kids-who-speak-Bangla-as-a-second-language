@@ -5,7 +5,7 @@ IFS=$'\n\t'
 umask 027
 
 readonly SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
-readonly MOODLE_TAG="MOODLE_5022"
+readonly MOODLE_TAG="v5.2.2"
 readonly MOODLE_REPOSITORY="https://github.com/moodle/moodle.git"
 readonly MOODLE_ROOT="/var/www/moodle"
 readonly MOODLE_DATA="/var/lib/moodledata"
@@ -125,6 +125,7 @@ install_packages() {
         apache2
         ca-certificates
         certbot
+        composer
         git
         libapache2-mod-php
         mariadb-client
@@ -159,8 +160,10 @@ install_moodle_source() {
         origin="$(git -C "$MOODLE_ROOT" remote get-url origin)"
         [[ "$origin" == "$MOODLE_REPOSITORY" ]] || \
             die "$MOODLE_ROOT has an unexpected Git origin: $origin"
-        [[ -z "$(git -C "$MOODLE_ROOT" status --porcelain)" ]] || \
-            die "$MOODLE_ROOT contains uncommitted changes"
+        local unexpected_status
+        unexpected_status="$(git -C "$MOODLE_ROOT" status --porcelain --untracked-files=all | \
+            grep -v '^?? public/local/banglapilot/' || true)"
+        [[ -z "$unexpected_status" ]] || die "$MOODLE_ROOT contains changes outside the controlled local plugin"
         git -C "$MOODLE_ROOT" fetch --depth 1 origin "refs/tags/${MOODLE_TAG}:refs/tags/${MOODLE_TAG}"
         current="$(git -C "$MOODLE_ROOT" rev-parse HEAD)"
         expected="$(git -C "$MOODLE_ROOT" rev-parse "${MOODLE_TAG}^{commit}")"
@@ -170,6 +173,14 @@ install_moodle_source() {
         die "$MOODLE_ROOT exists but is not an official Moodle Git checkout"
     fi
 
+    COMPOSER_ALLOW_SUPERUSER=1 composer install \
+        --working-dir "$MOODLE_ROOT" \
+        --no-dev \
+        --classmap-authoritative \
+        --no-interaction \
+        --no-progress
+
+    [[ -f "$MOODLE_ROOT/vendor/autoload.php" ]] || die "Composer dependencies were not installed"
     chown -R root:root "$MOODLE_ROOT"
     chmod -R u+rwX,go+rX,go-w "$MOODLE_ROOT"
     if [[ -f "$MOODLE_ROOT/config.php" ]]; then
