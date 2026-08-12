@@ -1,0 +1,670 @@
+{
+  "schemaVersion": 1,
+  "courseId": "bangla-culture-pilot-01",
+  "draftNotice": {
+    "en": "Draft pilot content — educator, community, rights, accessibility and child-pilot approval is required before learner release.",
+    "bn": "খসড়া পাইলট বিষয়বস্তু — শিক্ষার্থীদের জন্য প্রকাশের আগে শিক্ষক, কমিউনিটি, স্বত্ব, প্রবেশগম্যতা ও শিশু-পাইলট অনুমোদন প্রয়োজন।"
+  },
+  "externalMedia": [],
+  "modules": [
+    {
+      "id": "pilot-01-amar-ekushey",
+      "estimatedMinutes": 75,
+      "supportBand": "Ages 8–12; English-first reading with optional Bangla support, read-aloud by a trusted adult and drawing or speaking alternatives.",
+      "questionPrefix": "BA-P01",
+      "chapters": [
+        {
+          "id": "p01-start",
+          "title": {
+            "en": "Start with a question",
+            "bn": "একটি প্রশ্ন দিয়ে শুরু"
+          },
+          "blocks": [
+            {
+              "type": "paragraph",
+              "en": "Imagine that the language you use with your family is important to millions of people, but it is missing from important government work. How might that affect school, public services and a person's sense of belonging? In this module, you will explore why people in East Bengal campaigned for Bangla to be recognised as a state language of Pakistan.",
+              "bn": "ভাবো, পরিবারের সঙ্গে তুমি যে ভাষায় কথা বলো তা কোটি মানুষের কাছে গুরুত্বপূর্ণ, কিন্তু গুরুত্বপূর্ণ সরকারি কাজে সেই ভাষা নেই। এতে স্কুল, জনসেবা ও মানুষের আপন মনে করার অনুভূতিতে কী প্রভাব পড়তে পারে? এই মডিউলে তুমি জানবে কেন পূর্ব বাংলার মানুষ বাংলাকে পাকিস্তানের রাষ্ট্রভাষা হিসেবে স্বীকৃতি দেওয়ার দাবি করেছিলেন।"
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "en": "Look for dates and events that can be checked in a source.",
+                  "bn": "যে তারিখ ও ঘটনা কোনো উৎসে যাচাই করা যায়, সেগুলো খুঁজে দেখো।"
+                },
+                {
+                  "en": "Notice how a historical event is remembered today.",
+                  "bn": "একটি ঐতিহাসিক ঘটনাকে আজ কীভাবে স্মরণ করা হয়, তা লক্ষ করো।"
+                },
+                {
+                  "en": "Ask which details are facts, memories, symbols or family traditions.",
+                  "bn": "কোন তথ্যটি সত্য ঘটনা, স্মৃতি, প্রতীক বা পারিবারিক রীতি—তা জিজ্ঞেস করো।"
+                }
+              ]
+            },
+            {
+              "type": "prompt",
+              "en": "Before reading, name one language that matters to you and one place where you use it. You may speak, write or draw your answer.",
+              "bn": "পড়ার আগে তোমার কাছে গুরুত্বপূর্ণ একটি ভাষার নাম বলো এবং কোথায় ভাষাটি ব্যবহার করো তা জানাও। তুমি বলে, লিখে বা এঁকে উত্তর দিতে পারো।"
+            }
+          ]
+        },
+        {
+          "id": "p01-timeline",
+          "title": {
+            "en": "A short historical timeline",
+            "bn": "সংক্ষিপ্ত ঐতিহাসিক সময়রেখা"
+          },
+          "blocks": [
+            {
+              "type": "paragraph",
+              "en": "When British rule in the region ended in 1947, Pakistan was formed with two parts separated by a large distance. The eastern part was known as East Bengal and later East Pakistan. Many people there spoke Bangla. Decisions about the new country's state language therefore affected a large part of its population.",
+              "bn": "১৯৪৭ সালে এই অঞ্চলে ব্রিটিশ শাসনের অবসান হলে দূরে অবস্থিত দুটি অংশ নিয়ে পাকিস্তান গঠিত হয়। পূর্ব অংশটি প্রথমে পূর্ব বাংলা এবং পরে পূর্ব পাকিস্তান নামে পরিচিত হয়। সেখানকার বহু মানুষ বাংলা বলতেন। তাই নতুন দেশের রাষ্ট্রভাষা সম্পর্কে সিদ্ধান্ত জনসংখ্যার একটি বড় অংশকে প্রভাবিত করেছিল।"
+            },
+            {
+              "type": "paragraph",
+              "en": "Students, teachers, writers and other citizens argued that Bangla should be recognised alongside Urdu. Meetings, writing and demonstrations became part of the Language Movement. On 21 February 1952, students gathered in Dhaka despite restrictions on public assembly. Police fired on demonstrators, and people were killed. Their deaths became a powerful part of public memory.",
+              "bn": "শিক্ষার্থী, শিক্ষক, লেখক ও অন্য নাগরিকেরা দাবি করেন যে উর্দুর পাশাপাশি বাংলাকেও স্বীকৃতি দিতে হবে। সভা, লেখা ও মিছিল ভাষা আন্দোলনের অংশ হয়ে ওঠে। ১৯৫২ সালের ২১ ফেব্রুয়ারি জনসমাবেশের ওপর নিষেধাজ্ঞা থাকা সত্ত্বেও শিক্ষার্থীরা ঢাকায় জড়ো হন। পুলিশ মিছিলে গুলি চালায় এবং মানুষ নিহত হন। তাঁদের মৃত্যু জনস্মৃতির শক্তিশালী অংশ হয়ে ওঠে।"
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "en": "1947: Pakistan is formed; the language question remains unsettled.",
+                  "bn": "১৯৪৭: পাকিস্তান গঠিত হয়; ভাষার প্রশ্ন অমীমাংসিত থাকে।"
+                },
+                {
+                  "en": "21 February 1952: demonstrators in Dhaka are fired upon and people are killed.",
+                  "bn": "২১ ফেব্রুয়ারি ১৯৫২: ঢাকার মিছিলে গুলি চালানো হয় এবং মানুষ নিহত হন।"
+                },
+                {
+                  "en": "1956: Bangla receives constitutional recognition as a state language of Pakistan.",
+                  "bn": "১৯৫৬: বাংলা পাকিস্তানের রাষ্ট্রভাষা হিসেবে সাংবিধানিক স্বীকৃতি পায়।"
+                },
+                {
+                  "en": "Today: 21 February is observed internationally as International Mother Language Day.",
+                  "bn": "বর্তমান সময়: ২১ ফেব্রুয়ারি আন্তর্জাতিক মাতৃভাষা দিবস হিসেবে বিশ্বজুড়ে পালিত হয়।"
+                }
+              ]
+            },
+            {
+              "type": "prompt",
+              "en": "Put the four timeline events in order without looking back. Then check your sequence against the reading.",
+              "bn": "পেছনে না তাকিয়ে সময়রেখার চারটি ঘটনা ক্রমানুসারে সাজাও। তারপর পাঠের সঙ্গে তোমার ক্রম মিলিয়ে দেখো।"
+            }
+          ]
+        },
+        {
+          "id": "p01-memory",
+          "title": {
+            "en": "History, memory and symbols",
+            "bn": "ইতিহাস, স্মৃতি ও প্রতীক"
+          },
+          "blocks": [
+            {
+              "type": "paragraph",
+              "en": "A source can help us check what happened, while a commemoration shows how people choose to remember it. The Shaheed Minar is a memorial connected with the Language Movement. In Bangladesh and in communities overseas, people may bring flowers, sing, recite poetry, make art or join a discussion. Not every family or community follows the same practice.",
+              "bn": "কোনো উৎস আমাদের কী ঘটেছিল তা যাচাই করতে সাহায্য করে, আর স্মরণানুষ্ঠান দেখায় মানুষ ঘটনাটি কীভাবে মনে রাখতে চান। শহিদ মিনার ভাষা আন্দোলনের সঙ্গে যুক্ত একটি স্মৃতিসৌধ। বাংলাদেশে ও বিদেশে থাকা কমিউনিটিতে মানুষ ফুল দিতে, গান গাইতে, কবিতা আবৃত্তি করতে, ছবি আঁকতে বা আলোচনায় অংশ নিতে পারেন। সব পরিবার বা কমিউনিটি একই রীতি অনুসরণ করে না।"
+            },
+            {
+              "type": "vocabulary",
+              "items": [
+                {
+                  "term": { "en": "state language", "bn": "রাষ্ট্রভাষা" },
+                  "meaning": { "en": "a language officially used by a state or government", "bn": "রাষ্ট্র বা সরকার আনুষ্ঠানিকভাবে যে ভাষা ব্যবহার করে" }
+                },
+                {
+                  "term": { "en": "movement", "bn": "আন্দোলন" },
+                  "meaning": { "en": "people working together for social or political change", "bn": "সামাজিক বা রাজনৈতিক পরিবর্তনের জন্য মানুষের সম্মিলিত প্রচেষ্টা" }
+                },
+                {
+                  "term": { "en": "memorial", "bn": "স্মৃতিসৌধ" },
+                  "meaning": { "en": "a place or object that helps people remember", "bn": "যে স্থান বা বস্তু মানুষকে স্মরণ করতে সাহায্য করে" }
+                },
+                {
+                  "term": { "en": "commemoration", "bn": "স্মরণানুষ্ঠান" },
+                  "meaning": { "en": "an activity that honours and remembers an event or person", "bn": "কোনো ঘটনা বা ব্যক্তিকে সম্মান ও স্মরণ করার আয়োজন" }
+                }
+              ]
+            },
+            {
+              "type": "prompt",
+              "en": "Choose one symbol or action used in a commemoration. Explain what it might communicate. Begin with: ‘This may symbolise…’ so that an interpretation is not presented as a proven fact.",
+              "bn": "স্মরণানুষ্ঠানে ব্যবহৃত একটি প্রতীক বা কাজ বেছে নাও। এটি কী বোঝাতে পারে তা ব্যাখ্যা করো। ‘এটি হয়তো বোঝায়…’ দিয়ে শুরু করো, যাতে ব্যাখ্যাকে প্রমাণিত তথ্য হিসেবে দেখানো না হয়।"
+            }
+          ]
+        },
+        {
+          "id": "p01-source-detective",
+          "title": {
+            "en": "Be a source detective",
+            "bn": "উৎস-গোয়েন্দা হও"
+          },
+          "blocks": [
+            {
+              "type": "paragraph",
+              "en": "Good historical thinking separates evidence from interpretation. A textbook page, a photograph, a speech, a newspaper report and an interview can each answer different questions. A later memory can be valuable, but it should not automatically be treated as if it were a record made on the day of the event.",
+              "bn": "ভালো ঐতিহাসিক চিন্তা প্রমাণ ও ব্যাখ্যাকে আলাদা করে। পাঠ্যবইয়ের পৃষ্ঠা, ছবি, বক্তৃতা, সংবাদ প্রতিবেদন ও সাক্ষাৎকার—প্রতিটি ভিন্ন প্রশ্নের উত্তর দিতে পারে। পরবর্তী সময়ের স্মৃতি মূল্যবান হতে পারে, তবে সেটিকে ঘটনার দিন তৈরি নথি বলে ধরে নেওয়া ঠিক নয়।"
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "en": "Fact claim: ‘The demonstration took place on 21 February 1952.’ Ask for a dated source.",
+                  "bn": "তথ্যভিত্তিক দাবি: ‘মিছিলটি ১৯৫২ সালের ২১ ফেব্রুয়ারি হয়েছিল।’ তারিখসহ উৎস চাও।"
+                },
+                {
+                  "en": "Interpretation: ‘This memorial makes me think about courage.’ Explain whose view it is.",
+                  "bn": "ব্যাখ্যা: ‘এই স্মৃতিসৌধ আমাকে সাহসের কথা ভাবায়।’ এটি কার দৃষ্টিভঙ্গি তা বলো।"
+                },
+                {
+                  "en": "Tradition report: ‘Our family takes flowers.’ Name the family or community and avoid saying everyone does it.",
+                  "bn": "রীতির বিবরণ: ‘আমাদের পরিবার ফুল দেয়।’ পরিবার বা কমিউনিটির নাম বলো এবং সবাই এমন করে—এ কথা বলো না।"
+                }
+              ]
+            },
+            {
+              "type": "prompt",
+              "en": "Label each example above as a checkable fact, an interpretation or a tradition report. What extra evidence would strengthen each one?",
+              "bn": "উপরের প্রতিটি উদাহরণকে যাচাইযোগ্য তথ্য, ব্যাখ্যা বা রীতির বিবরণ হিসেবে চিহ্নিত করো। কোন অতিরিক্ত প্রমাণ প্রতিটিকে আরও শক্তিশালী করবে?"
+            }
+          ]
+        },
+        {
+          "id": "p01-reflect",
+          "title": {
+            "en": "Reflect and respond",
+            "bn": "ভাবো ও উত্তর দাও"
+          },
+          "blocks": [
+            {
+              "type": "paragraph",
+              "en": "Language can carry family stories, humour, knowledge and identity. Defending a language does not require treating another language as an enemy. A multilingual community can protect people's right to use their languages while helping people communicate across differences.",
+              "bn": "ভাষা পারিবারিক গল্প, হাস্যরস, জ্ঞান ও পরিচয় বহন করতে পারে। একটি ভাষা রক্ষা করতে অন্য ভাষাকে শত্রু ভাবতে হয় না। বহুভাষিক কমিউনিটি মানুষের নিজ ভাষা ব্যবহারের অধিকার রক্ষা করার পাশাপাশি ভিন্নতার মধ্যেও যোগাযোগে সহায়তা করতে পারে।"
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "en": "Easier scaffold: draw a language tree and label who uses each language with you.",
+                  "bn": "সহজ সহায়তা: একটি ভাষা-গাছ আঁকো এবং কে তোমার সঙ্গে কোন ভাষা ব্যবহার করেন তা লিখো।"
+                },
+                {
+                  "en": "Core response: explain why 21 February matters using one date and one example of commemoration.",
+                  "bn": "মূল উত্তর: একটি তারিখ ও স্মরণ করার একটি উদাহরণ ব্যবহার করে ২১ ফেব্রুয়ারির গুরুত্ব ব্যাখ্যা করো।"
+                },
+                {
+                  "en": "Challenge: compare a source fact with a family or community tradition and explain why both are useful in different ways.",
+                  "bn": "চ্যালেঞ্জ: উৎসভিত্তিক একটি তথ্যের সঙ্গে পারিবারিক বা কমিউনিটির একটি রীতি তুলনা করো এবং ভিন্নভাবে দুটিই কেন উপকারী তা বোঝাও।"
+                }
+              ]
+            },
+            {
+              "type": "prompt",
+              "en": "Use the private assignment in this section. Do not include a relative's name, photograph or voice recording unless the teacher has confirmed permission.",
+              "bn": "এই অংশের ব্যক্তিগত অ্যাসাইনমেন্ট ব্যবহার করো। শিক্ষক অনুমতি নিশ্চিত না করলে আত্মীয়ের নাম, ছবি বা কণ্ঠের রেকর্ড যোগ করো না।"
+            }
+          ]
+        }
+      ],
+      "response": {
+        "mode": "assignment",
+        "instructions": {
+          "en": "Explain why 21 February matters to people who value Bangla. Include one checked historical detail and one example of how the day may be remembered. Submit 100–180 words, a labelled drawing with 4–6 sentences, or a 60–90 second recording. Recordings require the school's approved consent process.",
+          "bn": "বাংলাকে মূল্য দেন এমন মানুষের কাছে ২১ ফেব্রুয়ারি কেন গুরুত্বপূর্ণ তা ব্যাখ্যা করো। যাচাই করা একটি ঐতিহাসিক তথ্য এবং দিনটি কীভাবে স্মরণ করা হতে পারে তার একটি উদাহরণ দাও। ১০০–১৮০ শব্দ, ৪–৬টি বাক্যসহ লেবেল করা ছবি, অথবা ৬০–৯০ সেকেন্ডের রেকর্ডিং জমা দাও। রেকর্ডিংয়ের জন্য স্কুলের অনুমোদিত সম্মতি-প্রক্রিয়া প্রয়োজন।"
+        },
+        "privacy": {
+          "en": "This is a private teacher-reviewed task. Do not identify another child or upload another person's voice or image without recorded permission.",
+          "bn": "এটি শিক্ষক-পর্যালোচিত ব্যক্তিগত কাজ। নথিভুক্ত অনুমতি ছাড়া অন্য শিশুর পরিচয়, কণ্ঠ বা ছবি আপলোড করবে না।"
+        },
+        "rubric": [
+          {
+            "criterion": { "en": "Historical understanding", "bn": "ঐতিহাসিক বোঝাপড়া" },
+            "developing": { "en": "Names the day but gives little or unclear historical detail.", "bn": "দিনটির নাম বলে, কিন্তু ঐতিহাসিক তথ্য কম বা অস্পষ্ট।" },
+            "meeting": { "en": "Explains the importance of the day with at least one accurate date or event.", "bn": "অন্তত একটি সঠিক তারিখ বা ঘটনা দিয়ে দিনটির গুরুত্ব ব্যাখ্যা করে।" }
+          },
+          {
+            "criterion": { "en": "Evidence and interpretation", "bn": "প্রমাণ ও ব্যাখ্যা" },
+            "developing": { "en": "Mixes a fact and a tradition without showing the difference.", "bn": "তথ্য ও রীতিকে পার্থক্য না দেখিয়ে একসঙ্গে মেশায়।" },
+            "meeting": { "en": "Distinguishes a checked fact from a memory, symbol or tradition.", "bn": "যাচাই করা তথ্যকে স্মৃতি, প্রতীক বা রীতি থেকে আলাদা করে।" }
+          },
+          {
+            "criterion": { "en": "Clear communication", "bn": "স্পষ্ট যোগাযোগ" },
+            "developing": { "en": "The main idea is difficult to follow or unfinished.", "bn": "মূল ধারণা অনুসরণ করা কঠিন বা অসম্পূর্ণ।" },
+            "meeting": { "en": "Communicates a complete idea in the chosen written, visual or spoken mode.", "bn": "নির্বাচিত লিখিত, দৃশ্যমান বা কথ্য মাধ্যমে একটি সম্পূর্ণ ধারণা প্রকাশ করে।" }
+          }
+        ]
+      }
+    },
+    {
+      "id": "pilot-02-pohela-boishakh",
+      "estimatedMinutes": 70,
+      "supportBand": "Ages 8–12; English-first reading with Bangla key words, family-comparison prompts and non-writing response choices.",
+      "questionPrefix": "BA-P02",
+      "chapters": [
+        {
+          "id": "p02-start",
+          "title": {
+            "en": "A new year can look many ways",
+            "bn": "নতুন বছর নানা রকম হতে পারে"
+          },
+          "blocks": [
+            {
+              "type": "paragraph",
+              "en": "Pohela Boishakh is the first day of the Bengali calendar year. In Bangladesh it is commonly observed on 14 April. The day can bring public programmes, neighbourhood fairs, music, art, shared food, business customs and family visits. These are examples, not a checklist that every Bengali person must follow.",
+              "bn": "পহেলা বৈশাখ বাংলা সনের প্রথম দিন। বাংলাদেশে সাধারণত ১৪ এপ্রিল দিনটি পালিত হয়। এ দিনে জনসমাগম, পাড়ার মেলা, গান, শিল্পকর্ম, একসঙ্গে খাবার খাওয়া, ব্যবসায়িক রীতি ও পারিবারিক দেখা-সাক্ষাৎ হতে পারে। এগুলো উদাহরণ; প্রত্যেক বাঙালিকে সবকিছু করতেই হবে—এমন তালিকা নয়।"
+            },
+            {
+              "type": "paragraph",
+              "en": "A learner in Melbourne might celebrate at home, at a community event, online with relatives, or not at all. A family may combine traditions from different places and generations. Respectful cultural learning asks, ‘How does your family or community do this?’ instead of assuming one answer fits everyone.",
+              "bn": "মেলবোর্নের কোনো শিক্ষার্থী বাড়িতে, কমিউনিটির অনুষ্ঠানে, অনলাইনে আত্মীয়দের সঙ্গে দিনটি উদযাপন করতে পারে, অথবা নাও করতে পারে। একটি পরিবার বিভিন্ন স্থান ও প্রজন্মের রীতি মিলিয়ে নিতে পারে। সম্মানজনক সাংস্কৃতিক শিক্ষা ধরে নেয় না যে সবার উত্তর এক; বরং জিজ্ঞেস করে, ‘তোমার পরিবার বা কমিউনিটি কীভাবে করে?’"
+            },
+            {
+              "type": "prompt",
+              "en": "List or draw two ways a community might welcome a new year. They may come from any culture you know.",
+              "bn": "কোনো কমিউনিটি নতুন বছরকে যেভাবে স্বাগত জানাতে পারে তার দুটি উপায় লিখো বা আঁকো। এগুলো তোমার পরিচিত যেকোনো সংস্কৃতি থেকে হতে পারে।"
+            }
+          ]
+        },
+        {
+          "id": "p02-calendar",
+          "title": {
+            "en": "Calendar, season and greeting",
+            "bn": "পঞ্জিকা, ঋতু ও শুভেচ্ছা"
+          },
+          "blocks": [
+            {
+              "type": "paragraph",
+              "en": "A calendar helps people organise time, but calendars are also connected with history and community life. The Bengali year has its own month names. Boishakh is the first month, so Pohela Boishakh means the first day of Boishakh. In Bangladesh the day arrives during the hot season, before the main monsoon rains.",
+              "bn": "পঞ্জিকা মানুষকে সময় সাজাতে সাহায্য করে, আবার পঞ্জিকা ইতিহাস ও কমিউনিটির জীবনের সঙ্গেও যুক্ত। বাংলা সনের মাসগুলোর নিজস্ব নাম আছে। বৈশাখ প্রথম মাস, তাই পহেলা বৈশাখ মানে বৈশাখের প্রথম দিন। বাংলাদেশে প্রধান বর্ষার বৃষ্টির আগে গরমের সময়ে দিনটি আসে।"
+            },
+            {
+              "type": "vocabulary",
+              "items": [
+                {
+                  "term": { "en": "Pohela", "bn": "পহেলা" },
+                  "meaning": { "en": "first day", "bn": "প্রথম দিন" }
+                },
+                {
+                  "term": { "en": "Boishakh", "bn": "বৈশাখ" },
+                  "meaning": { "en": "the first month of the Bengali calendar", "bn": "বাংলা পঞ্জিকার প্রথম মাস" }
+                },
+                {
+                  "term": { "en": "Shubho Noboborsho", "bn": "শুভ নববর্ষ" },
+                  "meaning": { "en": "a greeting meaning ‘Happy New Year’", "bn": "নতুন বছরের শুভেচ্ছা" }
+                },
+                {
+                  "term": { "en": "mela", "bn": "মেলা" },
+                  "meaning": { "en": "a fair or community gathering with stalls and activities", "bn": "দোকান, প্রদর্শনী ও নানা আয়োজনসহ জনসমাগম" }
+                }
+              ]
+            },
+            {
+              "type": "prompt",
+              "en": "Practise the greeting ‘Shubho Noboborsho’ only if you want to. A learner may listen, point to the words or use the English greeting instead; pronunciation assessment is not part of this draft.",
+              "bn": "ইচ্ছা হলে ‘শুভ নববর্ষ’ শুভেচ্ছাটি অনুশীলন করো। শিক্ষার্থী শুনতে, শব্দগুলোর দিকে দেখাতে বা ইংরেজি শুভেচ্ছা ব্যবহার করতে পারে; এই খসড়ায় উচ্চারণ মূল্যায়ন করা হবে না।"
+            }
+          ]
+        },
+        {
+          "id": "p02-practices",
+          "title": {
+            "en": "Examples of public and family practices",
+            "bn": "জনসমাগম ও পারিবারিক রীতির উদাহরণ"
+          },
+          "blocks": [
+            {
+              "type": "paragraph",
+              "en": "Some public celebrations include songs, processions, craft displays and Boishakhi melas. In Dhaka, programmes at Ramna Batamul and colourful processions are well-known examples. In other towns, villages and countries, the setting and programme may be different. Weather, cost, access, faith, work and family preference can all shape participation.",
+              "bn": "কিছু জনসমাগমে গান, শোভাযাত্রা, কারুশিল্প প্রদর্শনী ও বৈশাখী মেলা থাকে। ঢাকায় রমনা বটমূলের অনুষ্ঠান ও রঙিন শোভাযাত্রা পরিচিত উদাহরণ। অন্য শহর, গ্রাম ও দেশে স্থান ও আয়োজন ভিন্ন হতে পারে। আবহাওয়া, খরচ, প্রবেশের সুযোগ, ধর্মীয় বিশ্বাস, কাজ ও পারিবারিক পছন্দ—সবই অংশগ্রহণকে প্রভাবিত করতে পারে।"
+            },
+            {
+              "type": "paragraph",
+              "en": "Halkhata is a business tradition in which some traders begin or refresh account books and welcome customers around the new year. Food is also often discussed, but there is no single required menu. Families may prepare favourite dishes, buy food at a fair, adapt ingredients available overseas or choose not to connect food with the day.",
+              "bn": "হালখাতা একটি ব্যবসায়িক রীতি; নতুন বছরের সময় কিছু ব্যবসায়ী হিসাবের খাতা শুরু বা হালনাগাদ করেন এবং ক্রেতাদের স্বাগত জানান। খাবারের কথাও প্রায়ই আসে, কিন্তু সবার জন্য বাধ্যতামূলক কোনো একক খাবারের তালিকা নেই। পরিবার পছন্দের খাবার রান্না করতে, মেলা থেকে কিনতে, বিদেশে পাওয়া উপকরণ দিয়ে বদলে নিতে বা দিনটির সঙ্গে খাবার না-ও জুড়তে পারে।"
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "en": "Observation: ‘This event has a music performance.’",
+                  "bn": "পর্যবেক্ষণ: ‘এই অনুষ্ঠানে গান পরিবেশন করা হচ্ছে।’"
+                },
+                {
+                  "en": "Interview evidence: ‘My aunt says her school held a mela.’",
+                  "bn": "সাক্ষাৎকারের প্রমাণ: ‘আমার খালা বলেছেন তাঁর স্কুলে মেলা হতো।’"
+                },
+                {
+                  "en": "Unsafe generalisation: ‘Every Bengali family wears the same colours and eats the same food.’",
+                  "bn": "অসম্মানজনক সাধারণীকরণ: ‘প্রত্যেক বাঙালি পরিবার একই রঙের পোশাক পরে ও একই খাবার খায়।’"
+                }
+              ]
+            },
+            {
+              "type": "prompt",
+              "en": "Rewrite the unsafe generalisation so that it describes a possible practice without claiming it applies to everyone.",
+              "bn": "অসম্মানজনক সাধারণীকরণটি এমনভাবে আবার লেখো, যাতে এটি একটি সম্ভাব্য রীতি বোঝায় কিন্তু সবার ক্ষেত্রে প্রযোজ্য বলে দাবি না করে।"
+            }
+          ]
+        },
+        {
+          "id": "p02-compare",
+          "title": {
+            "en": "Compare without ranking",
+            "bn": "শ্রেষ্ঠ না বলে তুলনা"
+          },
+          "blocks": [
+            {
+              "type": "paragraph",
+              "en": "A comparison looks for similarities and differences without deciding that one tradition is more authentic or valuable. You might compare place, season, greeting, food, music, clothing, visitors or the meaning people give the day. A person may also belong to more than one tradition.",
+              "bn": "তুলনা মিল ও অমিল খুঁজে দেখে; কোনো একটি রীতিকে বেশি আসল বা মূল্যবান বলে না। তুমি স্থান, ঋতু, শুভেচ্ছা, খাবার, গান, পোশাক, অতিথি বা মানুষ দিনটিকে যে অর্থ দেন তা তুলনা করতে পারো। একজন মানুষ একাধিক রীতিরও অংশ হতে পারেন।"
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "en": "Both celebrations bring people together, but they may happen in different seasons.",
+                  "bn": "দুটি উদযাপনই মানুষকে একত্র করে, তবে ভিন্ন ঋতুতে হতে পারে।"
+                },
+                {
+                  "en": "One family attends a large event; another prefers a quiet meal at home.",
+                  "bn": "একটি পরিবার বড় অনুষ্ঠানে যায়; অন্যটি বাড়িতে শান্তভাবে খেতে পছন্দ করে।"
+                },
+                {
+                  "en": "A diaspora event may move indoors or to a weekend so more people can join.",
+                  "bn": "বিদেশে থাকা কমিউনিটির অনুষ্ঠান ঘরের ভেতর বা সাপ্তাহিক ছুটির দিনে হতে পারে, যাতে বেশি মানুষ যোগ দিতে পারেন।"
+                }
+              ]
+            },
+            {
+              "type": "prompt",
+              "en": "Create a two-column comparison. Use ‘may’, ‘some’ and ‘in this example’ when the evidence does not support a statement about everyone.",
+              "bn": "দুই কলামের একটি তুলনা তৈরি করো। প্রমাণ যখন সবার সম্পর্কে দাবি সমর্থন করে না, তখন ‘হতে পারে’, ‘কিছু’ ও ‘এই উদাহরণে’ ব্যবহার করো।"
+            }
+          ]
+        },
+        {
+          "id": "p02-plan",
+          "title": {
+            "en": "Plan an inclusive celebration",
+            "bn": "অন্তর্ভুক্তিমূলক উদযাপনের পরিকল্পনা"
+          },
+          "blocks": [
+            {
+              "type": "paragraph",
+              "en": "An inclusive community event gives people choices. It has clear access information, low-cost or free activities, quiet space, food labels, alternatives to speaking in public and a way to join without sharing private family details. Children should know which adult can help if they feel uncomfortable.",
+              "bn": "অন্তর্ভুক্তিমূলক কমিউনিটি অনুষ্ঠান মানুষকে পছন্দের সুযোগ দেয়। সেখানে প্রবেশের তথ্য, কম খরচের বা বিনা খরচের কাজ, শান্ত জায়গা, খাবারের লেবেল, সবার সামনে না বলেও অংশ নেওয়ার উপায় এবং ব্যক্তিগত পারিবারিক তথ্য না দিয়েও যোগ দেওয়ার ব্যবস্থা থাকে। অস্বস্তি হলে কোন প্রাপ্তবয়স্ক সাহায্য করবেন তা শিশুদের জানা উচিত।"
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "en": "Easier scaffold: choose three activities from a teacher-provided picture list.",
+                  "bn": "সহজ সহায়তা: শিক্ষকের দেওয়া ছবির তালিকা থেকে তিনটি কাজ বেছে নাও।"
+                },
+                {
+                  "en": "Core response: explain two traditions and one way practices can vary.",
+                  "bn": "মূল উত্তর: দুটি রীতি এবং রীতি ভিন্ন হওয়ার একটি উপায় ব্যাখ্যা করো।"
+                },
+                {
+                  "en": "Challenge: design an event plan that works for two families with different preferences or access needs.",
+                  "bn": "চ্যালেঞ্জ: ভিন্ন পছন্দ বা প্রবেশের প্রয়োজন আছে এমন দুটি পরিবারের উপযোগী অনুষ্ঠান পরিকল্পনা করো।"
+                }
+              ]
+            },
+            {
+              "type": "prompt",
+              "en": "The forum is optional and teacher-moderated. Share a general example only. Do not post an address, travel plan, full name, photograph or information about another child.",
+              "bn": "ফোরামে অংশ নেওয়া ঐচ্ছিক এবং শিক্ষক তা পরিচালনা করবেন। শুধু সাধারণ উদাহরণ দাও। ঠিকানা, যাতায়াতের পরিকল্পনা, পুরো নাম, ছবি বা অন্য শিশুর তথ্য পোস্ট করবে না।"
+            }
+          ]
+        }
+      ],
+      "response": {
+        "mode": "forum",
+        "instructions": {
+          "en": "Describe one possible Pohela Boishakh practice and one way a different family or community might celebrate differently. You may post 60–120 words or a teacher-approved labelled drawing. Respond to an idea, not to another learner's identity or family background.",
+          "bn": "পহেলা বৈশাখের একটি সম্ভাব্য রীতি এবং অন্য পরিবার বা কমিউনিটি কীভাবে ভিন্নভাবে উদযাপন করতে পারে তা বর্ণনা করো। ৬০–১২০ শব্দ বা শিক্ষক-অনুমোদিত লেবেল করা ছবি পোস্ট করতে পারো। অন্য শিক্ষার্থীর পরিচয় বা পারিবারিক পটভূমি নয়, তার ধারণার উত্তর দাও।"
+        },
+        "privacy": {
+          "en": "Use only the course forum. The teacher moderates posts; no response should identify a child, reveal a location or move the conversation to social media.",
+          "bn": "শুধু কোর্সের ফোরাম ব্যবহার করো। শিক্ষক পোস্ট পরিচালনা করবেন; কোনো উত্তরে শিশুর পরিচয় বা অবস্থান প্রকাশ করা যাবে না এবং আলোচনা সামাজিক মাধ্যমে নেওয়া যাবে না।"
+        },
+        "rubric": [
+          {
+            "criterion": { "en": "Cultural understanding", "bn": "সাংস্কৃতিক বোঝাপড়া" },
+            "developing": { "en": "Names a practice without explaining its connection to the day.", "bn": "একটি রীতির নাম বলে, কিন্তু দিনটির সঙ্গে সম্পর্ক ব্যাখ্যা করে না।" },
+            "meeting": { "en": "Describes two relevant examples and connects them to Bengali New Year.", "bn": "দুটি প্রাসঙ্গিক উদাহরণ বর্ণনা করে এবং বাংলা নববর্ষের সঙ্গে সম্পর্ক দেখায়।" }
+          },
+          {
+            "criterion": { "en": "Respect for variation", "bn": "ভিন্নতার প্রতি সম্মান" },
+            "developing": { "en": "Uses ‘everyone’ or presents one practice as the only authentic one.", "bn": "‘সবাই’ বলে বা একটি রীতিকেই একমাত্র আসল বলে দেখায়।" },
+            "meeting": { "en": "Uses careful language and explains that practice can vary by family, place or community.", "bn": "সতর্ক ভাষা ব্যবহার করে এবং পরিবার, স্থান বা কমিউনিটিভেদে রীতি ভিন্ন হতে পারে বলে।" }
+          },
+          {
+            "criterion": { "en": "Safe participation", "bn": "নিরাপদ অংশগ্রহণ" },
+            "developing": { "en": "Includes unnecessary personal details or does not follow the response format.", "bn": "অপ্রয়োজনীয় ব্যক্তিগত তথ্য দেয় বা উত্তরের নিয়ম মানে না।" },
+            "meeting": { "en": "Shares a general example, protects privacy and responds respectfully.", "bn": "সাধারণ উদাহরণ দেয়, গোপনীয়তা রক্ষা করে এবং সম্মানের সঙ্গে উত্তর দেয়।" }
+          }
+        ]
+      }
+    },
+    {
+      "id": "pilot-03-folk-tales",
+      "estimatedMinutes": 80,
+      "supportBand": "Ages 8–12; original short practice text, oral retelling, story-map support and private written, drawn or recorded response.",
+      "questionPrefix": "BA-P03",
+      "chapters": [
+        {
+          "id": "p03-start",
+          "title": {
+            "en": "Stories that travel",
+            "bn": "যে গল্প ভ্রমণ করে"
+          },
+          "blocks": [
+            {
+              "type": "paragraph",
+              "en": "A folk tale is a story shared within and across communities, often over a long time. It may be told aloud, written down, acted, sung, drawn or changed for a new audience. Because storytellers make choices, one tale can have several versions. A variation is not automatically a mistake.",
+              "bn": "লোককথা এমন গল্প যা দীর্ঘ সময় ধরে একটি বা একাধিক কমিউনিটিতে ভাগাভাগি হয়। এটি মুখে বলা, লেখা, অভিনয়, গান, ছবি বা নতুন শ্রোতার জন্য বদলে দেওয়া হতে পারে। গল্পকারেরা পছন্দ করেন বলে একই গল্পের একাধিক রূপ থাকতে পারে। ভিন্ন রূপ মানেই ভুল নয়।"
+            },
+            {
+              "type": "paragraph",
+              "en": "Folk tales can entertain and also invite questions about choices, fairness, cleverness, danger, generosity or responsibility. They do not prove that every detail happened in history. When a story names a real place, we still ask whether it is a historical account, a legend, a family memory or imaginative fiction.",
+              "bn": "লোককথা আনন্দ দিতে পারে, আবার সিদ্ধান্ত, ন্যায্যতা, বুদ্ধি, বিপদ, উদারতা বা দায়িত্ব নিয়ে প্রশ্ন তুলতে পারে। গল্পের প্রতিটি ঘটনা ইতিহাসে সত্যি ঘটেছিল—লোককথা তা প্রমাণ করে না। গল্পে বাস্তব স্থানের নাম থাকলেও আমরা জিজ্ঞেস করি এটি ইতিহাস, কিংবদন্তি, পারিবারিক স্মৃতি না কল্পকাহিনি।"
+            },
+            {
+              "type": "prompt",
+              "en": "Think of a story that changed when different people told it. What stayed the same, and what changed? You do not need to share a private family story.",
+              "bn": "এমন একটি গল্প ভাবো যা ভিন্ন মানুষ বললে বদলে গেছে। কোন অংশ একই ছিল, আর কোন অংশ বদলেছে? ব্যক্তিগত পারিবারিক গল্প বলতে হবে না।"
+            }
+          ]
+        },
+        {
+          "id": "p03-patterns",
+          "title": {
+            "en": "Patterns a story detective can notice",
+            "bn": "গল্প-গোয়েন্দা যে ধারা খুঁজে পায়"
+          },
+          "blocks": [
+            {
+              "type": "vocabulary",
+              "items": [
+                {
+                  "term": { "en": "character", "bn": "চরিত্র" },
+                  "meaning": { "en": "a person, animal or figure who takes part in a story", "bn": "গল্পে অংশ নেওয়া মানুষ, প্রাণী বা সত্তা" }
+                },
+                {
+                  "term": { "en": "setting", "bn": "পটভূমি" },
+                  "meaning": { "en": "where and when a story happens", "bn": "গল্পটি কোথায় ও কখন ঘটে" }
+                },
+                {
+                  "term": { "en": "pattern", "bn": "ধারা" },
+                  "meaning": { "en": "an action, phrase or event that repeats or follows a recognisable shape", "bn": "পুনরাবৃত্ত বা চেনা বিন্যাসে থাকা কাজ, বাক্য বা ঘটনা" }
+                },
+                {
+                  "term": { "en": "consequence", "bn": "পরিণতি" },
+                  "meaning": { "en": "what happens because of a choice or event", "bn": "কোনো সিদ্ধান্ত বা ঘটনার ফলে যা ঘটে" }
+                }
+              ]
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "en": "A character receives a warning and must choose whether to listen.",
+                  "bn": "একটি চরিত্র সতর্কবার্তা পায় এবং শুনবে কি না তা বেছে নেয়।"
+                },
+                {
+                  "en": "An action or phrase repeats three times, with a change on the last turn.",
+                  "bn": "একটি কাজ বা বাক্য তিনবার ফিরে আসে এবং শেষবার পরিবর্তন হয়।"
+                },
+                {
+                  "en": "Two characters face similar problems but make different choices.",
+                  "bn": "দুটি চরিত্র একই ধরনের সমস্যায় পড়ে, কিন্তু ভিন্ন সিদ্ধান্ত নেয়।"
+                },
+                {
+                  "en": "A small act of care returns later as unexpected help.",
+                  "bn": "ছোট একটি যত্নের কাজ পরে অপ্রত্যাশিত সাহায্য হিসেবে ফিরে আসে।"
+                }
+              ]
+            },
+            {
+              "type": "paragraph",
+              "en": "Patterns help a listener remember and predict, but they do not appear in every folk tale. Use a pattern as evidence only when you can point to actions or words in the version you actually heard or read.",
+              "bn": "ধারা শ্রোতাকে মনে রাখতে ও অনুমান করতে সাহায্য করে, তবে সব লোককথায় একই ধারা থাকে না। তুমি যে রূপটি শুনেছ বা পড়েছ, সেখানকার কাজ বা শব্দ দেখাতে পারলেই ধারাটিকে প্রমাণ হিসেবে ব্যবহার করো।"
+            }
+          ]
+        },
+        {
+          "id": "p03-practice-story",
+          "title": {
+            "en": "Original practice tale: The lamp at the landing",
+            "bn": "মৌলিক অনুশীলনের গল্প: ঘাটের বাতি"
+          },
+          "blocks": [
+            {
+              "type": "paragraph",
+              "en": "This short text was written for this pilot. It is not presented as a traditional NCTB story. During a week of heavy rain, Mina helped her aunt check the small lamp beside a river landing each evening. ‘A light is useful only when someone can see it,’ her aunt said. Mina cleaned the glass, trimmed the wick and placed the lamp where it could be seen from the water.",
+              "bn": "এই ছোট পাঠটি এই পাইলটের জন্য লেখা হয়েছে। এটিকে এনসিটিবির ঐতিহ্যবাহী গল্প হিসেবে উপস্থাপন করা হচ্ছে না। ভারী বৃষ্টির এক সপ্তাহে মীনা প্রতিদিন সন্ধ্যায় নদীর ঘাটের ছোট বাতিটি দেখতে খালাকে সাহায্য করত। খালা বলতেন, ‘আলো তখনই কাজে লাগে, যখন কেউ তা দেখতে পায়।’ মীনা কাঁচ পরিষ্কার করত, সলতে ঠিক করত এবং বাতিটি এমন জায়গায় রাখত যেখান থেকে নদী থেকেও দেখা যায়।"
+            },
+            {
+              "type": "paragraph",
+              "en": "On the third evening, Mina wanted to finish quickly because her friends were calling. She almost left the lamp behind a basket. Then she remembered the words about being seen and moved it back to the open ledge. Later, a boat returned through the rain. The boat was not lost, but its passengers said the steady light helped them recognise the landing sooner.",
+              "bn": "তৃতীয় সন্ধ্যায় বন্ধুরা ডাকছিল বলে মীনা দ্রুত কাজ শেষ করতে চাইল। সে প্রায় বাতিটি একটি ঝুড়ির পেছনে রেখে যাচ্ছিল। তখন তার মনে পড়ল—আলোকে দেখা দরকার। সে বাতিটি আবার খোলা ধারে রাখল। পরে বৃষ্টির মধ্যে একটি নৌকা ফিরল। নৌকাটি পথ হারায়নি, তবে যাত্রীরা বললেন স্থির আলোটি ঘাট চিনতে তাদের আগেই সাহায্য করেছে।"
+            },
+            {
+              "type": "paragraph",
+              "en": "The next night, Mina's aunt did not call her a hero. She thanked her for completing a small responsibility carefully. Mina understood that a choice does not need to be dramatic to matter. From then on, she checked the lamp before joining her friends, and sometimes a friend came to help.",
+              "bn": "পরের রাতে মীনার খালা তাকে বীর বলেননি। ছোট একটি দায়িত্ব যত্ন করে শেষ করার জন্য ধন্যবাদ দিলেন। মীনা বুঝল, গুরুত্বপূর্ণ হতে কোনো সিদ্ধান্তকে নাটকীয় হতে হয় না। এরপর থেকে বন্ধুদের কাছে যাওয়ার আগে সে বাতিটি দেখে নিত, আর কখনো কোনো বন্ধু সাহায্য করতে আসত।"
+            },
+            {
+              "type": "prompt",
+              "en": "What choice did Mina make, what was its consequence, and which sentence best supports your answer? More than one interpretation may be reasonable if it uses evidence from the text.",
+              "bn": "মীনা কী সিদ্ধান্ত নিয়েছিল, তার পরিণতি কী ছিল, এবং কোন বাক্যটি তোমার উত্তরকে সবচেয়ে ভালো সমর্থন করে? পাঠ থেকে প্রমাণ দিলে একাধিক ব্যাখ্যা যুক্তিসংগত হতে পারে।"
+            }
+          ]
+        },
+        {
+          "id": "p03-versions",
+          "title": {
+            "en": "Compare choices and versions",
+            "bn": "সিদ্ধান্ত ও রূপ তুলনা"
+          },
+          "blocks": [
+            {
+              "type": "paragraph",
+              "en": "A retelling keeps a recognisable core while the storyteller changes details for purpose and audience. The setting might move, a repeated line might be added, or the narrator might focus on another character. A responsible retelling says where the story came from and does not claim that a newly invented detail belongs to every earlier version.",
+              "bn": "পুনর্কথন গল্পের পরিচিত মূল অংশ রাখে, তবে উদ্দেশ্য ও শ্রোতা অনুযায়ী গল্পকার কিছু তথ্য বদলান। পটভূমি বদলাতে পারে, পুনরাবৃত্ত বাক্য যোগ হতে পারে বা বর্ণনাকারী অন্য চরিত্রকে গুরুত্ব দিতে পারেন। দায়িত্বশীল পুনর্কথন গল্পটি কোথা থেকে এসেছে তা বলে এবং নতুন বানানো তথ্যকে আগের সব রূপের অংশ বলে দাবি করে না।"
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "en": "Keep: Mina notices that the lamp must be visible and corrects her choice.",
+                  "bn": "রাখো: মীনা বুঝতে পারে বাতিটি দেখা দরকার এবং নিজের সিদ্ধান্ত ঠিক করে।"
+                },
+                {
+                  "en": "Possible change: tell the event from a passenger's or friend's point of view.",
+                  "bn": "সম্ভাব্য পরিবর্তন: কোনো যাত্রী বা বন্ধুর দৃষ্টিতে ঘটনাটি বলো।"
+                },
+                {
+                  "en": "Do not add as fact: a storm, rescue or historical date that the practice text never states.",
+                  "bn": "তথ্য হিসেবে যোগ কোরো না: ঝড়, উদ্ধার বা ঐতিহাসিক তারিখ—যা অনুশীলনের পাঠে বলা হয়নি।"
+                }
+              ]
+            },
+            {
+              "type": "prompt",
+              "en": "Retell the middle paragraph from another character's point of view in three sentences. Mark one detail you invented so the listener can distinguish it from the source text.",
+              "bn": "মাঝের অনুচ্ছেদটি অন্য একটি চরিত্রের দৃষ্টিতে তিনটি বাক্যে আবার বলো। তুমি যে একটি তথ্য বানিয়েছ তা চিহ্নিত করো, যাতে শ্রোতা সেটিকে মূল পাঠ থেকে আলাদা করতে পারে।"
+            }
+          ]
+        },
+        {
+          "id": "p03-ethical-retelling",
+          "title": {
+            "en": "Collect and retell ethically",
+            "bn": "নৈতিকভাবে গল্প সংগ্রহ ও পুনর্কথন"
+          },
+          "blocks": [
+            {
+              "type": "paragraph",
+              "en": "A family or community story may include names, places, grief, conflict, faith or information that someone does not want shared. Ask before recording. Explain where the work will be stored and who can hear or read it. Accept ‘no’ without pressure. A storyteller can also ask to be anonymous or to remove a detail.",
+              "bn": "পারিবারিক বা কমিউনিটির গল্পে নাম, স্থান, শোক, দ্বন্দ্ব, বিশ্বাস বা এমন তথ্য থাকতে পারে যা কেউ ভাগ করতে চান না। রেকর্ড করার আগে অনুমতি চাও। কাজটি কোথায় রাখা হবে এবং কে শুনতে বা পড়তে পারবে তা বোঝাও। চাপ না দিয়ে ‘না’ মেনে নাও। গল্পদাতা নাম গোপন রাখতে বা কোনো তথ্য বাদ দিতেও বলতে পারেন।"
+            },
+            {
+              "type": "list",
+              "items": [
+                {
+                  "en": "Easier scaffold: retell the original practice tale with a six-box story map.",
+                  "bn": "সহজ সহায়তা: ছয় ঘরের গল্প-মানচিত্র দিয়ে মৌলিক অনুশীলনের গল্পটি আবার বলো।"
+                },
+                {
+                  "en": "Core response: retell an approved story and explain one choice and consequence.",
+                  "bn": "মূল উত্তর: অনুমোদিত একটি গল্প আবার বলো এবং একটি সিদ্ধান্ত ও পরিণতি ব্যাখ্যা করো।"
+                },
+                {
+                  "en": "Challenge: compare two versions and explain how the storyteller's changes affect meaning.",
+                  "bn": "চ্যালেঞ্জ: দুটি রূপ তুলনা করো এবং গল্পকারের পরিবর্তন অর্থকে কীভাবে প্রভাবিত করে তা ব্যাখ্যা করো।"
+                }
+              ]
+            },
+            {
+              "type": "prompt",
+              "en": "Use the private assignment. If no approved family story is available, use ‘The lamp at the landing’; sharing a personal story is never required.",
+              "bn": "ব্যক্তিগত অ্যাসাইনমেন্ট ব্যবহার করো। অনুমোদিত পারিবারিক গল্প না থাকলে ‘ঘাটের বাতি’ ব্যবহার করো; ব্যক্তিগত গল্প ভাগ করা কখনো বাধ্যতামূলক নয়।"
+            }
+          ]
+        }
+      ],
+      "response": {
+        "mode": "assignment",
+        "instructions": {
+          "en": "Retell the original practice tale or another teacher-approved story. Keep the central choice clear, show its consequence and credit the source or storyteller. Submit 150–250 words, a 6–8 panel story map with captions, or a 90–120 second recording. A family/community recording requires recorded permission and a teacher-approved storage plan.",
+          "bn": "মৌলিক অনুশীলনের গল্প বা শিক্ষক-অনুমোদিত অন্য গল্প পুনর্কথন করো। মূল সিদ্ধান্তটি স্পষ্ট রাখো, তার পরিণতি দেখাও এবং উৎস বা গল্পদাতার স্বীকৃতি দাও। ১৫০–২৫০ শব্দ, ক্যাপশনসহ ৬–৮ ঘরের গল্প-মানচিত্র, অথবা ৯০–১২০ সেকেন্ডের রেকর্ডিং জমা দাও। পরিবার বা কমিউনিটির রেকর্ডিংয়ের জন্য নথিভুক্ত অনুমতি ও শিক্ষক-অনুমোদিত সংরক্ষণ পরিকল্পনা প্রয়োজন।"
+        },
+        "privacy": {
+          "en": "This is a private teacher-reviewed task. Remove identifying details on request and never upload a person's voice, image or story outside the course without separate permission.",
+          "bn": "এটি শিক্ষক-পর্যালোচিত ব্যক্তিগত কাজ। অনুরোধ করলে পরিচয়সূচক তথ্য বাদ দাও এবং আলাদা অনুমতি ছাড়া কারও কণ্ঠ, ছবি বা গল্প কোর্সের বাইরে আপলোড করবে না।"
+        },
+        "rubric": [
+          {
+            "criterion": { "en": "Story structure", "bn": "গল্পের গঠন" },
+            "developing": { "en": "Events are incomplete or difficult to place in sequence.", "bn": "ঘটনা অসম্পূর্ণ বা ক্রম বোঝা কঠিন।" },
+            "meeting": { "en": "Retells a clear beginning, central choice, consequence and ending.", "bn": "স্পষ্ট শুরু, মূল সিদ্ধান্ত, পরিণতি ও শেষসহ পুনর্কথন করে।" }
+          },
+          {
+            "criterion": { "en": "Text evidence and interpretation", "bn": "পাঠের প্রমাণ ও ব্যাখ্যা" },
+            "developing": { "en": "Makes a claim about a character without pointing to an action or event.", "bn": "কোনো কাজ বা ঘটনা না দেখিয়ে চরিত্র সম্পর্কে দাবি করে।" },
+            "meeting": { "en": "Uses an action or event to explain a character's choice and its effect.", "bn": "কোনো কাজ বা ঘটনা দিয়ে চরিত্রের সিদ্ধান্ত ও তার প্রভাব ব্যাখ্যা করে।" }
+          },
+          {
+            "criterion": { "en": "Attribution and consent", "bn": "উৎস-স্বীকৃতি ও সম্মতি" },
+            "developing": { "en": "The source is unclear or another person's details are included without a permission note.", "bn": "উৎস অস্পষ্ট বা অনুমতির উল্লেখ ছাড়া অন্য ব্যক্তির তথ্য দেয়।" },
+            "meeting": { "en": "Credits the source, labels invented changes and follows the agreed privacy boundary.", "bn": "উৎসের স্বীকৃতি দেয়, বানানো পরিবর্তন চিহ্নিত করে এবং সম্মত গোপনীয়তার সীমা মানে।" }
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -16,6 +16,7 @@ export const REQUIRED_GATES = [
 
 const ALLOWED_GATE_STATUSES = new Set(["pending", "in-review", "approved"]);
 const ALLOWED_MOODLE_TYPES = new Set(["assignment", "book", "forum", "page", "quiz"]);
+const ALLOWED_BLOCK_TYPES = new Set(["paragraph", "prompt", "list", "vocabulary"]);
 
 function isNonEmpty(value) {
   return typeof value === "string" && value.trim().length > 0;
@@ -32,9 +33,131 @@ function gateIsReleaseApproved(gate) {
     && isNonEmpty(gate.evidence);
 }
 
-export function validatePilot({ manifest, topicsSource, booksSource, giftSource }) {
+function validateBilingual(value, location, errors) {
+  if (!isNonEmpty(value?.en) || !isNonEmpty(value?.bn)) errors.push(`${location} must be bilingual.`);
+}
+
+function collectLanguageText(value, language, output = []) {
+  if (Array.isArray(value)) {
+    for (const item of value) collectLanguageText(item, language, output);
+  } else if (value && typeof value === "object") {
+    for (const [key, item] of Object.entries(value)) {
+      if (key === language && typeof item === "string") output.push(item);
+      else collectLanguageText(item, language, output);
+    }
+  }
+  return output.join(" ");
+}
+
+function validateLessonContent(lessonContent, manifest, errors) {
+  if (lessonContent?.schemaVersion !== 1) errors.push("lesson-content schemaVersion must be 1.");
+  if (lessonContent?.courseId !== manifest?.courseId) errors.push("lesson-content courseId must match the manifest.");
+  validateBilingual(lessonContent?.draftNotice, "lesson-content draftNotice", errors);
+  if (!Array.isArray(lessonContent?.externalMedia) || lessonContent.externalMedia.length !== 0) {
+    errors.push("The first pilot lesson-content externalMedia list must remain empty.");
+  }
+  if (!Array.isArray(lessonContent?.modules) || lessonContent.modules.length !== 3) {
+    errors.push("lesson-content must contain exactly three modules.");
+  }
+
+  const manifestIds = (manifest?.modules ?? []).map((module) => module.id);
+  const contentIds = (lessonContent?.modules ?? []).map((module) => module.id);
+  if (JSON.stringify(contentIds) !== JSON.stringify(manifestIds)) {
+    errors.push("lesson-content module IDs and order must match the manifest.");
+  }
+
+  const chapterIds = new Set();
+  let chapterCount = 0;
+  let contentBlockCount = 0;
+  for (const [moduleIndex, module] of (lessonContent?.modules ?? []).entries()) {
+    const location = `lesson-content.modules[${moduleIndex}]`;
+    const manifestModule = manifest?.modules?.[moduleIndex];
+    if (!Number.isInteger(module.estimatedMinutes) || module.estimatedMinutes < 20 || module.estimatedMinutes > 180) {
+      errors.push(`${location}.estimatedMinutes must be an integer from 20 to 180.`);
+    }
+    if (!isNonEmpty(module.supportBand)) errors.push(`${location}.supportBand is required.`);
+    const expectedPrefix = `BA-P${String(moduleIndex + 1).padStart(2, "0")}`;
+    if (module.questionPrefix !== expectedPrefix) errors.push(`${location}.questionPrefix must be ${expectedPrefix}.`);
+    if (!Array.isArray(module.chapters) || module.chapters.length !== 5) {
+      errors.push(`${location}.chapters must contain exactly five substantive chapters.`);
+    }
+
+    let promptCount = 0;
+    for (const [chapterIndex, chapter] of (module.chapters ?? []).entries()) {
+      chapterCount += 1;
+      const chapterLocation = `${location}.chapters[${chapterIndex}]`;
+      if (!isNonEmpty(chapter.id)) errors.push(`${chapterLocation}.id is required.`);
+      if (chapterIds.has(chapter.id)) errors.push(`${chapterLocation}.id is duplicated: ${chapter.id}.`);
+      chapterIds.add(chapter.id);
+      validateBilingual(chapter.title, `${chapterLocation}.title`, errors);
+      if (!Array.isArray(chapter.blocks) || chapter.blocks.length < 3) {
+        errors.push(`${chapterLocation}.blocks must contain at least three learning blocks.`);
+      }
+
+      for (const [blockIndex, block] of (chapter.blocks ?? []).entries()) {
+        contentBlockCount += 1;
+        const blockLocation = `${chapterLocation}.blocks[${blockIndex}]`;
+        if (!ALLOWED_BLOCK_TYPES.has(block.type)) {
+          errors.push(`${blockLocation}.type is unsupported.`);
+          continue;
+        }
+        if (block.type === "paragraph" || block.type === "prompt") {
+          if (block.type === "prompt") promptCount += 1;
+          validateBilingual(block, blockLocation, errors);
+          continue;
+        }
+        if (!Array.isArray(block.items) || block.items.length < 2) {
+          errors.push(`${blockLocation}.items must contain at least two entries.`);
+          continue;
+        }
+        for (const [itemIndex, item] of block.items.entries()) {
+          if (block.type === "list") validateBilingual(item, `${blockLocation}.items[${itemIndex}]`, errors);
+          else {
+            validateBilingual(item.term, `${blockLocation}.items[${itemIndex}].term`, errors);
+            validateBilingual(item.meaning, `${blockLocation}.items[${itemIndex}].meaning`, errors);
+          }
+        }
+      }
+    }
+    if (promptCount < 4) errors.push(`${location} must provide at least four bilingual learner prompts.`);
+
+    const responseTypes = (manifestModule?.moodleBuild ?? [])
+      .map((item) => item.type)
+      .filter((type) => type === "assignment" || type === "forum");
+    if (responseTypes.length !== 1 || module.response?.mode !== responseTypes[0]) {
+      errors.push(`${location}.response.mode must match its one manifest response activity.`);
+    }
+    validateBilingual(module.response?.instructions, `${location}.response.instructions`, errors);
+    validateBilingual(module.response?.privacy, `${location}.response.privacy`, errors);
+    if (!Array.isArray(module.response?.rubric) || module.response.rubric.length !== 3) {
+      errors.push(`${location}.response.rubric must contain exactly three criteria.`);
+    }
+    for (const [rubricIndex, row] of (module.response?.rubric ?? []).entries()) {
+      for (const field of ["criterion", "developing", "meeting"]) {
+        validateBilingual(row[field], `${location}.response.rubric[${rubricIndex}].${field}`, errors);
+      }
+    }
+
+    for (const language of ["en", "bn"]) {
+      const text = collectLanguageText(module, language);
+      if (text.length < 3000) errors.push(`${location} needs at least 3,000 characters of ${language} draft content.`);
+    }
+  }
+
+  const serialised = JSON.stringify(lessonContent ?? {});
+  if (/https?:\/\//i.test(serialised)) errors.push("lesson-content cannot embed external URLs in the first pilot.");
+  if (/youtube|youtu\.be|playlist|synthetic audio/i.test(serialised)) {
+    errors.push("lesson-content cannot contain unreviewed video, playlist or synthetic-audio media.");
+  }
+
+  return { chapterCount, contentBlockCount };
+}
+
+export function validatePilot({ manifest, lessonContent, topicsSource, booksSource, giftSource }) {
   const errors = [];
   const blockers = [];
+
+  const lessonCounts = validateLessonContent(lessonContent, manifest, errors);
 
   if (manifest?.schemaVersion !== 1) errors.push("schemaVersion must be 1.");
   if (!isNonEmpty(manifest?.courseId)) errors.push("courseId is required.");
@@ -61,7 +184,7 @@ export function validatePilot({ manifest, topicsSource, booksSource, giftSource 
     }
     if (!isNonEmpty(module.title?.en) || !isNonEmpty(module.title?.bn)) errors.push(`${location}.title must be bilingual.`);
     if (!isNonEmpty(module.learnerOutcome)) errors.push(`${location}.learnerOutcome is required.`);
-    if (!Array.isArray(module.moodleBuild) || module.moodleBuild.length < 2) errors.push(`${location}.moodleBuild needs at least two core activities/resources.`);
+    if (!Array.isArray(module.moodleBuild) || module.moodleBuild.length !== 3) errors.push(`${location}.moodleBuild needs exactly three core activities/resources.`);
     for (const [buildIndex, item] of (module.moodleBuild ?? []).entries()) {
       if (!ALLOWED_MOODLE_TYPES.has(item.type)) errors.push(`${location}.moodleBuild[${buildIndex}] uses a non-core or unsupported type.`);
       if (!isNonEmpty(item.name) || !isNonEmpty(item.purpose)) errors.push(`${location}.moodleBuild[${buildIndex}] needs a name and purpose.`);
@@ -123,18 +246,33 @@ export function validatePilot({ manifest, topicsSource, booksSource, giftSource 
   if (computedReleaseReady && manifest?.courseStatus !== "approved") errors.push("courseStatus must be approved when releaseReady is true.");
   if (!computedReleaseReady && manifest?.courseStatus === "approved") errors.push("courseStatus cannot be approved while release blockers remain.");
 
-  return { errors, blockers, computedReleaseReady, questionCount: questionNames.length };
+  return {
+    errors,
+    blockers,
+    computedReleaseReady,
+    questionCount: questionNames.length,
+    chapterCount: lessonCounts.chapterCount,
+    contentBlockCount: lessonCounts.contentBlockCount,
+  };
 }
 
 async function loadPilot() {
   const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-  const [manifestJson, topicsSource, booksSource, giftSource] = await Promise.all([
-    fs.readFile(path.join(repositoryRoot, "moodle/pilot/content-manifest.json"), "utf8"),
+  const pluginData = path.join(repositoryRoot, "moodle/local/banglapilot/data");
+  const [manifestJson, lessonJson, topicsSource, booksSource, giftSource] = await Promise.all([
+    fs.readFile(path.join(pluginData, "content-manifest.json"), "utf8"),
+    fs.readFile(path.join(pluginData, "lesson-content.json"), "utf8"),
     fs.readFile(path.join(repositoryRoot, "app/topics-content.ts"), "utf8"),
     fs.readFile(path.join(repositoryRoot, "app/nctb-books.ts"), "utf8"),
-    fs.readFile(path.join(repositoryRoot, "moodle/pilot/questions.gift"), "utf8"),
+    fs.readFile(path.join(pluginData, "questions.gift"), "utf8"),
   ]);
-  return { manifest: JSON.parse(manifestJson), topicsSource, booksSource, giftSource };
+  return {
+    manifest: JSON.parse(manifestJson),
+    lessonContent: JSON.parse(lessonJson),
+    topicsSource,
+    booksSource,
+    giftSource,
+  };
 }
 
 async function main() {
@@ -146,7 +284,10 @@ async function main() {
     return;
   }
 
-  console.log(`Moodle pilot structure is valid: 3 modules, ${result.questionCount} questions.`);
+  console.log(
+    `Moodle pilot structure is valid: 3 modules, ${result.chapterCount} chapters, `
+    + `${result.contentBlockCount} learning blocks and ${result.questionCount} questions.`,
+  );
   if (result.computedReleaseReady) {
     console.log("Every release gate has named, dated evidence. The pilot is release-ready.");
     return;

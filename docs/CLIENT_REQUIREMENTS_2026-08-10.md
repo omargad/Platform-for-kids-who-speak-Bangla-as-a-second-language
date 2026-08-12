@@ -30,7 +30,7 @@ a launch dependency. No row is marked done solely because the project builds.
 | R4 | Bangla translation is desirable | Topic drafts provide EN/BN copy | **Partial:** Bangla spelling, register and translation are not professionally approved |
 | R5 | Stories/poems must not be altered | Prototype literature pages exist and some copyright rules are encoded | **Blocked:** exact work/edition, public-domain or permission basis, faithful text and accessibility review required before publication |
 | R6 | Copyright care; no unapproved copying or AI misuse | Source/audit policy exists; NCTB scans are not embedded as lessons | **Blocked:** rights review and a content provenance record are required per module/media item |
-| R7 | Learners read information and take short quizzes teachers can see | Device-local topic quizzes and a draft Moodle GIFT bank exist | **Partial:** Moodle quiz/gradebook flow must be built and teacher-tested using approved questions |
+| R7 | Learners read information and take short quizzes teachers can see | The plugin seeds 15 bilingual Book chapters, three quizzes and nine draft questions | **Partial:** the hidden Moodle flow must be deployed and teacher-tested after content approval |
 | R8 | Teacher access to create activities and see work | Custom prototype exists; Moodle provides the launch workflow | **Implemented in architecture, not deployed:** configure and permission-test Moodle teacher/editor/reviewer roles |
 | R9 | Parent access, pending principal confirmation | A legacy family dashboard exists | **Decision:** no parent account in the first Moodle pilot unless the school confirms a clear need and privacy model |
 | R10 | Responsive website, tablet first, not a mobile app | Responsive code exists | **Partial:** device/browser, keyboard, zoom/reflow and screen-reader validation still required |
@@ -51,7 +51,7 @@ a launch dependency. No row is marked done solely because the project builds.
   accessibility or permission to republish.
 - `app/topics-content.ts` contains 13 bilingual topic prototypes. They are a
   review inventory, not 13 published lessons.
-- `moodle/pilot/content-manifest.json` selects only Ekushey, Pohela Boishakh and
+- `moodle/local/banglapilot/data/content-manifest.json` selects only Ekushey, Pohela Boishakh and
   folk tales for the first course. All 27 release gates are pending.
 - No YouTube candidate, synthetic audio or NCTB scan enters the first pilot.
 

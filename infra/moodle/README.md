@@ -21,7 +21,7 @@ Authoritative references:
 
 ## Pinned pilot baseline
 
-- Moodle tag: `MOODLE_5022` (8 August 2026)
+- Moodle tag: `v5.2.2` (release 5.2.2, build 10 August 2026)
 - PHP: 8.3
 - MariaDB: 10.11 or newer within Moodle's supported range
 - VM starting point: 2 vCPU, 4 GB RAM, 25 GB encrypted persistent disk
@@ -31,12 +31,13 @@ an unpinned development branch in production.
 
 ## Reproducible installation
 
-Four executable tools now turn the runbook into a guarded deployment sequence:
+Five executable tools now turn the runbook into a guarded deployment sequence:
 
 | Tool | Purpose | Changes the host? |
 | --- | --- | --- |
 | `bootstrap-ubuntu.sh` | Installs the supported stack, pinned Moodle source, PHP settings, Apache template and cron units | Only with `--apply` |
 | `install-site.sh` | Strictly validates a secrets file, creates the local database, runs Moodle's CLI installer and applies closed pilot defaults | Only with `--install` |
+| `install-pilot-plugin.sh` | Validates the checksummed plugin package, backs up an existing copy, upgrades Moodle, seeds twice and checks hidden-course drift | Only with `--install` |
 | `enable-tls.sh` | Enables the Moodle virtual host and obtains a Let's Encrypt certificate after DNS resolves | Yes; rolls the site back to disabled if issuance fails |
 | `verify-host.sh` | Checks versions, extensions, filesystem permissions, services, cron, HTTPS and redirect behaviour | No |
 
@@ -58,6 +59,27 @@ sudo install -o root -g root -m 0600 /tmp/site.env /root/bangla-moodle.env
 ./install-site.sh --check-config /root/bangla-moodle.env
 sudo ./install-site.sh --install /root/bangla-moodle.env
 ```
+
+Build the course plugin in the repository and transfer the ZIP, checksum and
+installer to the private VM through the client's approved channel:
+
+```bash
+npm run verify:moodle-pilot
+npm run verify:moodle-plugin
+npm run moodle:package
+
+./install-pilot-plugin.sh \
+  --check-package /path/to/local_banglapilot.zip \
+  --sha256-file /path/to/local_banglapilot.zip.sha256
+sudo ./install-pilot-plugin.sh \
+  --install /path/to/local_banglapilot.zip \
+  --sha256-file /path/to/local_banglapilot.zip.sha256
+```
+
+The installer rejects path traversal, symbolic links, special files, oversized
+archives, invalid PHP/JSON and a checksum mismatch. It then applies the seed
+twice and records the read-only JSON check in `moodledata`. Both the category
+and course remain hidden and no learner is enrolled.
 
 The configuration parser treats values literally, rejects unknown/duplicate
 keys and never prints either password. Database and administrator passwords use
@@ -82,7 +104,7 @@ the course for children.
 
 The scripts implement these security boundaries:
 
-- Ubuntu 24.04, Moodle `MOODLE_5022`, PHP 8.3 and Moodle's required extensions
+- Ubuntu 24.04, Moodle `v5.2.2`, PHP 8.3, Composer's locked runtime dependencies and Moodle's required extensions
   are checked rather than assumed;
 - Moodle source is root-owned and read-only to the web server;
 - `/var/lib/moodledata` is outside the web root and inaccessible to other OS
@@ -117,7 +139,7 @@ Expected checks after `npm run build && npm start`:
 
 ## Moodle course setup
 
-Follow `moodle/pilot/README.md`. Keep the course hidden until:
+Follow `moodle/README.md`. Keep the course hidden until:
 
 ```bash
 npm run verify:moodle-release
