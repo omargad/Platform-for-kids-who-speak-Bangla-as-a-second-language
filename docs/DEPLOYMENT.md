@@ -15,7 +15,10 @@ course/content acceptance gates.
   persistent storage. Backups must be encrypted and copied off the VM.
 
 The VM and domain cannot be provisioned until the client supplies cloud and DNS
-access. A GitHub Codespace is not production hosting.
+access. The repository now includes guarded Ubuntu preparation, installation,
+TLS activation and host-verification tools under `infra/moodle/`; no script
+contains or generates production credentials. A GitHub Codespace is not
+production hosting.
 
 ## Companion application
 
@@ -26,6 +29,7 @@ npm ci
 npm run lint
 npm test
 npm run verify:moodle-pilot
+npm run verify:moodle-infra
 npm run verify:moodle-release
 npm run build
 ```

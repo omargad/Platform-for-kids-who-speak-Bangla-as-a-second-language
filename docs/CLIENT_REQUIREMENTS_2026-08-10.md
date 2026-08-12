@@ -37,7 +37,7 @@ a launch dependency. No row is marked done solely because the project builds.
 | R11 | Soft pastel, simple child-appropriate design | Prototype styling exists | **Partial:** client/child observation and iterative usability changes required |
 | R12 | Teacher announcements are desirable | Legacy prototype exists; Moodle announcements/forum can supply it | **Not configured:** test within the hidden pilot course |
 | R13 | Refresh sources annually | NCTB audit pipeline and source catalogue exist | **Partial:** assign an owner, record edition/checksum/date and test the yearly update process without silently changing approved lessons |
-| R14 | Low-cost/free-tier hosting; GitHub required | GitHub repository exists; Moodle-first single-VM plan uses client credits and core open-source software | **Partial:** cloud/DNS credentials, production deployment, backup restore and support ownership remain |
+| R14 | Low-cost/free-tier hosting; GitHub required | GitHub repository exists; the Moodle-first single-VM plan now includes guarded Ubuntu preparation, installation, TLS and host-verification tools using client credits and core open-source software | **Partial:** cloud/DNS credentials, actual production execution, backup restore and support ownership remain |
 | R15 | Non-NCTB sources only with client approval | External providers are listings on `/resources`, not lesson evidence | **Policy implemented:** each future use still needs a recorded client decision |
 | R16 | Working solution before week 12 for child feedback | Compile/test baseline and three-module Moodle pack exist | **Blocked:** Moodle deployment, 27 content gates, privacy/safeguarding, access testing and a consented pilot remain |
 

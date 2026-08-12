@@ -33,7 +33,7 @@ architecture and acceptance criteria.
 | YouTube/media verification | Not complete; media excluded from the first pilot |
 | Curriculum, accessibility and child review | Not complete |
 | Privacy, safeguarding and legal approval | Not complete |
-| Cloud/domain deployment and operations | Not complete; client credentials and named owners required |
+| Cloud/domain deployment and operations | Reproducible host/install/TLS verification tools implemented; actual deployment still requires client credentials and named owners |
 
 A successful build proves that the software compiles. It does not approve
 Bangla, historical claims, copyright, age suitability, accessibility or child
@@ -127,6 +127,7 @@ Production accepts HTTPS only. See `.env.example`.
 npm run lint
 npm test
 npm run verify:moodle-pilot
+npm run verify:moodle-infra
 npm run build
 npm run test:integration
 npm run test:e2e
