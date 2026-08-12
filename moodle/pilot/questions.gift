@@ -1,0 +1,63 @@
+// DRAFT QUESTION BANK — NOT APPROVED FOR LEARNER RELEASE.
+// Import into Moodle Question bank > Import > GIFT after the manifest gates
+// have named review evidence. Correct-answer positions are intentionally mixed.
+
+$CATEGORY: $course$/top/Bangla Adventures Pilot/01 Amar Ekushey
+
+::BA-P01-Q01::What did students defend on 21 February 1952? / ১৯৫২ সালের ২১ ফেব্রুয়ারি ছাত্ররা কী রক্ষা করতে চেয়েছিল? {
+~A cricket trophy / একটি ক্রিকেট ট্রফি
+=The right to use Bangla as a state language / বাংলাকে রাষ্ট্রভাষা হিসেবে ব্যবহারের অধিকার
+~A new school uniform / নতুন স্কুল পোশাক
+}
+
+::BA-P01-Q02::Where do people place flowers when commemorating Ekushey? / একুশে স্মরণে মানুষ কোথায় ফুল দেয়? {
+=At the Shaheed Minar / শহিদ মিনারে
+~At an airport / বিমানবন্দরে
+~At a sports stadium / ক্রীড়া স্টেডিয়ামে
+}
+
+::BA-P01-Q03::What international observance is held on 21 February? / ২১ ফেব্রুয়ারিতে কোন আন্তর্জাতিক দিবস পালিত হয়? {
+~World Book Day / বিশ্ব বই দিবস
+~World Music Day / বিশ্ব সংগীত দিবস
+=International Mother Language Day / আন্তর্জাতিক মাতৃভাষা দিবস
+}
+
+$CATEGORY: $course$/top/Bangla Adventures Pilot/02 Pohela Boishakh
+
+::BA-P02-Q01::What does Pohela Boishakh begin? / পহেলা বৈশাখে কী শুরু হয়? {
+=The Bengali calendar year / বাংলা সনের নতুন বছর
+~The monsoon season every year / প্রতি বছরের বর্ষাকাল
+~The school summer holiday / স্কুলের গ্রীষ্মের ছুটি
+}
+
+::BA-P02-Q02::Which statement best respects different families? / কোন কথাটি বিভিন্ন পরিবারকে সবচেয়ে ভালোভাবে সম্মান করে? {
+~Every family celebrates in exactly the same way / সব পরিবার ঠিক একইভাবে উদযাপন করে
+=Traditions can vary by family, place and community / পরিবার, স্থান ও সম্প্রদায়ভেদে রীতি ভিন্ন হতে পারে
+~Only one celebration is authentic / শুধু একটি উদযাপনই আসল
+}
+
+::BA-P02-Q03::Which activity is a useful way to learn about a family tradition? / পারিবারিক রীতি সম্পর্কে জানার ভালো উপায় কোনটি? {
+~Guess without asking anyone / কাউকে না জিজ্ঞেস করে অনুমান করা
+~Copy an unverified social-media post / যাচাইহীন সামাজিক মাধ্যমের পোস্ট নকল করা
+=Ask a family member and record what they say with permission / অনুমতি নিয়ে পরিবারের কারও কথা নথিভুক্ত করা
+}
+
+$CATEGORY: $course$/top/Bangla Adventures Pilot/03 Folk Tales
+
+::BA-P03-Q01::Which feature is common in many folk tales? / অনেক লোককথায় কোন বৈশিষ্ট্যটি দেখা যায়? {
+~A laboratory report / গবেষণাগারের প্রতিবেদন
+=A repeated pattern or a choice with consequences / পুনরাবৃত্ত ধারা বা পরিণতিসহ একটি সিদ্ধান্ত
+~A live weather forecast / সরাসরি আবহাওয়ার পূর্বাভাস
+}
+
+::BA-P03-Q02::What should a learner do when retelling a family story? / পারিবারিক গল্প পুনর্কথনের সময় শিক্ষার্থীর কী করা উচিত? {
+=Credit the person who shared it and ask permission before recording / যিনি গল্প বলেছেন তাঁর নাম উল্লেখ করা এবং রেকর্ডের আগে অনুমতি নেওয়া
+~Present every detail as a proven historical fact / প্রতিটি তথ্যকে প্রমাণিত ইতিহাস হিসেবে বলা
+~Upload a relative's recording publicly without asking / অনুমতি ছাড়া আত্মীয়ের রেকর্ড প্রকাশ করা
+}
+
+::BA-P03-Q03::How can you support an idea about a character? / চরিত্র সম্পর্কে একটি ধারণা কীভাবে সমর্থন করবে? {
+~Choose the longest answer / সবচেয়ে লম্বা উত্তর বেছে নিয়ে
+~Use a fact from a different story / অন্য গল্পের তথ্য ব্যবহার করে
+=Point to an action or event in the story / গল্পের একটি কাজ বা ঘটনার দিকে ইঙ্গিত করে
+}

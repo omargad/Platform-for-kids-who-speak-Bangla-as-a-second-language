@@ -87,11 +87,11 @@ export default function LibraryHub() {
         <section className="adult-hero">
           <div>
             <p className="adult-eyebrow">{s("Our source of truth", "আমাদের তথ্যের উৎস")}</p>
-            <h1>{s("The government textbooks behind every topic.", "প্রতিটি বিষয়ের পেছনের সরকারি পাঠ্যবই।")}</h1>
+            <h1>{s("The government sources being checked for each candidate topic.", "প্রতিটি সম্ভাব্য বিষয়ের জন্য যাচাই করা সরকারি উৎস।")}</h1>
             <p>
               {s(
-                "Bangladesh's National Curriculum and Textbook Board (NCTB) publishes the official school textbooks and offers them free on its website. On our client's direction, these books are the platform's primary evidence base for culture, history and literature: we create original, kid-friendly adaptations, cite the exact title and page, and link to the official source. Stories and poems are not republished unless permission and accessibility review are recorded.",
-                "বাংলাদেশের জাতীয় শিক্ষাক্রম ও পাঠ্যপুস্তক বোর্ড (এনসিটিবি) সরকারি পাঠ্যবই প্রকাশ করে এবং ওয়েবসাইটে বিনামূল্যে দেয়। ক্লায়েন্টের নির্দেশনায় এই বইগুলো সংস্কৃতি, ইতিহাস ও সাহিত্যের প্রধান প্রমাণভিত্তি: আমরা প্রবাসী শিশুদের জন্য মৌলিক ও শিশু-উপযোগী অভিযোজন তৈরি করি, সঠিক বই ও পৃষ্ঠা উল্লেখ করি এবং সরকারি উৎসে লিংক দিই। অনুমতি ও প্রবেশযোগ্যতা পর্যালোচনা নথিভুক্ত না হলে গল্প-কবিতা পুনঃপ্রকাশ করি না।",
+                "Bangladesh's National Curriculum and Textbook Board (NCTB) publishes official school textbooks and offers them free on its website. At the client's direction, these records are the starting evidence base for culture, history and literature. A source link is not lesson approval: every adaptation still needs an exact edition/page decision plus language, cultural, age, rights and accessibility review. Stories and poems are not republished unless that evidence is recorded.",
+                "বাংলাদেশের জাতীয় শিক্ষাক্রম ও পাঠ্যপুস্তক বোর্ড (এনসিটিবি) সরকারি পাঠ্যবই প্রকাশ করে এবং ওয়েবসাইটে বিনামূল্যে দেয়। ক্লায়েন্টের নির্দেশনায় এই নথিগুলো সংস্কৃতি, ইতিহাস ও সাহিত্যের প্রাথমিক প্রমাণভিত্তি। উৎসের লিংক পাঠের অনুমোদন নয়: প্রতিটি অভিযোজনে সঠিক সংস্করণ/পৃষ্ঠা এবং ভাষা, সংস্কৃতি, বয়স, স্বত্ব ও প্রবেশযোগ্যতার পর্যালোচনা দরকার। সেই প্রমাণ নথিভুক্ত না হলে গল্প-কবিতা পুনঃপ্রকাশ করা হয় না।",
               )}
             </p>
             <a className="primary-button" href={NCTB_PORTAL_URL} target="_blank" rel="noreferrer">
@@ -174,8 +174,8 @@ export default function LibraryHub() {
             </li>
             <li>
               {s(
-                "Government source first: information on this platform traces to these books. If a fact is wrong in the source, that is the publisher's to fix — we never mix in unreviewed websites.",
-                "সরকারি উৎসই প্রথম: এই প্ল্যাটফর্মের তথ্য এই বইগুলো থেকে আসে। উৎসে ভুল থাকলে তা প্রকাশকের সংশোধনের বিষয় — আমরা অযাচাই করা ওয়েবসাইট মেশাই না।",
+                "Government source first: these books define the first review queue. Reviewers must still confirm that each platform statement is supported and may use current authoritative evidence where a textbook claim needs context or correction; unreviewed websites never enter a lesson.",
+                "সরকারি উৎসই প্রথম: এই বইগুলো প্রাথমিক পর্যালোচনার তালিকা ঠিক করে। তবু পর্যালোচককে নিশ্চিত করতে হবে যে প্ল্যাটফর্মের প্রতিটি বক্তব্য উৎসে সমর্থিত; পাঠ্যবইয়ের দাবিতে প্রেক্ষাপট বা সংশোধন দরকার হলে বর্তমান নির্ভরযোগ্য প্রমাণ ব্যবহার করা যাবে। অযাচাই করা ওয়েবসাইট কোনো পাঠে ঢোকে না।",
               )}
             </li>
             <li>

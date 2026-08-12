@@ -48,3 +48,11 @@ test("language toggle switches an activity page to Bangla", async ({ page }) => 
   await page.getByRole("button", { name: "বাংলায় দেখুন" }).click();
   await expect(page.getByRole("button", { name: "View in English" })).toBeVisible();
 });
+
+test("topic prototypes disclose their draft review status", async ({ page }) => {
+  await page.goto("/topics");
+  await expect(page.getByText(/Candidate content — review mode/i)).toBeVisible();
+  await page.getByRole("button", { name: /Ekushey — the day a language was defended/i }).click();
+  await expect(page.getByText(/Draft for educator review/i)).toBeVisible();
+  await expect(page.getByText(/candidate NCTB evidence anchors/i)).toBeVisible();
+});

@@ -39,7 +39,7 @@ async function waitForServer(timeoutMs = 30_000) {
 }
 
 before(async () => {
-  server = spawn("npx", ["next", "start", "-p", String(PORT)], {
+  server = spawn("npx", ["next", "start", "-H", "127.0.0.1", "-p", String(PORT)], {
     cwd: new URL("../..", import.meta.url).pathname,
     env: {
       ...process.env,

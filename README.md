@@ -1,131 +1,177 @@
 # Bangla Adventures
 
-**Platform for kids who speak Bangla as a second language** — a bilingual, interactive platform that teaches **Bangladesh's culture, history and literature** to children of the Bangladeshi diaspora (prep–year 12) who attend community-run Bangla schools. Built for the ICT Project B capstone with clients Dr Tanjila Kanij and Faysal Alam.
+A bilingual platform for Bangladeshi-heritage children outside Bangladesh,
+focused on **culture, history and literature**. This is an ICT Project B
+capstone with clients Dr Tanjila Kanij and Faysal Alam.
 
-Per the client brief (see `docs/CLIENT_REQUIREMENTS_2026-08-10.md`): content is sourced from **Bangladesh's official NCTB government textbooks**, adapted to be kid-friendly for heritage learners (stories and poems are never altered), presented English-first with a full Bangla translation. Language teaching is deliberately **not** the focus — community schools already run a set language curriculum — so the Bangla-language tools live on as an optional extension corner.
+## Current product decision
 
-The experience combines three visual ideas: a warm river storybook, a postcard-style culture passport, and a Bangladesh quest map.
+The pilot is now **Moodle-first**.
 
-## What is built
+- Moodle owns accounts, roles, enrolment, classes, announcements, quizzes,
+  assignments, completion and grades.
+- This Next.js application remains a public bilingual companion for NCTB source
+  discovery and reviewed topic experiences.
+- The custom account/classroom/studio code remains in `legacy` mode for
+  comparison and migration. It is not the recommended launch LMS.
+- The first course is only three candidate modules. Nothing is bulk-published
+  from the 18 language lessons or 13 topic drafts.
 
-### Culture, history & literature (the core)
-- **/topics** — 13 classroom topics across three themes (history & the national story · culture & celebrations · literature & arts). Each is a short bilingual reading with fun facts, a citation of the NCTB textbook it draws from, and a three-question quiz with a "show your teacher" result screen (stored on-device only)
-- **/library** — the NCTB textbook catalog: which government books back the platform (Bangladesh and Global Studies, History of Bangladesh and World Civilization, the Bangla readers, Arts and Crafts, Language and Culture of Minority Ethnic Groups…), which classes use them, English-version availability, official download links, and the yearly-refresh + client-approval sourcing policy. Backed by `/api/library`, which merges teacher-maintained overrides
-- **/poems** — literature exactly as written: public-domain verse (Tagore, Kusumkumari Das, folk rhymes) verbatim with author credits and gentle English helpers; in-copyright poets (e.g. Nazrul, until 2036) are cited but never reproduced
-- **/explore** — history timeline, landmarks, festivals, food and music
-- **/stories** — folk tales and two-homes stories, told bilingually
+See [`docs/MOODLE_FIRST_MVP.md`](docs/MOODLE_FIRST_MVP.md) for the audit,
+architecture and acceptance criteria.
 
-### The classroom (teacher ↔ student)
-- **/teach** (teacher, signs in as a grown-up) — create classes that get a 6-letter join code; author quizzes/activities (optionally linked to a classroom topic) with a question builder; open/close activities; post announcements; see every student's graded submission. Also hosts the **textbook knowledge sources** editor: refresh each NCTB book's official download link every academic year (or add/hide books) with no code change
-- **/classroom** (student) — join with the class code and a **first name or nickname only** (no email, no password, no birthday); read announcements; complete activities; answers are graded server-side and the score goes to the teacher. The answer key never reaches the student's browser
-- Join/submit endpoints are rate-limited; teachers only ever see their own classes
+## Honest delivery status
 
-### Learner site (no account needed)
-- English/Bangla interface switch
-- 18 complete lessons across six child- and heritage-adapted proficiency bands: Pre-A1, A1, A2, B1, B2, and C1–C2 extension — 108 guided sessions covering listening, reading, speaking, writing, culture and mastery
-- A four-skill starting-level guide based on learner "can do" statements rather than age
-- Every lesson includes objectives, six vocabulary items, two language patterns, teaching blocks, cultural context, guided activities, a family mission, knowledge checks, one YouTube video and one curated playlist
-- 180+ pronunciation clips (device voices preferred, bundled audio fallback works offline)
-- A three-page bilingual river story with comprehension questions
-- Culture postcards for Bangladesh's three UNESCO World Heritage properties
-- English-to-Bangla matching game
-- Stars, lesson completion and device-local progress saving
-- Installable PWA with offline support (service worker + manifest)
-- **/worksheets** — a printable practice sheet for every lesson (vocabulary writing table, sentence patterns, bilingual reading with comprehension check, guided writing, self-check quiz and the family mission), statically generated and free to copy for home and classroom use
-- **/resources** — a bilingual, curated list of external Bangla course providers and free collections (universities, heritage schools, self-study) with clear external-site disclaimers; links checkable with `npm run verify:links`
-- Responsive layouts, keyboard focus states, Escape-to-close dialogs and reduced-motion support
-
-### Grown-up workspace (email + password account)
-- **/grown-ups** — sign in or create a grown-up account (parents, carers, educators)
-- **/family** — learner profiles (display name only — no child emails or birthdays), lesson assignments and six-skill progress tracking synced to the server
-- **/studio** — content studio: curriculum drafts, educator/community review tracking, human pronunciation audio uploads with speaker consent records, and YouTube video suitability checks
-- **/account** — change password (ends other sessions), sign out everywhere, regenerate recovery codes, download a full JSON export of the family's data, or permanently delete the account and everything it owns
-- **Recovery codes** — eight one-time codes issued at sign-up (there is no email reset); "Forgot your password?" on the sign-in page resets the password with a code and signs out all devices
-- **/safety** — plain-language safety, privacy and accessibility record
-- Learner profiles can be individually removed from the family dashboard, deleting their progress and assignments
-- Sign-in, sign-up and account endpoints are rate-limited in-app
-
-## Architecture
-
-| Layer | Technology |
+| Area | Status |
 | --- | --- |
-| Framework | Next.js 16 (App Router) + React 19 |
-| Styling | Hand-crafted CSS design system (`app/globals.css`) + Tailwind PostCSS pipeline |
-| Database | SQLite via better-sqlite3 + Drizzle ORM (schema bootstraps automatically on first run) |
-| Media storage | Local filesystem (`.data/media`), swappable for S3/GCS/R2 (`lib/storage.ts`) |
-| Auth | Self-contained email + password (scrypt hashing, httpOnly session cookies) — `lib/auth.ts` |
-| Tests | Node.js built-in test runner (`tests/`) |
+| Official NCTB catalogue and PDF audit | Source records implemented; a verified PDF is not an approved adaptation |
+| Bilingual topic prototypes | Implemented as drafts; educational/community review remains |
+| Moodle pilot pack | Three-module manifest and nine-question GIFT bank implemented |
+| Automated publication control | Draft validation passes; release validation intentionally fails while 27 gates are pending |
+| Custom learner/teacher/family LMS | Frozen for launch; redirected/retired when Moodle mode is enabled |
+| Human Bangla audio | Not complete |
+| YouTube/media verification | Not complete; media excluded from the first pilot |
+| Curriculum, accessibility and child review | Not complete |
+| Privacy, safeguarding and legal approval | Not complete |
+| Cloud/domain deployment and operations | Not complete; client credentials and named owners required |
 
-The learner experience is deliberately local-first: children never sign in, and their stars/progress live in the browser. The server database only stores what a signed-in grown-up chooses to create.
+A successful build proves that the software compiles. It does not approve
+Bangla, historical claims, copyright, age suitability, accessibility or child
+safety.
 
-## Run locally
+## Client-aligned scope
 
-Requirements: Node.js 20.9 or newer (22 recommended).
+The 10 August 2026 client meeting re-scoped the core away from a new language
+course. Community Bangla schools already teach language; the missing resource
+is a systematic, English-first culture/history/literature strand with optional
+Bangla translation and trustworthy NCTB evidence.
+
+The pilot therefore does **not** use CEFR A1–C2 labels. CEFR can describe a
+future language pathway, but it does not measure cultural or historical depth.
+The course instead states target age/context, reading support, activity
+scaffolds, outcomes and teacher success criteria.
+
+## First Moodle pilot
+
+`moodle/pilot/` contains:
+
+1. Ekushey and the Language Movement;
+2. Pohela Boishakh; and
+3. folk tales and retelling.
+
+Each candidate module has official NCTB source anchors, a small Moodle-core
+activity plan and nine mandatory gates: source mapping, Bangla, English
+adaptation, cultural/historical accuracy, age suitability, rights, access,
+media safety and a consented child pilot.
 
 ```bash
-npm install
+npm run verify:moodle-pilot   # validates a draft and reports blockers
+npm run verify:moodle-release # must fail until all review evidence is approved
+```
+
+The question bank is `moodle/pilot/questions.gift`, importable through Moodle's
+native GIFT importer after review.
+
+## Public companion surfaces
+
+| Route | Pilot role |
+| --- | --- |
+| `/topics` | Draft bilingual topic review experience |
+| `/books` | Audited NCTB Book Bridge and precise source metadata |
+| `/library` | Adult-facing textbook catalogue |
+| `/resources` | External research register; not approved curriculum |
+| `/safety` | Current safety/accessibility statements for review |
+
+The remaining learner language tools and custom LMS pages are legacy surfaces.
+When the production deployment sets `PLATFORM_MODE=moodle`, they redirect to
+Moodle and their data APIs return `410 Gone`.
+
+## Technology
+
+| Layer | Choice |
+| --- | --- |
+| Public companion | Next.js 16, React 19, TypeScript |
+| Pilot LMS | Self-hosted Moodle 5.2.2 |
+| Moodle database | MariaDB 10.11 on the first single VM |
+| Legacy prototype storage | SQLite + local filesystem, one instance only |
+| Deployment | One client-funded VM initially; HTTPS, off-VM backup and monitoring required |
+
+Moodle core is used before optional plugins. The first pilot has no paid LMS,
+paid plugin, mobile app or LTI dependency.
+
+## Run the companion locally or in Codespaces
+
+Use Node.js 22.
+
+```bash
+npm ci
 npm run dev
 ```
 
-Open http://localhost:3000.
+Open <http://localhost:3000>. A Codespace is a development environment, not a
+production host for children or persistent Moodle data.
 
-## Production
+To test the Moodle hand-off locally, provide a local or HTTPS Moodle URL:
 
-```bash
-npm run build
-npm start
+```dotenv
+PLATFORM_MODE=moodle
+MOODLE_URL=http://localhost:8080
+NEXT_PUBLIC_MOODLE_URL=http://localhost:8080
 ```
 
-Environment variables (all optional, see `.env.example`):
-
-- `DATABASE_PATH` — SQLite file location (default `.data/bangla-adventures.db`)
-- `MEDIA_ROOT` — uploaded pronunciation audio directory (default `.data/media`)
-- `PORT` — server port (default 3000)
-
-Health check: `GET /api/health` returns `200` when the database is reachable
-(`503` otherwise) — point a load balancer or uptime monitor at it. The Docker
-image also declares a container `HEALTHCHECK` against it.
-
-### Docker
-
-```bash
-docker build -t bangla-adventures .
-docker run -p 3000:3000 -v bangla_data:/app/.data bangla-adventures
-```
-
-### Deploying to the client's cloud
-
-The app runs on any VM or container service (AWS Lightsail/EC2/ECS, Azure App Service, Google Cloud Run with a persistent volume, Oracle Cloud). It needs: Node 22 (or the Docker image), one persistent disk for `.data/` (database + uploaded audio), and a reverse proxy (nginx/Caddy) terminating HTTPS on the client's domain. See `docs/DEPLOYMENT.md` for a step-by-step guide.
+Production accepts HTTPS only. See `.env.example`.
 
 ## Quality checks
 
 ```bash
-npm run lint             # ESLint (next/core-web-vitals + TypeScript)
-npm test                 # curriculum integrity, audio coverage, crypto, rate limiter
-npm run build            # type-checks and produces the production bundle
-npm run test:integration # full HTTP flow against the built server (run after build)
-npm run verify:media     # check every lesson video/playlist resolves on YouTube
-npm run fetch:nctb       # download + text-extract the NCTB textbooks (run on a normal network; see content-sources/README.md)
-npm run test:e2e         # Playwright browser tests (uses the workspace Chromium)
+npm run lint
+npm test
+npm run verify:moodle-pilot
+npm run build
+npm run test:integration
+npm run test:e2e
 ```
 
-## Main source files
+Additional audits:
 
-- `app/page.tsx` — learner site: content, bilingual state, lessons, story, game, progress and dialogs
-- `app/curriculum.ts` — all six proficiency bands and the complete 18-lesson curriculum
-- `app/learning-content.ts` — dialogues, four-skill sessions and quick checks for every lesson
-- `app/components/LessonExperience.tsx` — guided six-session lesson player
-- `app/components/FourSkillDiagnostic.tsx` — starting-level guide
-- `app/family/` + `app/studio/` — grown-up dashboard and content studio
-- `lib/auth.ts`, `lib/password.ts` — account and session handling
-- `db/schema.ts`, `db/bootstrap.ts` — Drizzle schema and idempotent SQLite bootstrap
-- `docs/PROJECT_PACK.md` — research, requirements, architecture, safety, roadmap and review plan
-- `docs/DEPLOYMENT.md` — cloud deployment runbook
+```bash
+npm run verify:media  # candidate YouTube IDs; run where YouTube is reachable
+npm run verify:links  # external resource register
+npm run fetch:nctb    # controlled NCTB ingestion; PDFs themselves are not lessons
+```
 
-## Privacy model
+CI validates the draft manifest. A future deployment workflow must call
+`verify:moodle-release`; it is intentionally not treated as passing while human
+review is incomplete.
 
-Children are never asked to sign in and the learner site collects no personal data; stars and completed activities stay in the browser. YouTube receives a connection only after a learner chooses to load a video. Grown-up accounts store an email, a display name and a scrypt-hashed password. Learner profiles hold a display name, an optional broad age band and a general language list — no child contact details, birthdays, schools, locations or photos. Uploaded pronunciation audio requires an adult speaker credit and recorded consent confirmation before it can be approved.
+## Source and content boundaries
 
-## Before public launch
+- `app/nctb-books.ts` records current official source metadata and direct
+  government-hosted downloads.
+- `app/nctb-content.ts` is an explicit review queue. Its lesson bridges remain
+  `pending-educator-review`.
+- `content-sources/` contains audit/extraction evidence, not learner-ready copy.
+- Original accessible HTML must be written and reviewed for the diaspora
+  audience; textbook scans are never embedded as the lesson interface.
+- Stories, poems, images, recordings and video require exact rights, consent,
+  attribution, accessibility and suitability evidence.
 
-This is a complete, review-ready platform, not yet an officially validated language assessment service. Before broad public launch the team should complete: Bangladeshi community and educator content review (trackable in the Content Studio), child usability testing with consent, professional Bangla language and audio review, a privacy impact assessment, a WCAG 2.2 AA audit, security testing, and legal review of applicable child-privacy requirements (Australian Privacy Act / OAIC Children's Online Privacy Code, COPPA if targeting the US).
+## Deployment
+
+The lowest-cost production-shaped option is one small client-funded Linux VM:
+Moodle 5.2.2 + PHP 8.3 + MariaDB 10.11, with the companion app on the same VM.
+The Moodle web root must be its `public` directory, cron must run every minute,
+and backups must leave the VM and be restored in a drill.
+
+Use [`infra/moodle/README.md`](infra/moodle/README.md). Deployment cannot be
+completed until the client supplies cloud and DNS access plus platform,
+support, safeguarding/privacy and curriculum owners.
+
+## Key documents
+
+- `docs/MOODLE_FIRST_MVP.md` — recovery decision, scope and definition of done
+- `moodle/pilot/README.md` — course authoring and release workflow
+- `docs/NCTB_CONTENT_AUDIT.md` — PDF/source audit and its limits
+- `docs/CLIENT_REQUIREMENTS_2026-08-10.md` — requirement traceability
+- `docs/MEDIA_REVIEW.md` — unverified-video and human-audio process
+- `infra/moodle/README.md` — cheapest credible deployment runbook

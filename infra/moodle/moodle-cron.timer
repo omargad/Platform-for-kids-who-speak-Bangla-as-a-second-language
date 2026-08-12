@@ -1,0 +1,11 @@
+[Unit]
+Description=Run Moodle scheduled tasks every minute
+
+[Timer]
+OnCalendar=*-*-* *:*:00
+AccuracySec=1s
+Persistent=true
+Unit=moodle-cron.service
+
+[Install]
+WantedBy=timers.target

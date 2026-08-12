@@ -1,0 +1,168 @@
+{
+  "schemaVersion": 1,
+  "courseId": "bangla-culture-pilot-01",
+  "courseTitle": "Bangladesh Culture, History and Literature — Pilot",
+  "courseStatus": "draft",
+  "releaseReady": false,
+  "audience": "English-dominant Bangladeshi-heritage learners, initial pilot ages 8–12",
+  "levelModel": "age-and-scaffold bands; CEFR is not used for culture/history/literature content",
+  "requiredGates": [
+    "sourceMapping",
+    "banglaLanguage",
+    "englishAdaptation",
+    "culturalHistoricalAccuracy",
+    "ageSuitability",
+    "copyrightPermissions",
+    "accessibility",
+    "mediaSafety",
+    "childPilot"
+  ],
+  "modules": [
+    {
+      "id": "pilot-01-amar-ekushey",
+      "sequence": 1,
+      "appTopicId": "amar-ekushey",
+      "theme": "history",
+      "title": {
+        "en": "Ekushey — the day a language was defended",
+        "bn": "একুশে — ভাষা রক্ষার দিন"
+      },
+      "learnerOutcome": "Explain why 21 February matters, place the 1952 Language Movement on a simple timeline, and distinguish a source fact from a commemorative tradition.",
+      "publicationStatus": "draft",
+      "moodleBuild": [
+        {
+          "type": "book",
+          "name": "Read and explore",
+          "purpose": "Short English-first reading with reviewed Bangla translation and source notes"
+        },
+        {
+          "type": "quiz",
+          "name": "Check your understanding",
+          "purpose": "Three bilingual formative questions from questions.gift"
+        },
+        {
+          "type": "assignment",
+          "name": "A language that matters to me",
+          "purpose": "One paragraph, drawing or audio reflection; teacher feedback only"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "bangladesh-global-studies-class-5",
+          "officialPage": "https://nctb.gov.bd/pages/static-pages/695b9a68c4774958d7b707a5",
+          "evidenceAnchor": "Class 5 Bangladesh and Global Studies history source; exact chapter and page still require visual verification."
+        },
+        {
+          "sourceId": "amar-bangla-class-5",
+          "officialPage": "https://nctb.gov.bd/pages/static-pages/695b9a68c4774958d7b707a5",
+          "evidenceAnchor": "Unit 22, আমরা তোমাদের ভুলব না, starts on page 124; an educator must confirm its relevance before it is cited for this module."
+        }
+      ],
+      "gates": {
+        "sourceMapping": { "status": "pending", "reviewer": null, "reviewedAt": null, "evidence": null },
+        "banglaLanguage": { "status": "pending", "reviewer": null, "reviewedAt": null, "evidence": null },
+        "englishAdaptation": { "status": "pending", "reviewer": null, "reviewedAt": null, "evidence": null },
+        "culturalHistoricalAccuracy": { "status": "pending", "reviewer": null, "reviewedAt": null, "evidence": null },
+        "ageSuitability": { "status": "pending", "reviewer": null, "reviewedAt": null, "evidence": null },
+        "copyrightPermissions": { "status": "pending", "reviewer": null, "reviewedAt": null, "evidence": null },
+        "accessibility": { "status": "pending", "reviewer": null, "reviewedAt": null, "evidence": null },
+        "mediaSafety": { "status": "pending", "reviewer": null, "reviewedAt": null, "evidence": null },
+        "childPilot": { "status": "pending", "reviewer": null, "reviewedAt": null, "evidence": null }
+      }
+    },
+    {
+      "id": "pilot-02-pohela-boishakh",
+      "sequence": 2,
+      "appTopicId": "pohela-boishakh",
+      "theme": "culture",
+      "title": {
+        "en": "Pohela Boishakh — Bengali New Year",
+        "bn": "পহেলা বৈশাখ — বাংলা নববর্ষ"
+      },
+      "learnerOutcome": "Describe two Pohela Boishakh traditions, compare how families celebrate, and recognise that practices vary by place, faith and family.",
+      "publicationStatus": "draft",
+      "moodleBuild": [
+        {
+          "type": "book",
+          "name": "Festival story map",
+          "purpose": "Bilingual reading with vocabulary support and descriptions for every visual"
+        },
+        {
+          "type": "quiz",
+          "name": "Festival facts",
+          "purpose": "Three bilingual formative questions from questions.gift"
+        },
+        {
+          "type": "forum",
+          "name": "How does your family celebrate?",
+          "purpose": "Teacher-moderated optional response with no public child profiles"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "bangladesh-global-studies-class-4",
+          "officialPage": "https://nctb.gov.bd/pages/static-pages/695b99ccc4774958d7b70680",
+          "evidenceAnchor": "Verified 2026 Class 4 chapter title: The Traditional Cultural Festivals of Bangladesh; exact page citation is still required."
+        }
+      ],
+      "gates": {
+        "sourceMapping": { "status": "pending", "reviewer": null, "reviewedAt": null, "evidence": null },
+        "banglaLanguage": { "status": "pending", "reviewer": null, "reviewedAt": null, "evidence": null },
+        "englishAdaptation": { "status": "pending", "reviewer": null, "reviewedAt": null, "evidence": null },
+        "culturalHistoricalAccuracy": { "status": "pending", "reviewer": null, "reviewedAt": null, "evidence": null },
+        "ageSuitability": { "status": "pending", "reviewer": null, "reviewedAt": null, "evidence": null },
+        "copyrightPermissions": { "status": "pending", "reviewer": null, "reviewedAt": null, "evidence": null },
+        "accessibility": { "status": "pending", "reviewer": null, "reviewedAt": null, "evidence": null },
+        "mediaSafety": { "status": "pending", "reviewer": null, "reviewedAt": null, "evidence": null },
+        "childPilot": { "status": "pending", "reviewer": null, "reviewedAt": null, "evidence": null }
+      }
+    },
+    {
+      "id": "pilot-03-folk-tales",
+      "sequence": 3,
+      "appTopicId": "folk-tales",
+      "theme": "literature",
+      "title": {
+        "en": "Folk tales — stories carried across generations",
+        "bn": "লোককথা — প্রজন্ম থেকে প্রজন্মে বয়ে চলা গল্প"
+      },
+      "learnerOutcome": "Identify a folk-tale pattern, compare two character choices, and retell a family or community story without copying a protected text.",
+      "publicationStatus": "draft",
+      "moodleBuild": [
+        {
+          "type": "book",
+          "name": "What makes a folk tale?",
+          "purpose": "Original explanation; any literary text remains excluded until rights and accessibility are recorded"
+        },
+        {
+          "type": "quiz",
+          "name": "Story detective",
+          "purpose": "Three bilingual formative questions from questions.gift"
+        },
+        {
+          "type": "assignment",
+          "name": "Retell, draw or record",
+          "purpose": "Learner-created response with a speaking/writing rubric and private teacher feedback"
+        }
+      ],
+      "sources": [
+        {
+          "sourceId": "amar-bangla-class-5",
+          "officialPage": "https://nctb.gov.bd/pages/static-pages/695b9a68c4774958d7b707a5",
+          "evidenceAnchor": "Unit 6, সুখু আর দুখু, starts on page 32. It is a candidate comparison source only and does not validate the existing Thakurmar Jhuli adaptation."
+        }
+      ],
+      "gates": {
+        "sourceMapping": { "status": "pending", "reviewer": null, "reviewedAt": null, "evidence": null },
+        "banglaLanguage": { "status": "pending", "reviewer": null, "reviewedAt": null, "evidence": null },
+        "englishAdaptation": { "status": "pending", "reviewer": null, "reviewedAt": null, "evidence": null },
+        "culturalHistoricalAccuracy": { "status": "pending", "reviewer": null, "reviewedAt": null, "evidence": null },
+        "ageSuitability": { "status": "pending", "reviewer": null, "reviewedAt": null, "evidence": null },
+        "copyrightPermissions": { "status": "pending", "reviewer": null, "reviewedAt": null, "evidence": null },
+        "accessibility": { "status": "pending", "reviewer": null, "reviewedAt": null, "evidence": null },
+        "mediaSafety": { "status": "pending", "reviewer": null, "reviewedAt": null, "evidence": null },
+        "childPilot": { "status": "pending", "reviewer": null, "reviewedAt": null, "evidence": null }
+      }
+    }
+  ]
+}

@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint .",
     "test": "node --test tests/*.test.mjs",
@@ -17,6 +17,8 @@
     "audio:generate": "node scripts/generate-voice-assets.cjs",
     "verify:media": "node scripts/verify-media.mjs",
     "verify:links": "node scripts/verify-links.mjs",
+    "verify:moodle-pilot": "node scripts/verify-moodle-pilot.mjs",
+    "verify:moodle-release": "node scripts/verify-moodle-pilot.mjs --release",
     "fetch:nctb": "node scripts/fetch-nctb.mjs",
     "crawl:nctb": "node scripts/crawl-nctb.mjs"
   },
