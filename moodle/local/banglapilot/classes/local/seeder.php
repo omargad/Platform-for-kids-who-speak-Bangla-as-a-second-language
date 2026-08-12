@@ -16,11 +16,6 @@ use stdClass;
 
 defined('MOODLE_INTERNAL') || die();
 
-require_once($CFG->dirroot . '/course/lib.php');
-require_once($CFG->dirroot . '/course/modlib.php');
-require_once($CFG->dirroot . '/lib/questionlib.php');
-require_once($CFG->libdir . '/enrollib.php');
-
 /**
  * Creates and verifies the source-controlled hidden pilot course.
  *
@@ -57,6 +52,13 @@ final class seeder {
      * Load and validate packaged source data.
      */
     public function __construct() {
+        global $CFG;
+
+        require_once($CFG->dirroot . '/course/lib.php');
+        require_once($CFG->dirroot . '/course/modlib.php');
+        require_once($CFG->dirroot . '/lib/questionlib.php');
+        require_once($CFG->libdir . '/enrollib.php');
+
         $datadir = dirname(__DIR__, 2) . '/data';
         $manifestjson = $this->read_file($datadir . '/content-manifest.json');
         $contentjson = $this->read_file($datadir . '/lesson-content.json');
