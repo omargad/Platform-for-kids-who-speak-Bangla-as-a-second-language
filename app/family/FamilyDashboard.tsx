@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { lessons } from "../curriculum";
 import { useLanguage } from "../../lib/use-language";
@@ -21,7 +21,7 @@ const skillLabels: Record<string, string> = {
 
 export default function FamilyDashboard({ adultName }: { adultName: string }) {
   const [language, toggleLanguage] = useLanguage();
-  const s = (en: string, bn: string) => (language === "bn" ? bn : en);
+  const s = useCallback((en: string, bn: string) => (language === "bn" ? bn : en), [language]);
   const skillLabel = (skill: string) => (language === "bn" ? skillLabels[skill] ?? skill : skill);
   const [profiles, setProfiles] = useState<Profile[]>([]);
   const [loading, setLoading] = useState(true);
@@ -37,9 +37,7 @@ export default function FamilyDashboard({ adultName }: { adultName: string }) {
     assignments: profiles.reduce((total, profile) => total + profile.assignments.filter((item) => item.status !== "archived").length, 0),
   }), [profiles]);
 
-  useEffect(() => { void loadProfiles(); }, []);
-
-  async function loadProfiles() {
+  const loadProfiles = useCallback(async () => {
     setLoading(true);
     setError("");
     try {
@@ -52,7 +50,12 @@ export default function FamilyDashboard({ adultName }: { adultName: string }) {
     } finally {
       setLoading(false);
     }
-  }
+  }, [s]);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => void loadProfiles(), 0);
+    return () => window.clearTimeout(timer);
+  }, [loadProfiles]);
 
   async function createProfile(event: React.FormEvent) {
     event.preventDefault();
@@ -196,4 +199,3 @@ export default function FamilyDashboard({ adultName }: { adultName: string }) {
     </main>
   );
 }
-

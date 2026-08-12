@@ -1,0 +1,15 @@
+<VirtualHost *:80>
+    ServerName learn.example.org
+    DocumentRoot /var/www/moodle/public
+
+    <Directory /var/www/moodle/public>
+        AllowOverride None
+        Require all granted
+        Options -Indexes +FollowSymLinks
+        AcceptPathInfo On
+        FallbackResource /r.php
+    </Directory>
+
+    ErrorLog ${APACHE_LOG_DIR}/moodle-error.log
+    CustomLog ${APACHE_LOG_DIR}/moodle-access.log combined
+</VirtualHost>

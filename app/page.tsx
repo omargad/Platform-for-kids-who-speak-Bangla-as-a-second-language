@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { lessons, levelBands, type CurriculumLevel } from "./curriculum";
 import LessonExperience from "./components/LessonExperience";
@@ -537,6 +538,8 @@ export default function Home() {
         void flushProgressQueue(data.profile.id);
       })
       .catch(() => setSyncStatus("pending"));
+  // Legacy learner hydration intentionally runs once after local state is ready.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ready]);
 
   useEffect(() => {
@@ -545,6 +548,8 @@ export default function Home() {
     };
     window.addEventListener("online", syncWhenOnline);
     return () => window.removeEventListener("online", syncWhenOnline);
+  // The queue function is intentionally read from the current legacy render.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [cloudLearner]);
 
   useEffect(() => {
@@ -1166,7 +1171,7 @@ export default function Home() {
           </div>
 
           <div className="hero-art" aria-label="Illustrated Bangladesh river quest map">
-            <img src="/hero-quest-map.png" alt="A colourful illustrated river map with a friendly tiger and Bangladesh landmarks" />
+            <Image src="/hero-quest-map.png" width={1584} height={990} priority alt="A colourful illustrated river map with a friendly tiger and Bangladesh landmarks" />
             <div className="tiger-note">
               <span aria-hidden="true">🐯</span>
               <p><strong>{language === "en" ? "Hi, I’m Bagh!" : "হাই, আমি বাঘ!"}</strong>{language === "en" ? " Let’s follow the river." : " চলো নদীর পথে যাই।"}</p>
@@ -1334,7 +1339,7 @@ export default function Home() {
 
         <section className="story-section" id="story">
           <div className="story-image-wrap">
-            <img src="/river-story.png" alt="Two children travelling by boat through a colourful Bangladeshi river village" />
+            <Image src="/river-story.png" width={1448} height={1086} alt="Two children travelling by boat through a colourful Bangladeshi river village" />
             <div className="paper-label">এক দেশে… <small>Once upon a river…</small></div>
           </div>
           <div className="story-copy">
@@ -1363,7 +1368,7 @@ export default function Home() {
             <div className="passport-stamp" aria-hidden="true"><span>বাংলাদেশ</span><strong>EXPLORE</strong><small>21 · 02</small></div>
           </div>
           <div className="culture-layout">
-            <div className="collage-wrap"><img src="/postcard-collage.png" alt="A cut-paper collage of a rickshaw, mangroves, a Bengal tiger and folk instruments" /></div>
+            <div className="collage-wrap"><Image src="/postcard-collage.png" width={1448} height={1086} alt="A cut-paper collage of a rickshaw, mangroves, a Bengal tiger and folk instruments" /></div>
             <div className="place-list">
               {places.map((place) => (
                 <button className="place-card" type="button" key={place.id} onClick={() => { stopNarration(); playCue("tap"); setModal({ type: "place", id: place.id }); }}>
@@ -1776,7 +1781,7 @@ export default function Home() {
 
             {modal.type === "story" && (
               <div className="story-reader">
-                <div className="story-reader-art"><img src="/river-story.png" alt="Maya and Rafi travelling on the river" /><span>{storyPage + 1} / {storyPages.length + 1}</span></div>
+                <div className="story-reader-art"><Image src="/river-story.png" width={1448} height={1086} alt="Maya and Rafi travelling on the river" /><span>{storyPage + 1} / {storyPages.length + 1}</span></div>
                 <div className="story-reader-copy">
                   <p className="modal-kicker">{t.storyKicker}</p>
                   <h2>{t.storyTitle}</h2>

@@ -9293,6 +9293,26 @@ body.modal-open .pwa-status {
   max-width: 21ch;
 }
 
+.topics-review-banner {
+  display: grid;
+  gap: 4px;
+  padding: 14px 18px;
+  border: 2px solid #8f5a00;
+  border-radius: 16px;
+  background: #fff7df;
+  color: #563700;
+  line-height: 1.5;
+}
+
+.topics-review-banner strong {
+  font-family: var(--display);
+}
+
+.topics-review-banner-wide {
+  max-width: 1160px;
+  margin: 22px auto 0;
+}
+
 .topics-back {
   border: none;
   background: none;
@@ -9353,6 +9373,16 @@ body.modal-open .pwa-status {
   margin-top: auto;
   font-weight: 700;
   color: var(--emerald);
+}
+
+.topic-draft-chip {
+  display: inline-flex;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: #fff0c2;
+  color: #714900;
+  font-size: 0.75rem;
+  font-weight: 800;
 }
 
 .topic-emoji {

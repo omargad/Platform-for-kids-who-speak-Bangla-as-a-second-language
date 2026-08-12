@@ -8,6 +8,8 @@ import type { Topic } from "../topics-content";
 import { bookById } from "../library-content";
 
 const DONE_KEY = "bangla-adventures-topics-done";
+const moodleUrl = process.env.NEXT_PUBLIC_MOODLE_URL?.replace(/\/+$/, "");
+const courseHref = moodleUrl || "/learn";
 
 function loadDone(): Record<string, number> {
   try {
@@ -103,6 +105,16 @@ export default function TopicsHub() {
             </small>
           </header>
 
+          <aside className="topics-review-banner" role="note">
+            <strong>{s("Draft for educator review", "শিক্ষক পর্যালোচনার খসড়া")}</strong>
+            <span>
+              {s(
+                "Do not treat this adaptation or quiz as approved curriculum yet. The exact source, Bangla, cultural accuracy, age suitability, rights and accessibility still need named review evidence.",
+                "এই অভিযোজন বা কুইজ এখনো অনুমোদিত পাঠ্যক্রম নয়। সঠিক উৎস, বাংলা, সাংস্কৃতিক নির্ভুলতা, বয়স-উপযোগিতা, স্বত্ব ও প্রবেশযোগ্যতার নামসহ পর্যালোচনা এখনো বাকি।",
+              )}
+            </span>
+          </aside>
+
           {active.sections.map((section) => (
             <section className="topic-section" key={section.heading.en}>
               <h2>{section.heading[language]}</h2>
@@ -123,8 +135,8 @@ export default function TopicsHub() {
             <h2>📖 {s("From the government textbooks", "সরকারি পাঠ্যবই থেকে")}</h2>
             <p className="topic-sources-note">
               {s(
-                "This reading was written for heritage learners, but every fact traces back to Bangladesh's official NCTB textbooks:",
-                "এই লেখাটি প্রবাসী শিক্ষার্থীদের জন্য লেখা, তবে প্রতিটি তথ্যের উৎস বাংলাদেশের সরকারি এনসিটিবি পাঠ্যবই:",
+                "These are candidate NCTB evidence anchors for a reviewer to check. A listed book does not mean every sentence below has been approved:",
+                "এগুলো পর্যালোচকের যাচাইয়ের জন্য সম্ভাব্য এনসিটিবি প্রমাণ-উৎস। বইয়ের নাম থাকা মানে নিচের প্রতিটি বাক্য অনুমোদিত নয়:",
               )}
             </p>
             <ul>
@@ -225,7 +237,7 @@ export default function TopicsHub() {
           </span>
         </Link>
         <nav aria-label="Sections">
-          <Link href="/learn">{s("All activities", "সব কার্যক্রম")}</Link>
+          <a href={courseHref}>{s("Learning course", "শেখার কোর্স")}</a>
           <Link className="active" href="/topics">{s("Topics", "বিষয়")}</Link>
           <Link href="/library">{s("Textbook library", "পাঠ্যবই লাইব্রেরি")}</Link>
         </nav>
@@ -233,6 +245,16 @@ export default function TopicsHub() {
           {s("বাংলায় দেখুন", "View in English")}
         </button>
       </header>
+
+      <aside className="topics-review-banner topics-review-banner-wide" role="note">
+        <strong>{s("Candidate content — review mode", "সম্ভাব্য বিষয়বস্তু — পর্যালোচনা মোড")}</strong>
+        <span>
+          {s(
+            "These topic prototypes are not a published curriculum. The Moodle pilot starts with three modules and stays hidden until its release gates pass.",
+            "এই বিষয়ের খসড়াগুলো প্রকাশিত পাঠ্যক্রম নয়। মুডল পাইলট তিনটি মডিউল দিয়ে শুরু হবে এবং পর্যালোচনার সব ধাপ পাস না করা পর্যন্ত গোপন থাকবে।",
+          )}
+        </span>
+      </aside>
 
       <section className="explore-hero">
         <p className="adult-eyebrow">{s("Culture · history · literature", "সংস্কৃতি · ইতিহাস · সাহিত্য")}</p>
@@ -264,6 +286,7 @@ export default function TopicsHub() {
                   <span className="topic-emoji" aria-hidden="true">{topic.emoji}</span>
                   <strong>{topic.title[language]}</strong>
                   <p>{topic.tagline[language]}</p>
+                  <span className="topic-draft-chip">{s("Draft review", "খসড়া পর্যালোচনা")}</span>
                   <small>
                     {finished !== undefined
                       ? s(`Quiz done — best ${finished}/${topic.quiz.length} ⭐`, `কুইজ শেষ — সেরা ${finished}/${topic.quiz.length} ⭐`)
@@ -280,10 +303,14 @@ export default function TopicsHub() {
         <span aria-hidden="true">🍎</span>
         <p>
           {s(
-            "Teachers: every topic names the NCTB textbook it draws from, so you can match topics to your term plan. These practice quizzes stay on the child's device — to set your own quizzes and collect real submissions, open the ",
-            "শিক্ষকদের জন্য: প্রতিটি বিষয়ে উৎস এনসিটিবি পাঠ্যবইয়ের নাম দেওয়া আছে, তাই টার্ম-পরিকল্পনার সঙ্গে মেলানো সহজ। এই অনুশীলন-কুইজ শিশুর ডিভাইসেই থাকে — নিজের কুইজ দিতে ও জমা নিতে খুলুন ",
+            "Teachers: the source labels are a review queue, not automatic approval. Build approved quizzes and collect learner work in the ",
+            "শিক্ষকদের জন্য: উৎসের নামগুলো পর্যালোচনার তালিকা, স্বয়ংক্রিয় অনুমোদন নয়। অনুমোদিত কুইজ ও শিক্ষার্থীর কাজ রাখুন ",
           )}
-          <Link href="/teach">{s("teacher workspace →", "শিক্ষকের কর্মক্ষেত্র →")}</Link>
+          {moodleUrl ? (
+            <a href={moodleUrl}>{s("Moodle pilot course →", "মুডল পাইলট কোর্স →")}</a>
+          ) : (
+            <Link href="/teach">{s("legacy teacher preview →", "পুরোনো শিক্ষক প্রিভিউ →")}</Link>
+          )}
         </p>
       </section>
     </main>

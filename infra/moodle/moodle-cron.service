@@ -1,0 +1,12 @@
+[Unit]
+Description=Moodle scheduled tasks
+After=network.target mariadb.service
+
+[Service]
+Type=oneshot
+User=www-data
+Group=www-data
+ExecStart=/usr/bin/php /var/www/moodle/admin/cli/cron.php
+Nice=10
+PrivateTmp=true
+NoNewPrivileges=true

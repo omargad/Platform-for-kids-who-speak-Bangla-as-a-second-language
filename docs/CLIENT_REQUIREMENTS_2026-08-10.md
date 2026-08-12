@@ -18,69 +18,70 @@ missing systematic resource.
 
 ## Requirement traceability
 
-| # | Requirement (client's words, condensed) | Status | Where |
+Status meanings: **implemented** means software exists; **partial** means it
+cannot be accepted yet; **decision** requires the client/school; **blocked** is
+a launch dependency. No row is marked done solely because the project builds.
+
+| # | Requirement (client's words, condensed) | Current evidence | Status / next acceptance step |
 |---|---|---|---|
-| R1 | Content must come from **NCTB government textbooks** ("published textbook by a government body would be the reliable source") | ✅ Done | `/library` catalog + every `/topics` reading cites its NCTB book |
-| R2 | Focus on **culture, history, literature — not language** | ✅ Done | `/topics` (13 readings in 3 themes) is the lead experience; language tools demoted to an "optional extension" corner on `/learn` |
-| R3 | **Not presented as in the textbook** — customised for kids who don't have Bangla as first language, English-first interface | ✅ Done | All topic text originally written for heritage learners; English is the default UI language |
-| R4 | **Bangla translation** good to have (parents may prefer Bangla) | ✅ Done | Every page has the EN/BN toggle |
-| R5 | **Stories/poems presented as-is** ("we cannot change a story, we cannot change the poem") | ✅ Done | `/poems` presents public-domain verse verbatim (Tagore, Kusumkumari Das, folk rhymes) with author credits; Nazrul (in copyright until 2036) is cited, never reproduced |
-| R6 | **Copyright care** — no verbatim copying, no breaching AI training rules | ✅ Policy | All platform text is original; sources are cited, never reproduced |
-| R7 | Students **read info, then do short quizzes** they can show teachers | ✅ Done (v1) | Each topic ends in a 3-question quiz with a "show your teacher" result screen (device-local) |
-| R8 | **Teacher access level** — teachers set up quizzes/activities and see student work | ✅ Done | `/teach`: create classes with join codes, author quizzes/activities (optionally tied to a topic), open/close them, see graded submissions per student. `/classroom`: students join with a first name + code (no email/password), do the work, scores go to the teacher |
-| R9 | **Parent access** (client leans yes, principal to confirm) | ✅ Partial | Grown-up accounts + family dashboard already track progress per child |
-| R10 | **Responsive website** (tablets first), not a mobile app | ✅ Done | Responsive layouts across the site |
-| R11 | **Soft pastel, simplistic design**; research kids' info platforms | ✅ Ongoing | New pages use soft pastel panels; client offered to review designs with the kids |
-| R12 | **Announcements by teachers** — good to have, not core | ✅ Done | Teachers post/remove class announcements on `/teach`; students see them at the top of `/classroom` |
-| R13 | **Yearly source refresh** — "every year we should be able to change the sources" | ✅ Done | `/teach` → "Textbook knowledge sources": update each book's official download link (or add/hide books) with no code change; the public `/library` reflects it instantly via `/api/library` |
-| R14 | **Low-cost / free-tier hosting**; GitHub mandatory | ✅ Done | SQLite + Node single container, no paid services; repo on GitHub |
-| R15 | Other sources (BRAC, universities…) **only with client approval** | ✅ Policy | They stay on `/resources` as external listings; `/library` states the approval rule |
-| R16 | Working solution **before week 12** so kids can test it | ✅ On track | Platform is deployable now (see `docs/DEPLOYMENT.md`) |
+| R1 | Content must come from **NCTB government textbooks** | Official pages, 143 download endpoints and representative PDFs were audited; topic/lesson mappings remain pending | **Partial:** educator confirms exact edition/page and interpretation for each published module |
+| R2 | Focus on **culture, history, literature — not language** | 13 topic drafts exist, but 18 language lessons and related tools remain in the repository | **Partial:** Moodle pilot contains only three culture/history/literature modules; Moodle mode redirects the language/LMS surfaces |
+| R3 | Customise for children who do not have Bangla as a first language; English first | Bilingual draft adaptations exist | **Partial:** English/Bangla, reading load, scaffolds and age suitability need named review and child testing |
+| R4 | Bangla translation is desirable | Topic drafts provide EN/BN copy | **Partial:** Bangla spelling, register and translation are not professionally approved |
+| R5 | Stories/poems must not be altered | Prototype literature pages exist and some copyright rules are encoded | **Blocked:** exact work/edition, public-domain or permission basis, faithful text and accessibility review required before publication |
+| R6 | Copyright care; no unapproved copying or AI misuse | Source/audit policy exists; NCTB scans are not embedded as lessons | **Blocked:** rights review and a content provenance record are required per module/media item |
+| R7 | Learners read information and take short quizzes teachers can see | Device-local topic quizzes and a draft Moodle GIFT bank exist | **Partial:** Moodle quiz/gradebook flow must be built and teacher-tested using approved questions |
+| R8 | Teacher access to create activities and see work | Custom prototype exists; Moodle provides the launch workflow | **Implemented in architecture, not deployed:** configure and permission-test Moodle teacher/editor/reviewer roles |
+| R9 | Parent access, pending principal confirmation | A legacy family dashboard exists | **Decision:** no parent account in the first Moodle pilot unless the school confirms a clear need and privacy model |
+| R10 | Responsive website, tablet first, not a mobile app | Responsive code exists | **Partial:** device/browser, keyboard, zoom/reflow and screen-reader validation still required |
+| R11 | Soft pastel, simple child-appropriate design | Prototype styling exists | **Partial:** client/child observation and iterative usability changes required |
+| R12 | Teacher announcements are desirable | Legacy prototype exists; Moodle announcements/forum can supply it | **Not configured:** test within the hidden pilot course |
+| R13 | Refresh sources annually | NCTB audit pipeline and source catalogue exist | **Partial:** assign an owner, record edition/checksum/date and test the yearly update process without silently changing approved lessons |
+| R14 | Low-cost/free-tier hosting; GitHub required | GitHub repository exists; Moodle-first single-VM plan uses client credits and core open-source software | **Partial:** cloud/DNS credentials, production deployment, backup restore and support ownership remain |
+| R15 | Non-NCTB sources only with client approval | External providers are listings on `/resources`, not lesson evidence | **Policy implemented:** each future use still needs a recorded client decision |
+| R16 | Working solution before week 12 for child feedback | Compile/test baseline and three-module Moodle pack exist | **Blocked:** Moodle deployment, 27 content gates, privacy/safeguarding, access testing and a consented pilot remain |
 
-## Key content decisions
+## Current content decisions
 
-- **NCTB books catalogued** (`app/library-content.ts`): Amar Bangla Boi (1–5),
-  Bangladesh and Global Studies (3–5 and 6–10, English versions), History of
-  Bangladesh and World Civilization (9–10, English version), the secondary
-  Bangla readers (Charupath / Saptabarna / Sahitya Kanika / Anandapath),
-  Arts and Crafts (Charu O Karukola), and Language and Culture of Minority
-  Ethnic Groups — the book the client picked during the meeting.
-  Books whose exact current edition should be double-checked with the school
-  carry a visible "confirm" chip.
-- **nctb.gov.bd cannot be fetched from this dev environment** (network
-  egress rules), so book cards link to the official portal home rather than
-  deep PDF URLs, which NCTB also reshuffles between years. The team should
-  verify deep links from a normal connection and can then store per-book URLs
-  in `app/library-content.ts`.
-- **13 classroom topics** shipped (`app/topics-content.ts`): Ekushey/Language
-  Movement, Liberation War 1971, Ancient Bengal, National symbols; Pohela
-  Boishakh, Festivals of many faiths, Nobanno & pitha, Rivers & everyday
-  life, Hill & plains communities; Tagore, Nazrul, Thakurmar Jhuli folk
-  tales, Nakshi kantha/Jamdani/rickshaw art. Every topic carries EN+BN text,
-  fun facts, NCTB citations and a quiz.
+- `app/nctb-books.ts` records eight current Class 1–5 titles, eleven Bangla/
+  English PDF variants, pre-primary records and conditional educator/teen/
+  community sources. See `docs/NCTB_CONTENT_AUDIT.md` for exact limits.
+- The repository now has direct official catalogue and government-hosted
+  download links. Link availability does not establish educational approval,
+  accessibility or permission to republish.
+- `app/topics-content.ts` contains 13 bilingual topic prototypes. They are a
+  review inventory, not 13 published lessons.
+- `moodle/pilot/content-manifest.json` selects only Ekushey, Pohela Boishakh and
+  folk tales for the first course. All 27 release gates are pending.
+- No YouTube candidate, synthetic audio or NCTB scan enters the first pilot.
 
-## How the classroom keeps children safe (for the privacy review)
+## Child-data decision for the Moodle pilot
 
-- A student account is a **first name or nickname + a random device token**
-  linked to one class. No email, no password, no birthday, no surname.
-- Students never see each other's scores; teachers see their own class only.
-- Quiz answer keys never leave the server — grading is server-side and the
-  student feed strips the `answer` field (covered by an integration test).
-- Join and submit endpoints are rate-limited; a class can be deleted by its
-  teacher at any time, which cascades away all of its students and submissions.
+- The legacy nickname/token design is not the launch system once Moodle mode is
+  enabled.
+- The school/client controls recruitment, parent/guardian consent and the
+  minimum approved identity fields. Public self-registration and guest course
+  access stay disabled.
+- Separate test accounts must prove administrator, editor/reviewer, teacher and
+  student boundaries before enrolment.
+- Learner work remains private to the learner and authorised teaching staff;
+  public forums/profiles are not part of the pilot.
+- Privacy impact, retention/deletion, safeguarding contact, incident response
+  and Australian child-privacy review remain launch blockers.
 
-## Remaining items for the week-3 client meeting (decisions, not code)
+## Decisions and evidence needed next
 
-1. Confirm with the principal: parent access (R9), the "confirm" library
-   entries, and the topic list priorities for the term plan.
-2. Team reads the actual NCTB books (client: "six of you pick different
-   things") and verifies each topic's facts against them. The ingestion
-   pipeline is ready: run `npm run fetch:nctb` from a Codespace/laptop (the
-   dev sandbox cannot reach nctb.gov.bd — verified: the egress proxy blocks
-   it), drop any hand-downloaded PDFs into `content-sources/pdf/`, and the
-   script extracts their text into `content-sources/text/` for commit. See
-   `content-sources/README.md`. Add per-book deep links via the `/teach`
-   source editor at the same time.
-3. Client demo of the teacher/classroom flow; gather kid feedback via the
-   school (the client offered to organise this).
-4. Deployment to the client's hosting once credentials arrive (runbook ready).
+1. Approve or change the three pilot topics, learner age/context and parent
+   access decision.
+2. Name the curriculum/Bangla, cultural/history, accessibility, privacy/
+   safeguarding and technical owners.
+3. Give each reviewer one manifest gate and require exact evidence, not a
+   general “looks good” response.
+4. Provide cloud and DNS access; build the hidden Moodle course and demonstrate
+   teacher/student roles before children are invited.
+5. Agree on the consented child-pilot size, recruitment route, observation
+   method and feedback-to-revision record.
+6. Approve production operations: HTTPS, email, monitoring, nightly off-VM
+   backups, restore test, support and incident response.
+
+The implementation and release sequence is in `docs/MOODLE_FIRST_MVP.md`.
