@@ -59,7 +59,11 @@ jobs:
             composer mariadb-server php8.3-cli php8.3-curl php8.3-gd \
             php8.3-intl php8.3-mbstring php8.3-mysql php8.3-soap \
             php8.3-xml php8.3-zip unzip
+          sudo sed -i -E \
+            's/^[;[:space:]]*max_input_vars[[:space:]]*=.*/max_input_vars = 5000/' \
+            /etc/php/8.3/cli/php.ini
           test "$(php -r 'echo PHP_MAJOR_VERSION.".".PHP_MINOR_VERSION;')" = "8.3"
+          test "$(php -r 'echo ini_get("max_input_vars");')" -ge 5000
           bash infra/moodle/install-pilot-plugin.sh \
             --check-package dist/local_banglapilot.zip \
             --sha256-file dist/local_banglapilot.zip.sha256
