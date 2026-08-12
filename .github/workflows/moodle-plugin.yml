@@ -79,7 +79,7 @@ jobs:
         run: |
           sudo mariadb --batch --execute="CREATE DATABASE ${DB_NAME} DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci; CREATE USER '${DB_USER}'@'localhost' IDENTIFIED BY '${DB_PASSWORD}'; GRANT ALL PRIVILEGES ON ${DB_NAME}.* TO '${DB_USER}'@'localhost'; FLUSH PRIVILEGES;"
           sudo install -d -o "$(id -un)" -g "$(id -gn)" -m 0770 "$MOODLE_DATA"
-          php "$MOODLE_ROOT/admin/cli/install.php" \
+          php -d max_input_vars=5000 "$MOODLE_ROOT/admin/cli/install.php" \
             --non-interactive \
             --agree-license \
             --lang=en \
